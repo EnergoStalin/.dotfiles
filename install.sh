@@ -1,5 +1,8 @@
 #!/bin/bash
 
 if timeout 1s xset q &>/dev/null; then
-    echo "Xorg detected"
+    cd xorg && stow -t "$HOME" */ && cd -
 fi
+
+
+cd cross && stow -t "$HOME" */ && cd -
