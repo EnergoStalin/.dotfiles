@@ -1,6 +1,12 @@
 export EDITOR=vim
 export VISUAL=vim
 
+alias fzfd='FZF_DEFAULT_COMMAND="find . -type d -not -path '"'"'*.git*'"'"' -and -not -path '"'"'*node_modules*'"'"'" fzf'
+alias fzff='FZF_DEFAULT_COMMAND="find . -type f -not -path '"'"'*.git*'"'"' -and -not -path '"'"'*node_modules*'"'"'" fzf'
+
+alias scrcpy='scrcpy --turn-screen-off --no-cleanup'
+alias scrcpyao='scrcpy --no-video'
+
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 
 if [[ -z "$(mount | grep 'gdrive')" ]]; then
