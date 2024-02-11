@@ -1,13 +1,11 @@
 return {
     'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
     dependencies = {
-			'nvim-lua/plenary.nvim',
-			'BurntSushi/ripgrep'
+        'nvim-lua/plenary.nvim',
+        'BurntSushi/ripgrep'
     },
-		keys = {
-			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "" },
-			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "" },
-		},
-    lazy = false,
+    keys = {
+        { "<leader>ff", "<cmd>Telescope find_files hidden=True<cr>", desc = "" },
+        { "<leader>fg", "<cmd>Telescope live_grep hidden=True<cr>", desc = "" },
+    },
 }
