@@ -16,3 +16,8 @@ fi
 if [[ -z "$(mount | grep '/yd')" ]]; then
     rclone mount --daemon --yandex-hard-delete yd: ~/remote/yd
 fi
+
+if [[ -z "$(mount | grep 'gdshared')" ]]; then
+    rclone mount --daemon --drive-shared-with-me 'gdrive:' ~/remote/gdshared
+fi
+
