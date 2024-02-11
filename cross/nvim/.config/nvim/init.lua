@@ -3,6 +3,7 @@ vim.g.maplocalleader = " "
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.scrolloff = 15
 vim.opt.expandtab = true
 vim.opt.relativenumber = true
 vim.opt.listchars = "eol:$,tab:>-,trail:~,extends:>,precedes:<" 
