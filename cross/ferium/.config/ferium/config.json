@@ -1,0 +1,622 @@
+{
+  "active_profile": 3,
+  "active_modpack": 1,
+  "profiles": [
+    {
+      "name": "solum",
+      "output_dir": "/home/alexv/.local/share/multimc/instances/Solum/.minecraft/mods/",
+      "game_version": "1.19.3",
+      "mod_loader": "Fabric",
+      "mods": [
+        {
+          "name": "Advanced XRay (Fabric Edition)",
+          "identifier": {
+            "CurseForgeProject": 444663
+          }
+        },
+        {
+          "name": "AppleSkin",
+          "identifier": {
+            "CurseForgeProject": 248787
+          }
+        },
+        {
+          "name": "Architectury API (Fabric/Forge)",
+          "identifier": {
+            "CurseForgeProject": 419699
+          }
+        },
+        {
+          "name": "Balm (Fabric Edition)",
+          "identifier": {
+            "CurseForgeProject": 500525
+          }
+        },
+        {
+          "name": "Better Statistics Screen (Fabric)",
+          "identifier": {
+            "CurseForgeProject": 667464
+          }
+        },
+        {
+          "name": "Bookshelf",
+          "identifier": {
+            "CurseForgeProject": 228525
+          }
+        },
+        {
+          "name": "Cloth Config API (Fabric/Forge)",
+          "identifier": {
+            "CurseForgeProject": 348521
+          }
+        },
+        {
+          "name": "ContainerSearcher [Fabric]",
+          "identifier": {
+            "CurseForgeProject": 632699
+          }
+        },
+        {
+          "name": "Controlling",
+          "identifier": {
+            "CurseForgeProject": 250398
+          }
+        },
+        {
+          "name": "CreativeCore",
+          "identifier": {
+            "CurseForgeProject": 257814
+          }
+        },
+        {
+          "name": "CustomSkinLoader",
+          "identifier": {
+            "CurseForgeProject": 286924
+          }
+        },
+        {
+          "name": "Dynamic FPS",
+          "identifier": {
+            "ModrinthProject": "LQ3K71Q1"
+          }
+        },
+        {
+          "name": "Enchantment Descriptions",
+          "identifier": {
+            "CurseForgeProject": 250419
+          }
+        },
+        {
+          "name": "Fabric API",
+          "identifier": {
+            "ModrinthProject": "P7dR8mSH"
+          }
+        },
+        {
+          "name": "Fabric Language Kotlin",
+          "identifier": {
+            "ModrinthProject": "Ha28R6CL"
+          }
+        },
+        {
+          "name": "Freecam (Modrinth Edition)",
+          "identifier": {
+            "ModrinthProject": "XeEZ3fK2"
+          }
+        },
+        {
+          "name": "Gamma Utils (Fullbright)",
+          "identifier": {
+            "ModrinthProject": "wdLuzzEP"
+          }
+        },
+        {
+          "name": "Inventory Profiles Next",
+          "identifier": {
+            "CurseForgeProject": 495267
+          }
+        },
+        {
+          "name": "Item Scroller",
+          "identifier": {
+            "CurseForgeProject": 242064
+          }
+        },
+        {
+          "name": "ItemPhysic Lite",
+          "identifier": {
+            "CurseForgeProject": 270441
+          }
+        },
+        {
+          "name": "Jade 🔍",
+          "identifier": {
+            "ModrinthProject": "nvQzSEkH"
+          }
+        },
+        {
+          "name": "JourneyMap",
+          "identifier": {
+            "ModrinthProject": "lfHFW1mp"
+          }
+        },
+        {
+          "name": "libIPN",
+          "identifier": {
+            "CurseForgeProject": 679177
+          }
+        },
+        {
+          "name": "Litematica",
+          "identifier": {
+            "CurseForgeProject": 308892
+          }
+        },
+        {
+          "name": "Lithium (Fabric)",
+          "identifier": {
+            "CurseForgeProject": 360438
+          }
+        },
+        {
+          "name": "MaLiLib",
+          "identifier": {
+            "CurseForgeProject": 303119
+          }
+        },
+        {
+          "name": "MiniHUD",
+          "identifier": {
+            "CurseForgeProject": 244260
+          }
+        },
+        {
+          "name": "Mod Menu",
+          "identifier": {
+            "ModrinthProject": "mOgUt4GM"
+          }
+        },
+        {
+          "name": "Mouse Tweaks",
+          "identifier": {
+            "CurseForgeProject": 60089
+          }
+        },
+        {
+          "name": "Phosphor (Fabric)",
+          "identifier": {
+            "CurseForgeProject": 372124
+          }
+        },
+        {
+          "name": "Roughly Enough Items Fabric/Forge (REI)",
+          "identifier": {
+            "CurseForgeProject": 310111
+          }
+        },
+        {
+          "name": "Roughly Enough Professions (REP)",
+          "identifier": {
+            "CurseForgeProject": 597988
+          }
+        },
+        {
+          "name": "Screenshot to Clipboard",
+          "identifier": {
+            "ModrinthProject": "1KiJRrTg"
+          }
+        },
+        {
+          "name": "Searchables",
+          "identifier": {
+            "CurseForgeProject": 858542
+          }
+        },
+        {
+          "name": "ShulkerBoxTooltip [Fabric/Forge]",
+          "identifier": {
+            "CurseForgeProject": 315811
+          }
+        },
+        {
+          "name": "Tweakeroo",
+          "identifier": {
+            "CurseForgeProject": 297344
+          }
+        },
+        {
+          "name": "Visuality",
+          "identifier": {
+            "ModrinthProject": "rI0hvYcd"
+          }
+        }
+      ]
+    },
+    {
+      "name": "solum",
+      "output_dir": "/home/alexv/.local/share/multimc/instances/Solum/.minecraft/mods",
+      "game_version": "1.20.1",
+      "mod_loader": "Fabric",
+      "mods": [
+        {
+          "name": "Advanced XRay (Fabric Edition)",
+          "identifier": {
+            "CurseForgeProject": 444663
+          }
+        },
+        {
+          "name": "AppleSkin",
+          "identifier": {
+            "CurseForgeProject": 248787
+          }
+        },
+        {
+          "name": "Architectury API (Fabric/Forge)",
+          "identifier": {
+            "CurseForgeProject": 419699
+          }
+        },
+        {
+          "name": "AutoAuthMC",
+          "identifier": {
+            "GitHubRepository": [
+              "EnergoStalin",
+              "AutoAuthMC"
+            ]
+          }
+        },
+        {
+          "name": "Balm (Fabric Edition)",
+          "identifier": {
+            "CurseForgeProject": 500525
+          }
+        },
+        {
+          "name": "Baritone AI pathfinder",
+          "identifier": {
+            "CurseForgeProject": 621192
+          }
+        },
+        {
+          "name": "Better Sodium Video Settings Button",
+          "identifier": {
+            "ModrinthProject": "tu2FohxL"
+          }
+        },
+        {
+          "name": "Better Statistics Screen",
+          "identifier": {
+            "ModrinthProject": "n6PXGAoM"
+          }
+        },
+        {
+          "name": "Bookshelf",
+          "identifier": {
+            "CurseForgeProject": 228525
+          }
+        },
+        {
+          "name": "ChestTracker",
+          "identifier": {
+            "ModrinthProject": "ni4SrKmq"
+          }
+        },
+        {
+          "name": "Cloth Config API",
+          "identifier": {
+            "ModrinthProject": "9s6osm5g"
+          }
+        },
+        {
+          "name": "Cloth Config API (Fabric/Forge)",
+          "identifier": {
+            "CurseForgeProject": 348521
+          }
+        },
+        {
+          "name": "Command Macros",
+          "identifier": {
+            "CurseForgeProject": 331956
+          }
+        },
+        {
+          "name": "Controlling",
+          "identifier": {
+            "CurseForgeProject": 250398
+          }
+        },
+        {
+          "name": "CreativeCore",
+          "identifier": {
+            "CurseForgeProject": 257814
+          }
+        },
+        {
+          "name": "CustomSkinLoader",
+          "identifier": {
+            "CurseForgeProject": 286924
+          }
+        },
+        {
+          "name": "Durability Tooltip",
+          "identifier": {
+            "ModrinthProject": "smUP7V3r"
+          }
+        },
+        {
+          "name": "Dynamic FPS",
+          "identifier": {
+            "ModrinthProject": "LQ3K71Q1"
+          }
+        },
+        {
+          "name": "Enchantment Descriptions",
+          "identifier": {
+            "CurseForgeProject": 250419
+          }
+        },
+        {
+          "name": "Fabric API",
+          "identifier": {
+            "ModrinthProject": "P7dR8mSH"
+          }
+        },
+        {
+          "name": "Fabric Language Kotlin",
+          "identifier": {
+            "ModrinthProject": "Ha28R6CL"
+          }
+        },
+        {
+          "name": "Freecam (Fabric/Forge)",
+          "identifier": {
+            "CurseForgeProject": 557076
+          }
+        },
+        {
+          "name": "Gamma Utils (Fullbright)",
+          "identifier": {
+            "ModrinthProject": "wdLuzzEP"
+          }
+        },
+        {
+          "name": "Inventory Profiles Next",
+          "identifier": {
+            "CurseForgeProject": 495267
+          }
+        },
+        {
+          "name": "Iris Shaders",
+          "identifier": {
+            "ModrinthProject": "YL57xq9U"
+          }
+        },
+        {
+          "name": "Item Scroller",
+          "identifier": {
+            "CurseForgeProject": 242064
+          }
+        },
+        {
+          "name": "ItemPhysic Lite",
+          "identifier": {
+            "CurseForgeProject": 270441
+          }
+        },
+        {
+          "name": "Jade 🔍",
+          "identifier": {
+            "ModrinthProject": "nvQzSEkH"
+          }
+        },
+        {
+          "name": "JourneyMap",
+          "identifier": {
+            "ModrinthProject": "lfHFW1mp"
+          }
+        },
+        {
+          "name": "JS Macros",
+          "identifier": {
+            "CurseForgeProject": 403185
+          }
+        },
+        {
+          "name": "libIPN",
+          "identifier": {
+            "CurseForgeProject": 679177
+          }
+        },
+        {
+          "name": "Litematica",
+          "identifier": {
+            "CurseForgeProject": 308892
+          }
+        },
+        {
+          "name": "Lithium (Fabric)",
+          "identifier": {
+            "CurseForgeProject": 360438
+          }
+        },
+        {
+          "name": "MaLiLib",
+          "identifier": {
+            "CurseForgeProject": 303119
+          }
+        },
+        {
+          "name": "MiniHUD",
+          "identifier": {
+            "CurseForgeProject": 244260
+          }
+        },
+        {
+          "name": "Mod Menu",
+          "identifier": {
+            "ModrinthProject": "mOgUt4GM"
+          }
+        },
+        {
+          "name": "Mouse Tweaks",
+          "identifier": {
+            "CurseForgeProject": 60089
+          }
+        },
+        {
+          "name": "Phosphor (Fabric)",
+          "identifier": {
+            "CurseForgeProject": 372124
+          }
+        },
+        {
+          "name": "Roughly Enough Items Fabric/Forge (REI)",
+          "identifier": {
+            "CurseForgeProject": 310111
+          }
+        },
+        {
+          "name": "Roughly Enough Professions (REP)",
+          "identifier": {
+            "CurseForgeProject": 597988
+          }
+        },
+        {
+          "name": "Screenshot to Clipboard",
+          "identifier": {
+            "ModrinthProject": "1KiJRrTg"
+          }
+        },
+        {
+          "name": "Searchables",
+          "identifier": {
+            "CurseForgeProject": 858542
+          }
+        },
+        {
+          "name": "ShulkerBoxTooltip [Fabric/Forge]",
+          "identifier": {
+            "CurseForgeProject": 315811
+          }
+        },
+        {
+          "name": "Sodium",
+          "identifier": {
+            "ModrinthProject": "AANobbMI"
+          }
+        },
+        {
+          "name": "Stronghold Finder",
+          "identifier": {
+            "CurseForgeProject": 566911
+          }
+        },
+        {
+          "name": "SuperMartijn642's Config Lib",
+          "identifier": {
+            "ModrinthProject": "LN9BxssP"
+          }
+        },
+        {
+          "name": "ToolTipFix",
+          "identifier": {
+            "ModrinthProject": "2RKFTmiB"
+          }
+        },
+        {
+          "name": "Tweakeroo",
+          "identifier": {
+            "CurseForgeProject": 297344
+          }
+        },
+        {
+          "name": "Visuality",
+          "identifier": {
+            "ModrinthProject": "rI0hvYcd"
+          }
+        }
+      ]
+    },
+    {
+      "name": "CrazyCraft",
+      "output_dir": "/home/alexv/.local/share/multimc/instances/CrazyCraft/.minecraft/mods/",
+      "game_version": "1.16.5",
+      "mod_loader": "Forge",
+      "mods": []
+    },
+    {
+      "name": "CreateAsstroll",
+      "output_dir": "/home/alexv/.local/share/multimc/instances/1.18.2/.minecraft/modsManual/",
+      "game_version": "1.18.2",
+      "mod_loader": "Fabric",
+      "mods": [
+        {
+          "name": "Advanced XRay (Fabric Edition)",
+          "identifier": {
+            "CurseForgeProject": 444663
+          }
+        },
+        {
+          "name": "Better Statistics Screen",
+          "identifier": {
+            "CurseForgeProject": 667464
+          }
+        },
+        {
+          "name": "Controlling",
+          "identifier": {
+            "CurseForgeProject": 250398
+          }
+        },
+        {
+          "name": "Fabric API",
+          "identifier": {
+            "CurseForgeProject": 306612
+          }
+        },
+        {
+          "name": "Freecam (Modrinth Edition)",
+          "identifier": {
+            "ModrinthProject": "XeEZ3fK2"
+          }
+        },
+        {
+          "name": "Gamma Utils (Fullbright)",
+          "identifier": {
+            "ModrinthProject": "wdLuzzEP"
+          }
+        },
+        {
+          "name": "MaLiLib",
+          "identifier": {
+            "CurseForgeProject": 303119
+          }
+        },
+        {
+          "name": "MiniHUD",
+          "identifier": {
+            "CurseForgeProject": 244260
+          }
+        }
+      ]
+    }
+  ],
+  "modpacks": [
+    {
+      "name": "Crazy Craft Updated",
+      "output_dir": "/home/alexv/.local/share/multimc/instances/CrazyCraft/.minecraft",
+      "install_overrides": true,
+      "identifier": {
+        "CurseForgeModpack": 466761
+      }
+    },
+    {
+      "name": "Create: Astral",
+      "output_dir": "/home/alexv/.local/share/multimc/instances/1.18.2/.minecraft/",
+      "install_overrides": true,
+      "identifier": {
+        "CurseForgeModpack": 681792
+      }
+    }
+  ]
+}

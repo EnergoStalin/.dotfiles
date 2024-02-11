@@ -1,0 +1,7 @@
+[user]
+	name = EnergoStalin
+	email = ens.stalin@gmail.com
+[core]
+	autocrlf = false
+	eol = lf
+	editor = vim
