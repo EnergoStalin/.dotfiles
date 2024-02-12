@@ -106,7 +106,7 @@ bindsym $mod+b exec firefox
 bindsym $mod+e exec thunar
 
 bindsym $mod+Shift+s exec flameshot gui --clipboard --accept-on-select
-bindsym $mod+Shift+t exec notify-send "$(flameshot gui --raw --accept-on-select | tesseract stdin stdout | crow -i -b -t ru -s en)"
+bindsym $mod+Shift+t exec notify-send "$(flameshot gui --raw --accept-on-select | tesseract stdin stdout | tr -d '\n' | crow -i -b -t ru -s en)"
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
