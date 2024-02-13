@@ -8,6 +8,7 @@ vim.opt.scrolloff = 15
 vim.opt.number = true
 vim.opt.expandtab = true
 vim.opt.relativenumber = true
+vim.opt.splitbelow = true
 vim.opt.listchars = "eol:$,tab:>-,trail:~,extends:>,precedes:<"
 
 vim.keymap.set('n', '<leader>e', '<cmd>Ex<cr>')
