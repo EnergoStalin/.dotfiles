@@ -15,6 +15,7 @@ return {
         function(server)
           local status, config = pcall(require, "lsp." .. server)
           if (not status) then config = {} end
+          if (config.check ~= nil and not config.check()) then return end
 
           require("lspconfig")[server].setup(config)
         end,
