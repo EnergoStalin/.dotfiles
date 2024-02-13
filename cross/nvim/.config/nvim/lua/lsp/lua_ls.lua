@@ -10,20 +10,26 @@ return {
     client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
       Lua = {
         runtime = {
-          version = 'LuaJIT'
+          version = 'LuaJIT',
         },
         -- Make the server aware of Neovim runtime files
         workspace = {
           checkThirdParty = false,
           library = {
-            vim.env.VIMRUNTIME
-          }
+            vim.env.VIMRUNTIME,
+          },
           -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
           -- library = vim.api.nvim_get_runtime_file("", true)
-        }
-      }
+        },
+        format = {
+          defaultConfig = {
+            trailing_table_separator = 'always',
+            quote_style = 'single',
+          },
+        },
+      },
     })
 
-    client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-  end
+    client.notify('workspace/didChangeConfiguration', { settings = client.config.settings, })
+  end,
 }
