@@ -9,8 +9,13 @@ return {
         'lua',
         'vimdoc',
         'sh',
+        'markdown',
+        'markdown_inline',
       },
       highlight = {
+        enable = true,
+      },
+      indent = {
         enable = true,
       },
     })
