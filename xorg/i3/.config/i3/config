@@ -22,11 +22,11 @@ font pango:monospace 8
 # exec --no-startup-id dex --autostart --environment i3
 
 # Autostart programs
-exec_always telegram-desktop -startintray
-exec_always org.qbittorrent.qBittorrent
-exec_always obs --minimize-to-tray
-exec_always vesktop --start-minimized 
-exec_always keepassxc
+exec telegram-desktop -startintray
+exec org.qbittorrent.qBittorrent
+exec obs --minimize-to-tray
+exec vesktop --start-minimized
+exec keepassxc
 exec_always ~/.config/polybar/launch.sh
 exec_always ~/.fehbg
 
