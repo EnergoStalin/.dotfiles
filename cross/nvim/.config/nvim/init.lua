@@ -13,9 +13,10 @@ vim.opt.listchars = "eol:$,tab:>-,trail:~,extends:>,precedes:<"
 
 vim.keymap.set('n', '<leader>e', '<cmd>Ex<cr>')
 
-vim.keymap.set('n', 'gn', '<cmd>bn<cr>')
-vim.keymap.set('n', 'gp', '<cmd>bp<cr>')
-vim.keymap.set('n', 'gd', '<cmd>bd<cr>')
+vim.keymap.set('n', 'bn', '<cmd>bn<cr>')
+vim.keymap.set('n', 'bp', '<cmd>bp<cr>')
+vim.keymap.set('n', 'bd', '<cmd>bd<cr>')
+vim.keymap.set('n', 'bl', '<cmd>ls<cr>')
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
