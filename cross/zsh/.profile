@@ -10,14 +10,14 @@ alias scrcpyao='scrcpy --no-video'
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 
 if [[ -z "$(mount | grep 'gdrive')" ]]; then
-    rclone mount --daemon --drive-use-trash=false gdrive: ~/remote/gdrive
+    rclone mount --daemon --drive-use-trash=false gdrive: ~/remote/gdrive &
 fi
 
 if [[ -z "$(mount | grep '/yd')" ]]; then
-    rclone mount --daemon --yandex-hard-delete yd: ~/remote/yd
+    rclone mount --daemon --yandex-hard-delete yd: ~/remote/yd &
 fi
 
 if [[ -z "$(mount | grep 'gdshared')" ]]; then
-    rclone mount --daemon --drive-shared-with-me 'gdrive:' ~/remote/gdshared
+    rclone mount --daemon --drive-shared-with-me 'gdrive:' ~/remote/gdshared &
 fi
 
