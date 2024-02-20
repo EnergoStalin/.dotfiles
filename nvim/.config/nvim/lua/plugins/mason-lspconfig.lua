@@ -26,6 +26,7 @@ return {
           if (config.check ~= nil and not config.check()) then return end
 
           vim.keymap.set('n', '<leader>bf', '<cmd>lua vim.lsp.buf.format()<cr>')
+          vim.keymap.set('n', '<leader>qf', '<cmd>lua vim.lsp.buf.code_action()<cr>')
 
           require('lspconfig')[server].setup(vim.tbl_deep_extend('force', config, {
             capabilities = extend({

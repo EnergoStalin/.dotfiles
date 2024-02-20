@@ -5,18 +5,19 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.scrolloff = 15
 
+vim.opt.list = true
 vim.opt.number = true
 vim.opt.expandtab = true
 vim.opt.relativenumber = true
 vim.opt.splitbelow = true
-vim.opt.listchars = "eol:$,tab:>-,trail:~,extends:>,precedes:<"
+vim.opt.listchars = "eol:↵,lead:·"
 
 vim.keymap.set('n', '<leader>e', '<cmd>Ex<cr>')
 
-vim.keymap.set('n', 'bn', '<cmd>bn<cr>')
-vim.keymap.set('n', 'bp', '<cmd>bp<cr>')
-vim.keymap.set('n', 'bd', '<cmd>bd<cr>')
-vim.keymap.set('n', 'bl', '<cmd>ls<cr>')
+vim.keymap.set('n', '<leader>bn', '<cmd>bn<cr>')
+vim.keymap.set('n', '<leader>bp', '<cmd>bp<cr>')
+vim.keymap.set('n', '<leader>bd', '<cmd>bd<cr>')
+vim.keymap.set('n', '<leader>bl', '<cmd>ls<cr>')
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then

@@ -1,12 +1,11 @@
 let mapleader = " "
 set timeoutlen=500
 
+syntax on
+
 set tabstop=2
 set scrolloff=15
 set shiftwidth=2
-
-set syntax=ON
-set filetype=ON
 
 set number
 set expandtab
