@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TO_INSTALL=""
-PACKAGES="$(find . -maxdepth 1 -not -name '.git' -and -not -name '.' -exec basename {} \;)"
+PACKAGES="$(find . -maxdepth 1 -type d -not -name '.git' -and -not -name '.' -exec basename {} \;)"
 
 for package in $PACKAGES; do
   if ! [[ -z "$(pacman -Qe | grep -i $package)" ]]; then
