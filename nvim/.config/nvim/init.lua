@@ -10,9 +10,12 @@ vim.opt.number = true
 vim.opt.expandtab = true
 vim.opt.relativenumber = true
 vim.opt.splitbelow = true
-vim.opt.listchars = "eol:↵,lead:·"
+vim.opt.listchars = "eol:↵,lead:·,tab:⭾ "
 
 vim.keymap.set('n', '<leader>e', '<cmd>Ex<cr>')
+
+vim.keymap.set('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+vim.keymap.set('n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 
 vim.keymap.set('n', '<leader>bn', '<cmd>bn<cr>')
 vim.keymap.set('n', '<leader>bp', '<cmd>bp<cr>')
