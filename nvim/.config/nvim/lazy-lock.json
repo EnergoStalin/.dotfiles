@@ -17,6 +17,7 @@
   "nvim-treesitter": { "branch": "master", "commit": "10d79b5dbbdffc3edf307b189284fb62e2e79a3e" },
   "nvim-treesitter-cpp-tools": { "branch": "master", "commit": "3ac14c9b9e0f2364f1bede67da77d500d5bcdb7e" },
   "plenary.nvim": { "branch": "master", "commit": "4f71c0c4a196ceb656c824a70792f3df3ce6bb6d" },
+  "presence.nvim": { "branch": "main", "commit": "87c857a56b7703f976d3a5ef15967d80508df6e6" },
   "ripgrep": { "branch": "master", "commit": "9b42af96f0143a395b9379b6c761b5625367a3b9" },
   "telescope.nvim": { "branch": "master", "commit": "0f865f17af4f9bc1587a0132414cdfd32d91852e" },
   "xmake.nvim": { "branch": "v2", "commit": "e0955a71064470823828ce9db28851addc666c28" }
