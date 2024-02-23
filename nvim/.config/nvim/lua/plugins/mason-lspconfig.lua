@@ -27,6 +27,7 @@ return {
 
           vim.keymap.set('n', '<leader>bf', '<cmd>lua vim.lsp.buf.format()<cr>')
           vim.keymap.set('n', '<leader>qf', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+          vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
 
           require('lspconfig')[server].setup(vim.tbl_deep_extend('force', config, {
             capabilities = extend({
