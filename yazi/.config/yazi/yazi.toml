@@ -31,6 +31,7 @@ edit = [
 ]
 open = [
 	{ exec = 'xdg-open "$@"',                desc = "Open", for = "linux" },
+	{ exec = 'dragon-drop "$@"',   desc = "drag-n-drop replacement", orphan = true, for = "unix" },
 	{ exec = 'open "$@"',                    desc = "Open", for = "macos" },
 	{ exec = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" }
 ]
