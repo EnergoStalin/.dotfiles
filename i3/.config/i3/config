@@ -23,10 +23,10 @@ font pango:monospace 8
 
 # Autostart programs
 exec telegram-desktop -startintray
-exec org.qbittorrent.qBittorrent
 exec obs --minimize-to-tray
 exec vesktop --start-minimized
 exec keepassxc
+exec qbittorrent
 
 exec_always ~/.config/polybar/launch.sh
 exec_always ~/.fehbg
