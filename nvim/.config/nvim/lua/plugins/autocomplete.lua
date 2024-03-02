@@ -15,14 +15,12 @@ return {
     version = 'v2.*',
     build = 'make install_jsregexp',
     config = function()
-      require('luasnip').setup()
+      require('luasnip').setup({})
     end,
   },
 
   w('hrsh7th/cmp-nvim-lsp'),
   w('hrsh7th/cmp-buffer', { lazy = false, }),
-  w('hrsh7th/cmp-path', { lazy = false, }),
-  w('hrsh7th/cmp-cmdline', { lazy = false, }),
 
   w('hrsh7th/nvim-cmp', {
     config = function()
@@ -38,20 +36,6 @@ return {
           { name = 'nvim_lsp', },
         }, {
           { name = 'buffer', },
-        }),
-        cmp.setup.cmdline({ '/', '?', }, {
-          mapping = cmp.mapping.preset.cmdline(),
-          sources = {
-            { name = 'buffer', },
-          },
-        }),
-        cmp.setup.cmdline(':', {
-          mapping = cmp.mapping.preset.cmdline(),
-          sources = cmp.config.sources({
-            { name = 'path', },
-          }, {
-            { name = 'cmdline', },
-          }),
         }),
         mapping = cmp.mapping.preset.insert({
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
