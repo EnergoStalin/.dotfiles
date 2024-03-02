@@ -6,6 +6,7 @@ alias fzff='FZF_DEFAULT_COMMAND="find . -type f -not -path '"'"'*.git*'"'"' -and
 
 alias scrcpy='scrcpy --turn-screen-off --no-cleanup'
 alias scrcpyao='scrcpy --no-video'
+alias cwd='pwd | xclip -selection clipboard'
 
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 
