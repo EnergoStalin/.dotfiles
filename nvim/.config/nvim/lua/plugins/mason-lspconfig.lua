@@ -18,7 +18,7 @@ return {
   config = function()
     require('mason').setup()
     require('mason-lspconfig').setup({
-      ensure_installed = { 'lua_ls', 'ast_grep', },
+      ensure_installed = { 'lua_ls', },
       handlers = {
         function(server)
           local status, config = pcall(require, 'lsp.' .. server)
