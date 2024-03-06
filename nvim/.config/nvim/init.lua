@@ -21,10 +21,7 @@ vim.keymap.set('n', '<leader>e', '<cmd>Ex<cr>')
 vim.keymap.set('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 vim.keymap.set('n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 
-vim.keymap.set('n', '<leader>bn', '<cmd>bn<cr>')
-vim.keymap.set('n', '<leader>bp', '<cmd>bp<cr>')
 vim.keymap.set('n', '<leader>bd', '<cmd>bd<cr>')
-vim.keymap.set('n', '<leader>bl', '<cmd>ls<cr>')
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
