@@ -42,6 +42,7 @@ reveal = [
 ]
 extract = [
 	{ exec = '7z x "$1"', desc = "Extract here", for = "unix" },
+	{ exec = '7z -o"${1%.*}" x "$1"', desc = "Extract subfolder", for = "unix" },
 	{ exec = 'unar "%1"', desc = "Extract here", for = "windows" },
 ]
 play = [
