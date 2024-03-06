@@ -12,6 +12,10 @@ vim.opt.relativenumber = true
 vim.opt.splitbelow = true
 vim.opt.listchars = 'eol:↵,lead:·,tab:⭾ '
 
+vim.opt.nofoldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = 'indent'
+
 vim.keymap.set('n', '<leader>e', '<cmd>Ex<cr>')
 
 vim.keymap.set('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<cr>')
