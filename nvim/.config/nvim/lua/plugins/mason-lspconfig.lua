@@ -29,6 +29,10 @@ return {
           vim.keymap.set('n', '<leader>qf', '<cmd>lua vim.lsp.buf.code_action()<cr>')
           vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
 
+          vim.keymap.set('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<cr>')
+          vim.keymap.set('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<cr>')
+          vim.keymap.set('n', '<leader>td', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+
           require('lspconfig')[server].setup(vim.tbl_deep_extend('force', config, {
             capabilities = extend({
               require('cmp_nvim_lsp').default_capabilities(),
