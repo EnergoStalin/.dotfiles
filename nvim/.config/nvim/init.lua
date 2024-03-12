@@ -12,7 +12,7 @@ vim.opt.relativenumber = true
 vim.opt.splitbelow = true
 vim.opt.listchars = 'eol:↵,lead:·,tab:⭾ '
 
-vim.opt.nofoldenable = true
+vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'indent'
 
