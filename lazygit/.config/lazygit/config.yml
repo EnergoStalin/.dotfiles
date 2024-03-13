@@ -1,0 +1,4 @@
+customCommands:
+  - key: '<c-g>'
+    context: 'global'
+    command: 'gh browse'
