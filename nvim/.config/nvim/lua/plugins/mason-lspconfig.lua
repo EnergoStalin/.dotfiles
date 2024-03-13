@@ -33,6 +33,9 @@ return {
           vim.keymap.set('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<cr>')
           vim.keymap.set('n', '<leader>td', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
 
+          vim.keymap.set('n', '<leader>lse', '<cmd>LspStop<cr><cmd>lua vim.diagnostic.reset()<cr>')
+          vim.keymap.set('n', '<leader>lsr', '<cmd>LspRestart<cr>')
+
           require('lspconfig')[server].setup(vim.tbl_deep_extend('force', config, {
             capabilities = extend({
               require('cmp_nvim_lsp').default_capabilities(),
