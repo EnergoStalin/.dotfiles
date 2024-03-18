@@ -41,7 +41,7 @@ exec_always ~/.fehbg
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec adb -e shell cmd media_session volume --adj raise
 bindsym XF86AudioLowerVolume exec adb -e shell cmd media_session volume --adj lower
-bindsym XF86AudioMute exec adb -e shell cmd media_session dispatch play-pause
+bindsym XF86AudioPlay exec adb -e shell cmd media_session dispatch play-pause
 # bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # start a terminal
