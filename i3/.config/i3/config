@@ -29,6 +29,12 @@ exec vesktop --start-minimized
 exec keepassxc
 exec qbittorrent
 
+exec_always xrandr --output HDMI-0 --off
+
+# Enable/Disable second monitor
+bindsym $mod+m exec xrandr --output HDMI-0 --right-of DP-0 --auto
+bindsym $mod+Shift+m exec xrandr --output HDMI-0 --off
+
 exec_always ~/.config/polybar/launch.sh
 exec_always ~/.fehbg
 
