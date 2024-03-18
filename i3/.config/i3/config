@@ -191,8 +191,8 @@ mode "arrows" {
     bindsym --release j exec xdotool key Down
     bindsym --release k exec xdotool key Up
 
-    bindcode --release 66 mode "default"
+    bindcode 66 mode "default"
 }
 
-bindcode --release 66 mode "arrows"
+bindcode 66 mode "arrows"
 
