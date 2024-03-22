@@ -4,6 +4,7 @@ return {
     require('overseer').setup({})
 
     vim.keymap.set('n', '<leader>tt', '<cmd>OverseerToggle<cr>')
+    vim.keymap.set('n', '<leader>ta', '<cmd>OverseerTaskAction<cr>')
     vim.keymap.set('n', '<leader>tr', '<cmd>OverseerRun<cr>')
   end,
 }
