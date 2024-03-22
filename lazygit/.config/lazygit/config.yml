@@ -2,7 +2,7 @@ customCommands:
   - key: '<c-g>'
     context: 'global'
     command: 'gh browse'
-  - key: '<c-u>'
+  - key: '<c-S>'
     context: 'global'
     command: "gh repo sync $(git ls-remote --get-url {{.SelectedLocalBranch.UpstreamRemote}} | sed 's/^git@.+:|.git$//g') -b {{.SelectedLocalBranch.Name}}"
   - key: '<c-f>'
