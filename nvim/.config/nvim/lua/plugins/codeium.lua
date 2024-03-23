@@ -5,7 +5,7 @@ return {
     vim.g.codeium_disable_bindings = 1
     vim.g.codeium_manual = 0
 
-    vim.keymap.set('i', '<tab>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true, })
+    vim.keymap.set('i', '<c-a>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true, })
     vim.keymap.set('i', '<m-]>', function() return vim.fn['codeium#CycleCompletions'](1) end,
       { expr = true, silent = true, })
     vim.keymap.set('i', '<m-[>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
