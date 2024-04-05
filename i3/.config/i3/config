@@ -182,7 +182,7 @@ bindsym $mod+r mode "resize"
 
 # Disable caps lock
 exec_always setxkbmap -option caps:none
-exec_always modmap -e 'clear lock'
+exec_always xmodmap -e 'clear lock'
 
 mode "arrows" {
     bindsym --release l exec xdotool key Right
