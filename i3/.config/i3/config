@@ -24,7 +24,6 @@ font pango:monospace 8
 # Autostart programs
 exec telegram-desktop -startintray
 # exec obs --minimize-to-tray --disable-shutdown-check
-exec easyeffects --gapplication-service
 exec vesktop --start-minimized
 exec keepassxc
 exec qbittorrent
