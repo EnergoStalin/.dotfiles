@@ -30,7 +30,6 @@ return {
           vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
 
           vim.keymap.set('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<cr>')
-          vim.keymap.set('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<cr>')
           vim.keymap.set('n', '<leader>td', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
 
           vim.keymap.set('n', '<leader>lse', '<cmd>LspStop<cr><cmd>lua vim.diagnostic.reset()<cr>')
