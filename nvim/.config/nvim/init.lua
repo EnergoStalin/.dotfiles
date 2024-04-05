@@ -27,6 +27,14 @@ vim.keymap.set('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<cr>')
 
 vim.keymap.set('n', '<leader>bd', '<cmd>bd!<cr>')
 
+-- Always resource .nvim.lua aftew writing
+vim.cmd([[
+  augroup nvim_source
+    autocmd!
+    autocmd BufWritePost .nvim.lua source <afile>
+  augroup END
+]])
+
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
