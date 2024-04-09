@@ -112,6 +112,7 @@ bindsym $mod+c exec code
 bindsym $mod+b exec firefox
 bindsym $mod+e exec thunar
 
+bindsym --release $mod+Shift+p exec xcolor | xclip -selection clipboard
 bindsym $mod+Shift+s exec flameshot gui --clipboard
 bindsym $mod+Shift+t exec notify-send "$(flameshot gui --raw --accept-on-select | tesseract stdin stdout | tr -d '\n' | crow -i -b -t ru -s en)"
 
