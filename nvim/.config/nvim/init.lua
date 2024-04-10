@@ -10,6 +10,7 @@ vim.opt.number = true
 vim.opt.expandtab = true
 vim.opt.relativenumber = true
 vim.opt.splitbelow = true
+vim.opt.cursorline = true
 vim.opt.listchars = 'eol:↵,lead:·,tab:⭾ '
 
 -- Allow reading per directory .nvim.lua files

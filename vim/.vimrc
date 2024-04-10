@@ -11,6 +11,7 @@ set number
 set expandtab
 set relativenumber
 set splitbelow
+set cursorline
 set listchars="eol:$,tab:>-,trail:~,extends:>,precedes:<"
 
 " Explorer
