@@ -13,6 +13,8 @@ vim.opt.splitbelow = true
 vim.opt.cursorline = true
 vim.opt.listchars = 'eol:↵,lead:·,tab:⭾ '
 
+vim.opt.langmap = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
+
 -- Allow reading per directory .nvim.lua files
 vim.opt.exrc = true
 
