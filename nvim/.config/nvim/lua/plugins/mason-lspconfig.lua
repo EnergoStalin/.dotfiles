@@ -26,13 +26,11 @@ return {
           if (config.check ~= nil and not config.check()) then return end
 
           vim.keymap.set('n', '<leader>bf', '<cmd>lua vim.lsp.buf.format()<cr>')
-          vim.keymap.set('n', '<leader>fd', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+          vim.keymap.set('n', '<leader>df', '<cmd>lua vim.lsp.buf.code_action()<cr>')
           vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
 
-          vim.keymap.set('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<cr>')
-          vim.keymap.set('n', '<leader>td', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
-
           vim.keymap.set('n', '<leader>lse', '<cmd>LspStop<cr><cmd>lua vim.diagnostic.reset()<cr>')
+          vim.keymap.set('n', '<leader>lsi', '<cmd>LspInfo<cr>')
           vim.keymap.set('n', '<leader>lsr', '<cmd>LspRestart<cr>')
 
           require('lspconfig')[server].setup(vim.tbl_deep_extend('force', config, {
