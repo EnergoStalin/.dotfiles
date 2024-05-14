@@ -27,14 +27,14 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 [opener]
 edit = [
 	{ run = '${EDITOR:=vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-	{ run = 'code "%*"',    orphan = true, desc = "code",         for = "windows" },
-	{ run = 'code -w "%*"', block = true,  desc = "code (block)", for = "windows" },
+	{ run = 'code "%*"',          orphan = true, desc = "code",         for = "windows" },
+	{ run = 'code -w "%*"',       block = true,  desc = "code (block)", for = "windows" },
 ]
 open = [
-	{ run = 'dragon-drop "$@"',   desc = "drag-n-drop replacement", orphan = true, for = "unix" },
+	{ run = 'dragon-drop "$@"',             desc = "drag-n-drop replacement", orphan = true, for = "unix" },
 	{ run = 'xdg-open "$@"',                desc = "Open", for = "linux" },
 	{ run = 'open "$@"',                    desc = "Open", for = "macos" },
-	{ run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
+	{ run = 'start "" "%1"',                orphan = true, desc = "Open", for = "windows" },
 ]
 reveal = [
 	{ run = 'xdg-open "$(dirname "$0")"',            desc = "Reveal", for = "linux" },
@@ -43,10 +43,16 @@ reveal = [
 	{ run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
 ]
 extract = [
-	{ run = '7z x "$1"', desc = "Extract here", for = "unix" },
+	{ run = '7z x "$1"',             desc = "Extract here", for = "unix" },
 	{ run = '7z -o"${1%.*}" x "$1"', desc = "Extract subfolder", for = "unix" },
-	{ run = 'unar "$1"', desc = "Extract here", for = "unix" },
-	{ run = 'unar "%1"', desc = "Extract here", for = "windows" },
+	{ run = 'unar "$1"',             desc = "Extract here", for = "unix" },
+	{ run = 'unar "%1"',             desc = "Extract here", for = "windows" },
+]
+unrpa = [
+	{ run = 'unrpa "$1" --mkdir --path "${1%.*}"', desc = "unrpa to subfolder", for = "unix" },
+]
+decrypt = [
+	{ run = 'rpgmv-decrypter "$(pwd)/www"', desc = "Decrypt rpgmaker folder", for = "unix" },
 ]
 play = [
 	{ run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
@@ -56,7 +62,11 @@ play = [
 
 [open]
 rules = [
-	{ name = "*/", use = [ "edit", "open", "reveal" ] },
+	{ name = "*/",    use = [ "edit", "open", "reveal" ] },
+
+  # Game extraction shortcuts
+	{ name = "*.rpa", use = [ "unrpa" ] },
+	{ name = "*Game.exe", use = [ "decrypt" ] },
 
 	{ mime = "text/*",          use = [ "edit", "reveal" ] },
 	{ mime = "image/*",         use = [ "open", "reveal" ] },
@@ -66,17 +76,8 @@ rules = [
 	{ mime = "application/*zip", use = [ "extract", "reveal" ] },
 	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", use = [ "extract", "reveal" ] },
 
-	{ mime = "application/json", use = [ "edit", "reveal" ] },
-	{ mime = "*/javascript",     use = [ "edit", "reveal" ] },
-
-	{ mime = "application/zip",             use = [ "extract", "reveal" ] },
-	{ mime = "application/gzip",            use = [ "extract", "reveal" ] },
-	{ mime = "application/x-tar",           use = [ "extract", "reveal" ] },
-	{ mime = "application/x-bzip",          use = [ "extract", "reveal" ] },
-	{ mime = "application/x-bzip2",         use = [ "extract", "reveal" ] },
-	{ mime = "application/x-7z-compressed", use = [ "extract", "reveal" ] },
-	{ mime = "application/x-rar",           use = [ "extract", "reveal" ] },
-	{ mime = "application/xz",              use = [ "extract", "reveal" ] },
+	{ mime = "application/json", use = [ "edit" ] },
+	{ mime = "*/javascript",     use = [ "edit" ] },
 
 	{ mime = "*", use = [ "open", "reveal" ] },
 ]
