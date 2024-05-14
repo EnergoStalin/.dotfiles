@@ -7,7 +7,7 @@ ratio          = [ 1, 4, 3 ]
 sort_by        = "alphabetical"
 sort_sensitive = false
 sort_reverse   = false
-sort_dir_first = false
+sort_dir_first = true
 linemode       = "none"
 show_hidden    = false
 show_symlink   = true
@@ -49,8 +49,8 @@ extract = [
 	{ run = 'unar "%1"', desc = "Extract here", for = "windows" },
 ]
 play = [
-	{ run = 'mpv "$@"', orphan = true, for = "unix" },
-	{ run = 'mpv "%1"', orphan = true, for = "windows" },
+	{ run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
+	{ run = 'mpv --force-window "%1"', orphan = true, for = "windows" },
 	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
 
@@ -94,7 +94,6 @@ suppress_preload = false
 preloaders = [
 	{ name = "*", cond = "!mime", run = "mime", multi = true, prio = "high" },
 	# Image
-	{ mime = "image/vnd.djvu", run = "noop" },
 	{ mime = "image/*", run = "image" },
 	# Video
 	{ mime = "video/*", run = "video" },
