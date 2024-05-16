@@ -5,16 +5,21 @@ return {
     'BurntSushi/ripgrep',
   },
   keys = {
-    { '<leader>ff', '<cmd>Telescope find_files hidden=True<cr>', desc = '', },
-    { '<leader>fg', '<cmd>Telescope live_grep hidden=True<cr>',  desc = '', },
-    { '<leader>fb', '<cmd>Telescope buffers hidden=True<cr>',    desc = '', },
+    { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'Fuzzy find files respecting gitignore', },
+    { '<leader>fg', '<cmd>Telescope live_grep<cr>',  desc = 'Fuzzy search for file content', },
+    { '<leader>fb', '<cmd>Telescope buffers<cr>',    desc = 'Fuzzy search open buffers', },
   },
   config = function()
     require('telescope').setup({
       pickers = {
         find_files = {
           hidden = true,
+          prompt_prefix = '🔍',
         },
+        live_grep = {
+          hidden = true,
+          prompt_prefix = '🗈 ',
+        }
       },
       defaults = {
         file_ignore_patterns = {
