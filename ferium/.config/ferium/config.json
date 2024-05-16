@@ -1,6 +1,5 @@
 {
   "active_profile": 3,
-  "active_modpack": 1,
   "profiles": [
     {
       "name": "solum",
@@ -569,6 +568,12 @@
           }
         },
         {
+          "name": "CustomSkinLoader",
+          "identifier": {
+            "CurseForgeProject": 286924
+          }
+        },
+        {
           "name": "Fabric API",
           "identifier": {
             "CurseForgeProject": 306612
@@ -601,6 +606,7 @@
       ]
     }
   ],
+  "active_modpack": 1,
   "modpacks": [
     {
       "name": "Crazy Craft Updated",
