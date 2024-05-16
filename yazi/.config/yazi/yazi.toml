@@ -45,7 +45,7 @@ reveal = [
 extract = [
 	{ run = '7z x "$1"',             desc = "Extract here", for = "unix" },
 	{ run = '7z -o"${1%.*}" x "$1"', desc = "Extract subfolder", for = "unix" },
-	{ run = 'unar "$1"',             desc = "Extract here", for = "unix" },
+	{ run = 'unar "$1"',             desc = "Unarchive here", for = "unix" },
 	{ run = 'unar "%1"',             desc = "Extract here", for = "windows" },
 ]
 unrpa = [
