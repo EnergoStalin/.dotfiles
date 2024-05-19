@@ -28,7 +28,7 @@ vim.keymap.set('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 vim.keymap.set('n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 vim.keymap.set('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<cr>')
 
-vim.keymap.set('n', '<leader>bd', '<cmd>bd!<cr>')
+vim.keymap.set('n', '<leader>bd', '<cmd>bn<cr><cmd>bd#<cr>')
 
 -- Always resource .nvim.lua aftew writing
 vim.cmd([[
