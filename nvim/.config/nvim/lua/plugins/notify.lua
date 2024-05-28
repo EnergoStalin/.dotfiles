@@ -2,6 +2,13 @@ return {
   'rcarriga/nvim-notify',
   lazy = false,
   config = function()
-    vim.notify = require('notify')
+    local notify = require('notify')
+    notify.setup({
+      timeout = 2000,
+      stages = 'fade',
+      top_down = false,
+      fps = 5
+    })
+    vim.notify = notify
   end,
 }
