@@ -59,6 +59,7 @@ installconfig tmux
 installconfig xdg-desktop-portal
 installconfig yazi
 installconfig sc-controller
+installconfig starship
 
 installhome vim
 installhome zsh
