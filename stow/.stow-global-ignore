@@ -1,0 +1,8 @@
+\.git
+\.gitignore
+\.stow-local-ignore
+
+packages\.txt
+prepare\.sh
+
+.*\.template

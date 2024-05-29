@@ -11,6 +11,7 @@ return {
         'sh',
         'markdown',
         'markdown_inline',
+        'java',
       },
       highlight = {
         enable = true,

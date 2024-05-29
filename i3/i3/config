@@ -28,23 +28,21 @@ exec vesktop --start-minimized
 exec keepassxc
 exec qbittorrent
 
+# Bar and wallpaper
+exec_always ~/.config/polybar/launch.sh
+exec_always ~/.fehbg
+
 exec_always xrandr --output HDMI-0 --off
 
 # Enable/Disable second monitor
 bindsym $mod+m exec xrandr --output HDMI-0 --right-of DP-0 --auto
 bindsym $mod+Shift+m exec xrandr --output HDMI-0 --off
 
-exec_always ~/.config/polybar/launch.sh
-exec_always ~/.fehbg
-
-# Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec adb -e shell cmd media_session volume --adj raise
-bindsym XF86AudioLowerVolume exec adb -e shell cmd media_session volume --adj lower
-bindsym XF86AudioPlay exec adb -e shell cmd media_session dispatch play-pause
+# Use pactl to adjust volume in adb.
+bindsym XF86AudioRaiseVolume exec adb -d shell cmd media_session volume --adj raise
+bindsym XF86AudioLowerVolume exec adb -d shell cmd media_session volume --adj lower
+bindsym XF86AudioPlay exec adb -d shell cmd media_session dispatch play-pause
 # bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-# start a terminal
-bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+q kill
@@ -110,7 +108,9 @@ bindsym $mod+space focus mode_toggle
 # Applications
 bindsym $mod+c exec code
 bindsym $mod+b exec firefox
-bindsym $mod+e exec thunar
+
+# start a terminal
+bindsym $mod+Return exec alacritty
 
 bindsym --release $mod+Shift+p exec xcolor | xclip -selection clipboard
 bindsym $mod+Shift+s exec flameshot gui --clipboard
@@ -180,10 +180,6 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
-# Disable caps lock
-exec_always setxkbmap -option caps:none
-exec_always xmodmap -e 'clear lock'
 
 mode "arrows" {
     bindsym --release l exec xdotool key Right

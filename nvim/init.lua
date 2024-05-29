@@ -22,13 +22,13 @@ vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'indent'
 
-vim.keymap.set('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-vim.keymap.set('n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+vim.keymap.set('n', '<leader>en', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+vim.keymap.set('n', '<leader>ep', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 vim.keymap.set('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<cr>')
 
 vim.keymap.set('n', '<leader>d', '<cmd>bn<cr><cmd>bd#<cr>')
-vim.keymap.set('n', '<leader>n', '<cmd>bn<cr><cmd>bn<cr>')
-vim.keymap.set('n', '<leader>p', '<cmd>bn<cr><cmd>bp<cr>')
+vim.keymap.set('n', '<leader>n', '<cmd>bn<cr>')
+vim.keymap.set('n', '<leader>p', '<cmd>bp<cr>')
 
 -- Always resource .nvim.lua aftew writing
 vim.cmd([[
