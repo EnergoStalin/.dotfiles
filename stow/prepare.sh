@@ -1,8 +1,7 @@
 #!bin/sh
 
 BASEDIR="$1"
-ROOT="$2"
-PACKAGE="$3"
+PACKAGE="$2"
 
 cd "$(dirname "$0")"
 
