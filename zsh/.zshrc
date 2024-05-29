@@ -1,6 +1,6 @@
 source ~/.profile
 
-which starship > /dev/null || echo "Installing starship..." && sudo pacman -S starship
+which starship > /dev/null || (echo "Installing starship..." && sudo pacman -S starship)
 eval $(starship init zsh)
 
 # Set the directory we want to store zinit and plugins
