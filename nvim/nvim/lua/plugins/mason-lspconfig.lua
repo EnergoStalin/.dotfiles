@@ -26,7 +26,7 @@ return {
           if (config.check ~= nil and not config.check()) then return end
 
           vim.keymap.set('n', '<leader>bf', '<cmd>lua vim.lsp.buf.format()<cr>')
-          vim.keymap.set('n', '<leader>df', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+          vim.keymap.set('n', '<C-a>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
           vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
 
           vim.keymap.set('n', '<leader>lse', '<cmd>LspStop<cr><cmd>lua vim.diagnostic.reset()<cr>')
