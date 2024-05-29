@@ -52,7 +52,7 @@ installconfig flameshot
 installconfig i3
 installconfig lazygit
 installconfig nvim
-installconfig OpenTabletDriver
+installconfig opentabletdriver
 installconfig polybar
 installconfig stow
 installconfig tmux
