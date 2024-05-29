@@ -77,4 +77,4 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 # Source yazi wrapper if exists
-[[ -f ~/.config/yazi/wrapper.sh ]] || source ~/.config/yazi/wrapper.sh
+[[ -f ~/.config/yazi/wrapper.sh ]] && source ~/.config/yazi/wrapper.sh
