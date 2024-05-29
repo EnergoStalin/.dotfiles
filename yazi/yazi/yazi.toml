@@ -6,8 +6,9 @@
 ratio          = [ 1, 4, 3 ]
 sort_by        = "alphabetical"
 sort_sensitive = false
-sort_reverse   = false
+sort_reverse 	 = false
 sort_dir_first = true
+sort_translit  = false
 linemode       = "none"
 show_hidden    = false
 show_symlink   = true
@@ -27,14 +28,14 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 [opener]
 edit = [
 	{ run = '${EDITOR:=vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-	{ run = 'code "%*"',          orphan = true, desc = "code",         for = "windows" },
-	{ run = 'code -w "%*"',       block = true,  desc = "code (block)", for = "windows" },
+	{ run = 'code "%*"',    orphan = true, desc = "code",         for = "windows" },
+	{ run = 'code -w "%*"', block = true,  desc = "code (block)", for = "windows" },
 ]
 open = [
 	{ run = 'dragon-drop "$@"',             desc = "drag-n-drop replacement", orphan = true, for = "unix" },
 	{ run = 'xdg-open "$@"',                desc = "Open", for = "linux" },
 	{ run = 'open "$@"',                    desc = "Open", for = "macos" },
-	{ run = 'start "" "%1"',                orphan = true, desc = "Open", for = "windows" },
+	{ run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
 ]
 reveal = [
 	{ run = 'xdg-open "$(dirname "$0")"',            desc = "Reveal", for = "linux" },
@@ -62,22 +63,21 @@ play = [
 
 [open]
 rules = [
-	{ name = "*/",    use = [ "edit", "open", "reveal" ] },
-
   # Game extraction shortcuts
 	{ name = "*.rpa", use = [ "unrpa" ] },
 	{ name = "*Game.exe", use = [ "decrypt" ] },
+	{ name = "*/", use = [ "edit", "open", "reveal" ] },
 
 	{ mime = "text/*",          use = [ "edit", "reveal" ] },
 	{ mime = "image/*",         use = [ "open", "reveal" ] },
 	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
 	{ mime = "inode/x-empty",   use = [ "edit", "reveal" ] },
 
-	{ mime = "application/*zip", use = [ "extract", "reveal" ] },
+	{ mime = "application/{,g}zip", use = [ "extract", "reveal" ] },
 	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", use = [ "extract", "reveal" ] },
 
-	{ mime = "application/json", use = [ "edit" ] },
-	{ mime = "*/javascript",     use = [ "edit" ] },
+	{ mime = "application/json", use = [ "edit", "reveal" ] },
+	{ mime = "*/javascript",     use = [ "edit", "reveal" ] },
 
 	{ mime = "*", use = [ "open", "reveal" ] },
 ]
@@ -92,14 +92,23 @@ suppress_preload = false
 
 [plugin]
 
+fetchers = [
+	# Mimetype
+	{ name = "*", cond = "!mime", run = "mime", prio = "high" },
+]
 preloaders = [
-	{ name = "*", cond = "!mime", run = "mime", multi = true, prio = "high" },
 	# Image
-	{ mime = "image/*", run = "image" },
+	{ mime = "image/svg+xml", run = "magick" },
+	{ mime = "image/heic",    run = "magick" },
+	{ mime = "image/jxl",     run = "magick" },
+	{ mime = "image/*",       run = "image" },
 	# Video
 	{ mime = "video/*", run = "video" },
 	# PDF
 	{ mime = "application/pdf", run = "pdf" },
+	# Font
+	{ mime = "font/*", run = "font" },
+	{ mime = "application/vnd.ms-opentype", run = "font" },
 ]
 previewers = [
 	{ name = "*/", run = "folder", sync = true },
@@ -110,14 +119,20 @@ previewers = [
 	{ mime = "application/json", run = "json" },
 	# Image
 	{ mime = "image/vnd.djvu", run = "noop" },
-	{ mime = "image/*",        run = "image" },
+	{ mime = "image/svg+xml", run = "magick" },
+	{ mime = "image/heic",    run = "magick" },
+	{ mime = "image/jxl",     run = "magick" },
+	{ mime = "image/*",       run = "image" },
 	# Video
 	{ mime = "video/*", run = "video" },
 	# PDF
 	{ mime = "application/pdf", run = "pdf" },
 	# Archive
-	{ mime = "application/*zip", run = "archive" },
+	{ mime = "application/{,g}zip", run = "archive" },
 	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", run = "archive" },
+	# Font
+	{ mime = "font/*", run = "font" },
+	{ mime = "application/vnd.ms-opentype", run = "font" },
 	# Fallback
 	{ name = "*", run = "file" },
 ]
@@ -184,11 +199,10 @@ open_origin = "hovered"
 open_offset = [ 0, 1, 50, 7 ]
 
 [which]
-sort_by        = "none"
+sort_by      	 = "none"
 sort_sensitive = false
-sort_reverse   = false
+sort_reverse 	 = false
+sort_translit  = false
 
 [log]
 enabled = false
-
-[headsup]
