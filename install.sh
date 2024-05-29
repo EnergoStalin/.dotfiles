@@ -3,14 +3,20 @@
 BASEDIR="$(basename "$PWD")"
 PKGLIST="$(pacman -Qe)"
 
+prepare() {
+  local package="$1"
+
+  if [[ -f "$package/prepare.sh" ]]; then
+    sh "$package/prepare.sh" "$BASEDIR" "$package" $@
+  fi
+}
+
 install() {
   local root="$1"
   local package="$2"
   shift 2
 
-  if [[ -f "$package/prepare.sh" ]]; then
-    sh "$package/prepare.sh" "$BASEDIR" "$root" "$package"
-  fi
+  prepare "$package" "$root"
 
   set -o xtrace
   stow --verbose $@ --target "$root" "$package"
