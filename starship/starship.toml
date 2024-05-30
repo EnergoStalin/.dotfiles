@@ -8,7 +8,7 @@ add_newline = false
 # format='$all'
 format='$os$directory$git_branch$status$character'
 
-right_format='$cmd_duration$git_status$package$c$python$lua$golang$kotlin$java$rust$nodejs$docker_context'
+right_format='$cmd_duration$git_status$package$c$python$lua$golang$kotlin$java$rust$nodejs'
 
 # Replace the '❯' symbol in the prompt with '➜'
 [character] # The name of the module we are configuring is 'character'
@@ -58,11 +58,6 @@ symbol = ' '
 format = '[($symbol$version(-$name))]($style)'
 style = 'bold red'
 symbol = '󰬷 '
-
-[docker_context]
-format = 'via [🐋 $context](blue bold)'
-only_with_files = true
-disabled = false
 
 [status]
 format = '[$common_meaning$signal_name$maybe_int](bold red) '
