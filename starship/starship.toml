@@ -6,14 +6,16 @@ add_newline = false
 
 # '%{$fg_bold[green]%} %{$fg[cyan]%}%c%{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 # format='$all'
-format='$os$directory$git_branch$character'
+format='$os$directory$git_branch$status$character'
 
-right_format='$cmd_duration$git_status$package$c'
+right_format='$cmd_duration$git_status$package$c$python$lua$golang$kotlin$java$rust$nodejs$docker_context'
 
 # Replace the '❯' symbol in the prompt with '➜'
 [character] # The name of the module we are configuring is 'character'
 format = '[$symbol]($style) '
-success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+# error_symbol = '[✗](bold red) '
+error_symbol = '[](bold red)'
+success_symbol = '[➜](bold green)'
 
 [package]
 disabled = false
@@ -31,11 +33,43 @@ format = '[($symbol$version(-$name) )]($style)'
 symbol = ' '
 detect_files = ['compile_commands.json']
 
+[python]
+format = '[($symbol$version(-$name) )]($style)'
+symbol = ' '
+
+[lua]
+format = '[($symbol$version(-$name) )]($style)'
+
+[rust]
+format = '[($symbol$version(-$name) )]($style)'
+detect_files = ['rustfmt.toml']
+
+[golang]
+format = '[($symbol$version(-$name) )]($style)'
+
+[nodejs]
+format = '[($symbol$version(-$name) )]($style)'
+
+[kotlin]
+format = '[$symbol]($style)[via]($style) '
+symbol = ' '
+
+[java]
+format = '[($symbol$version(-$name))]($style)'
+style = 'bold red'
+symbol = '󰬷 '
+
+[docker_context]
+format = 'via [🐋 $context](blue bold)'
+only_with_files = true
+disabled = false
+
 [status]
+format = '[$common_meaning$signal_name$maybe_int](bold red) '
 disabled = false
 
 [cmd_duration]
-format = ' [$duration]($style) '
+format = ' [ $duration]($style) '
 
 [directory]
 truncation_length = 1
