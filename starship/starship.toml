@@ -4,17 +4,43 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
-format='$all'
+# '%{$fg_bold[green]%} %{$fg[cyan]%}%c%{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+# format='$all'
+format='$os$directory$git_branch$character'
+
+right_format='$cmd_duration$git_status$package$c'
 
 # Replace the '❯' symbol in the prompt with '➜'
 [character] # The name of the module we are configuring is 'character'
+format = '[$symbol]($style) '
 success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
 
 [package]
 disabled = false
+format = '[$symbol$version]($style) '
 
 [os]
 disabled = false
+format = '[$symbol](blue) '
+
+[os.symbols]
+Arch = ' '
+
+[c]
+format = '[($symbol$version(-$name) )]($style)'
+symbol = ' '
+detect_files = ['compile_commands.json']
 
 [status]
 disabled = false
+
+[cmd_duration]
+format = ' [$duration]($style) '
+
+[directory]
+truncation_length = 1
+use_os_path_sep = false
+
+[git_branch]
+format = '\([$branch(:$remote_branch)]($style)\) '
+style = 'bold red'
