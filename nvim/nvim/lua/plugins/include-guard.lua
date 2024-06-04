@@ -1,6 +1,6 @@
 return {
   'patwie/include-guard.nvim',
-  event = 'BufEnter *.h',
+  event = 'BufEnter *.h*',
   config = function()
     local guard = require('include-guard')
     guard.setup({
