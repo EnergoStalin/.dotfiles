@@ -7,10 +7,10 @@ alias fzff='FZF_DEFAULT_COMMAND="find . -type f -not -path '"'"'*.git*'"'"' -and
 alias scrcpy='scrcpy --turn-screen-off --no-cleanup'
 alias scrcpyao='scrcpy --no-video'
 
+alias realmerescanmedia='adb shell content call --method scan_volume --uri content://media --arg external_primary'
 alias termuxstart='adb -e shell am start -n com.termux/.HomeActivity'
 alias discordrecord='pw-record --channels 1 --rate 41000 --target "Chromium" ~/"$(date +%d%m%y%H%M%S).wav"'
 
-alias cwd='pwd | xclip -selection clipboard'
 alias grepi='grep -i'
 
 alias n=nvim
