@@ -68,6 +68,7 @@ format = ' [ $duration]($style) '
 
 [directory]
 truncation_length = 1
+read_only = ' '
 use_os_path_sep = false
 
 [git_branch]
