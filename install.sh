@@ -51,7 +51,7 @@ installconfig ferium
 installconfig flameshot
 installconfig i3
 installconfig lazygit
-installconfig nvim
+installconfig neovim
 installconfig opentabletdriver
 installconfig polybar
 installconfig stow
