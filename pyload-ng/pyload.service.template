@@ -1,0 +1,12 @@
+[Unit]
+Description=Pyload downloader service
+
+[Service]
+Type=simple
+ExecStart=$PYLOAD --userdir "$CONFIG/user" --storagedir "$HOME/Downloads/pyload" --pidfile "$CONFIG/pyload.pid"
+ExecStop=$PYLOAD --pidfile "$CONFIG/pyload.pid" --quit
+PIDFile=$CONFIG/pyload.pid
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
