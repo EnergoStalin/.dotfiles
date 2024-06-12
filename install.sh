@@ -1,6 +1,5 @@
 #!/bin/bash
 
-BASEDIR="$(basename "$PWD")"
 PIPXPKGLIST="$(which pipx 2> /dev/null && pipx list | grep package | awk '{print $2}')"
 PACMANPKGLIST="$(pacman -Qeq)"
 
@@ -8,9 +7,14 @@ prepare() {
   local package="$1"
 
   if [[ -f "$package/prepare.sh" ]]; then
+    local wd="$(pwd)"
+    cd "$package"
+
     set -o xtrace 2> /dev/null
-    sh "$package/prepare.sh" "$BASEDIR" "$package" $@
+    sh "prepare.sh" $@
     { set +o xtrace; } 2> /dev/null
+
+    cd "$wd"
   fi
 }
 

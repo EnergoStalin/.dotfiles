@@ -1,6 +1,7 @@
 \.git
 \.gitignore
 \.stow-local-ignore
+\.stow-global-ignore
 
 packages\.txt
 prepare\.sh
