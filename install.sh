@@ -32,7 +32,7 @@ installifexec() {
   local exe="$3"
   shift 3
 
-  if which "$exe"; then
+  if which "$exe" > /dev/null; then
     install "$root" "$package" "$@"
   fi
 }
