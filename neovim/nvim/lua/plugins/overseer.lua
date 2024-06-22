@@ -6,6 +6,11 @@ return {
         direction = 'right',
         default_detail = 2,
       },
+      templates = {
+        'builtin',
+        'user.AdbYandexBrowserOpen',
+        'user.http',
+      },
     })
 
     vim.keymap.set('n', '<leader>tt', '<cmd>OverseerToggle<cr>')
