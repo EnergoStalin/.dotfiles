@@ -9,9 +9,12 @@ vim.opt.list = true
 vim.opt.number = true
 vim.opt.expandtab = true
 vim.opt.relativenumber = true
-vim.opt.splitbelow = true
+vim.opt.splitright = true
 vim.opt.cursorline = true
 vim.opt.listchars = 'eol:↵,lead:·,tab:⭾ '
+
+vim.opt.autoread = true
+vim.opt.autoindent = true
 
 vim.opt.langmap = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
 
