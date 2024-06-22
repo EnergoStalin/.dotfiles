@@ -19,3 +19,14 @@ alias pkgupgrade='sudo pacman -Suyy --noconfirm && sudo aura -Akuax --noconfirm'
 
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 
+# git
+fzfgitfile() {
+  git log --all --full-history --oneline -- "$1" | \
+    fzf --ansi \
+      --multi \
+      --preview='git show --stat --color {1}; git diff --color {1}' \
+      --preview-window='70%' \
+      --bind='enter:accept'
+}
+
+alias gitfsearch=fzfgitfile
