@@ -34,7 +34,7 @@ symbol = ' '
 detect_files = ['compile_commands.json']
 
 [python]
-format = '[($symbol$version(-$name) )]($style)'
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 symbol = ' '
 
 [lua]
