@@ -1,5 +1,6 @@
 return {
   name = 'http',
+  hide = true,
   params = {
     path = {
       type = 'string',

@@ -1,5 +1,6 @@
 return {
   name = 'AdbYandexBrowserOpen',
+  hide = true,
   params = {
     url = {
       name = 'url',
