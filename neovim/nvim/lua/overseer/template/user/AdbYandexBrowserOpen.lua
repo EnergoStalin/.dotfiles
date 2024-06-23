@@ -19,7 +19,12 @@ return {
       cmd = {
         'adb',
         'shell',
-        'am start -n com.yandex.browser/com.yandex.browser.YandexBrowserMainActivity -a android.intent.action.VIEW -d ' .. o.url
+        vim.fn.join({
+          'am', 'start',
+          '-n', 'com.yandex.browser/com.yandex.browser.YandexBrowserMainActivity',
+          '-a', 'android.intent.action.VIEW',
+          '-d', o.url
+        }, ' '),
       },
       cwd = vim.fn.getcwd(),
       components = {
