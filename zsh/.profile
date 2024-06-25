@@ -1,8 +1,6 @@
 # Environment
 export EDITOR=nvim
 export VISUAL=nvim
-export GTK_THEME=Adwaita:dark
-export XCURSOR_SIZE=24
 
 # Scrcpy
 alias scrcpy='scrcpy --turn-screen-off --no-cleanup'
