@@ -5,7 +5,7 @@ Description=SCC Daemon
 Type=simple
 ExecStart=/usr/bin/scc-daemon debug --alone
 ExecStop=/usr/bin/scc-daemon stop
-PIDFile=/home/alexv/.config/scc/daemon.pid
+PIDFile=$CONFIG/daemon.pid
 Restart=on-failure
 
 [Install]

@@ -79,7 +79,6 @@ installconfig autorandr
 installconfig droidcam
 installconfig ferium
 installconfig flameshot
-installconfig i3
 installconfig lazygit
 installconfig neovim
 installconfig opentabletdriver
@@ -97,5 +96,6 @@ installifexec "$(getconfig)" neovim nvim
 installhome vim
 installhome zsh
 installhome git
+installhome i3
 
 pipxinstallconfig pyload-ng

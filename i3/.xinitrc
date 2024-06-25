@@ -1,6 +1,4 @@
-export GTK_THEME=Adwaita:dark
-export XCURSOR_SIZE=24
+. ~/.profile
 
-dbus-update-activation-environment --systemd DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE
-
-exec i3
+systemctl --user import-environment DISPLAY XAUTHORITY
+systemctl start --user --wait i3-session.service
