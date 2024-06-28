@@ -89,6 +89,7 @@ installconfig xdg-desktop-portal
 installconfig yazi
 installconfig sc-controller
 installconfig starship
+installconfig polkit-gnome
 
 # Workaround for nvim builded from source
 installifexec "$(getconfig)" neovim nvim
