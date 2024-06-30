@@ -7,7 +7,7 @@ return {
       timeout = 2000,
       stages = 'fade',
       top_down = false,
-      fps = 5
+      fps = 15
     })
     vim.notify = notify
   end,
