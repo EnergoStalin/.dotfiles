@@ -31,14 +31,15 @@ edit = [
 	{ run = 'code "%*"',    orphan = true, desc = "code",         for = "windows" },
 	{ run = 'code -w "%*"', block = true,  desc = "code (block)", for = "windows" },
 ]
-open = [
+drag = [
 	{ run = 'dragon-drop "$@"',             desc = "D&D", orphan = true, for = "unix" },
-	{ run = 'xdg-open "$@"',                desc = "Open", for = "linux" },
+]
+open = [
+	{ run = 'xdg-open "$@"',                desc = "Open", orphan = true, for = "unix" },
 	{ run = 'open "$@"',                    desc = "Open", for = "macos" },
 	{ run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
 ]
 reveal = [
-	{ run = 'dragon-drop "$@"',                      desc = "D&D", orphan = true, for = "unix" },
 	{ run = 'xdg-open "$(dirname "$0")"',            desc = "Reveal", for = "linux" },
 	{ run = 'open -R "$1"',                          desc = "Reveal", for = "macos" },
 	{ run = 'explorer /select, "%1"', orphan = true, desc = "Reveal", for = "windows" },
@@ -53,8 +54,11 @@ extract = [
 unrpa = [
 	{ run = 'unrpa "$1" --mkdir --path "${1%.*}"', desc = "unrpa to subfolder", for = "unix" },
 ]
-decrypt = [
+rpgmv-decrypt = [
 	{ run = 'rpgmv-decrypter "$(pwd)/www"', desc = "Decrypt rpgmaker folder", for = "unix" },
+]
+adb-install = [
+	{ run = 'adb install "$1"', desc = "Install app to phone through adb", for = "unix" },
 ]
 play = [
 	{ run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
@@ -64,10 +68,12 @@ play = [
 
 [open]
 rules = [
-  # Game extraction shortcuts
+  # Game shortcuts
+	{ name = "*Game.exe", use = [ "rpgmv-decrypt" ] },
 	{ name = "*.rpa", use = [ "unrpa" ] },
-	{ name = "*Game.exe", use = [ "decrypt" ] },
-	{ name = "*/", use = [ "edit", "open", "reveal" ] },
+	{ name = "*.apk", use = [ "adb-install", "extract" ] },
+
+	{ name = "*/", use = [ "edit", "drag", "open" ] },
 
 	{ mime = "text/*",          use = [ "edit", "reveal" ] },
 	{ mime = "image/*",         use = [ "open", "reveal" ] },
