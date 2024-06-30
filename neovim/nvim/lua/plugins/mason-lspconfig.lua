@@ -25,13 +25,13 @@ return {
           if (not status) then config = {} end
           if (config.check ~= nil and not config.check()) then return end
 
-          vim.keymap.set('n', '<leader>bf', '<cmd>lua vim.lsp.buf.format()<cr>')
-          vim.keymap.set('n', '<C-a>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-          vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
+          vim.keymap.set('n', '<leader>bf', '<cmd>lua vim.lsp.buf.format()<cr>', { desc = 'Format current buffer' })
+          vim.keymap.set('n', '<C-a>', '<cmd>lua vim.lsp.buf.code_action()<cr>', { desc = 'Perform code action' })
+          vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', { desc = 'Rename symbol' })
 
-          vim.keymap.set('n', '<leader>lse', '<cmd>LspStop<cr><cmd>lua vim.diagnostic.reset()<cr>')
-          vim.keymap.set('n', '<leader>lsi', '<cmd>LspInfo<cr>')
-          vim.keymap.set('n', '<leader>lsr', '<cmd>LspRestart<cr>')
+          vim.keymap.set('n', '<leader>lse', '<cmd>LspStop<cr><cmd>lua vim.diagnostic.reset()<cr>', { desc = 'Reset language server diagnostic' })
+          vim.keymap.set('n', '<leader>lsi', '<cmd>LspInfo<cr>', { desc = 'LSP info' })
+          vim.keymap.set('n', '<leader>lsr', '<cmd>LspRestart<cr>', { desc = 'LSP restart' })
 
           require('lspconfig')[server].setup(vim.tbl_deep_extend('force', config, {
             capabilities = extend({

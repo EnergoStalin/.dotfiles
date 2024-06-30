@@ -25,10 +25,12 @@ vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'indent'
 
-vim.keymap.set('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<cr>')
+vim.keymap.set('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<cr>', { desc = 'open diagnostic quickfix list' })
 
-vim.keymap.set('n', '<C-n>', '<cmd>bn<cr>')
-vim.keymap.set('n', '<C-p>', '<cmd>bp<cr>')
+vim.keymap.set('n', '<C-e>', '<cmd>qa<CR>', { desc = 'quit neovim' })
+vim.keymap.set('n', '<C-q>', '<cmd>bp<bar>sp<bar>bn<bar>bd<CR>', { desc = 'delete current buffer' })
+vim.keymap.set('n', '<C-n>', '<cmd>bn<cr>', { desc = 'next buffer' })
+vim.keymap.set('n', '<C-p>', '<cmd>bp<cr>', { desc = 'prefious buffer' })
 
 -- Always resource .nvim.lua aftew writing
 vim.cmd([[
@@ -39,6 +41,7 @@ vim.cmd([[
 ]])
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+---@diagnostic disable-next-line: undefined-field
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     'git',

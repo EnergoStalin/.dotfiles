@@ -9,8 +9,8 @@ return {
     })
 
     -- Example short cut ("w" as wrap)
-    vim.keymap.set('n', '<leader>ww', require('include-guard').AddIncludeGuardAndCopyright)
-    vim.keymap.set('n', '<leader>wg', require('include-guard').AddIncludeGuard)
-    vim.keymap.set('n', '<leader>wc', require('include-guard').UpdateCopyright)
+    vim.keymap.set('n', '<leader>ww', require('include-guard').AddIncludeGuardAndCopyright, { desc = 'Add include guard and copyright' })
+    vim.keymap.set('n', '<leader>wg', require('include-guard').AddIncludeGuard, { desc = 'Add include guard' })
+    vim.keymap.set('n', '<leader>wc', require('include-guard').UpdateCopyright, { desc = 'Update copyright' })
   end,
 }
