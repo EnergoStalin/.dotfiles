@@ -7,7 +7,7 @@ return {
   keys = {
     { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'Fuzzy find files respecting gitignore', },
     { '<leader>fg', '<cmd>Telescope live_grep<cr>',  desc = 'Fuzzy search for file content', },
-    { '<leader>tk', '<cmd>Telescope keymaps<cr>',    desc = 'Fuzzy search keymaps', },
+    { '<leader>fk', '<cmd>Telescope keymaps<cr>',    desc = 'Fuzzy search keymaps', },
   },
   config = function()
     require('telescope').setup({
