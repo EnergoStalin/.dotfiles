@@ -25,14 +25,17 @@ vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'indent'
 
-vim.keymap.set('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<cr>', { desc = 'open diagnostic quickfix list' })
+vim.keymap.set('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<cr>', { desc = 'open diagnostic quickfix list', })
+vim.keymap.set('n', '<leader>c', ':vertical botright terminal<cr>', { desc = 'Open terminal on the right', })
+vim.keymap.set('n', '<leader>k', ':vertical botright help <C-r><C-w><cr>',
+  { desc = 'Open help on subject under cursor', })
 
-vim.keymap.set('n', '<C-e>', '<cmd>qa<CR>', { desc = 'quit neovim' })
-vim.keymap.set('n', '<C-q>', '<cmd>bp<bar>sp<bar>bn<bar>bd<CR>', { desc = 'delete current buffer' })
-vim.keymap.set('n', '<C-n>', '<cmd>bn<cr>', { desc = 'next buffer' })
-vim.keymap.set('n', '<C-p>', '<cmd>bp<cr>', { desc = 'prefious buffer' })
+vim.keymap.set('n', '<C-e>', '<cmd>qa<CR>', { desc = 'quit neovim', })
+vim.keymap.set('n', '<C-q>', '<cmd>bp<bar>sp<bar>bn<bar>bd<CR>', { desc = 'delete current buffer', })
+vim.keymap.set('n', '<C-n>', '<cmd>bn<cr>', { desc = 'next buffer', })
+vim.keymap.set('n', '<C-p>', '<cmd>bp<cr>', { desc = 'prefious buffer', })
 
--- Always resource .nvim.lua aftew writing
+-- Always resource .nvim.lua after writing
 vim.cmd([[
   augroup nvim_source
     autocmd!
