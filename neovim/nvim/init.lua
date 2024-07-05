@@ -26,7 +26,6 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'indent'
 
 vim.keymap.set('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<cr>', { desc = 'open diagnostic quickfix list', })
-vim.keymap.set('n', '<leader>c', ':vertical botright terminal<cr>', { desc = 'Open terminal on the right', })
 vim.keymap.set('n', '<leader>k', ':vertical botright help <C-r><C-w><cr>',
   { desc = 'Open help on subject under cursor', })
 

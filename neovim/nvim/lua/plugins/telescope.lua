@@ -9,25 +9,24 @@ return {
     { '<leader>fg', '<cmd>Telescope live_grep<cr>',  desc = 'Fuzzy search for file content', },
     { '<leader>fk', '<cmd>Telescope keymaps<cr>',    desc = 'Fuzzy search keymaps', },
   },
-  config = function()
-    require('telescope').setup({
-      pickers = {
-        find_files = {
-          hidden = true,
-          prompt_prefix = '🔍',
-        },
-        live_grep = {
-          hidden = true,
-          prompt_prefix = '🗈 ',
-        }
+  config = true,
+  opts = {
+    pickers = {
+      find_files = {
+        hidden = true,
+        prompt_prefix = '🔍',
       },
-      defaults = {
-        file_ignore_patterns = {
-          '.git/',
-          'node_modules/',
-          '.xmake/',
-        },
+      live_grep = {
+        hidden = true,
+        prompt_prefix = '🗈 ',
       },
-    })
-  end,
+    },
+    defaults = {
+      file_ignore_patterns = {
+        '.git/',
+        'node_modules/',
+        '.xmake/',
+      },
+    },
+  },
 }

@@ -1,9 +1,9 @@
 return {
   'aaronhallaert/advanced-git-search.nvim',
   cmd = { 'AdvancedGitSearch', },
-  init = function()
-    vim.keymap.set({'x', 'o'}, 'gs', ':AdvancedGitSearch diff_commit_line<cr>', { desc = 'Advanced git search', noremap = true })
-  end,
+  keys = {
+    { 'gs', ':AdvancedGitSearch diff_commit_line<cr>', desc = 'Advanced git search', noremap = true, mode = {'x', 'o'}, }
+  },
   config = function()
     require('telescope').load_extension('advanced_git_search')
   end,

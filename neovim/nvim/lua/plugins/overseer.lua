@@ -1,20 +1,20 @@
 return {
   'stevearc/overseer.nvim',
-  config = function()
-    require('overseer').setup({
-      task_list = {
-        direction = 'right',
-        default_detail = 2,
-      },
-      templates = {
-        'builtin',
-        'user.AdbYandexBrowserOpen',
-        'user.http',
-      },
-    })
-
-    vim.keymap.set('n', '<leader>tt', '<cmd>OverseerToggle<cr>', { desc = 'Toggle overseer task view' })
-    vim.keymap.set('n', '<leader>ta', '<cmd>OverseerTaskAction<cr>', { desc = 'Perform action on last overseer task' })
-    vim.keymap.set('n', '<leader>tr', '<cmd>OverseerRun<cr>', { desc = 'Run overseer template' })
-  end,
+  keys = {
+    { '<C-t>', '<cmd>OverseerToggle<cr>', mode = 'n', desc = 'Toggle overseer task view', },
+    { '<C-x>', '<cmd>OverseerTaskAction<cr>', mode = 'n', desc = 'Perform action on last overseer task', },
+    { '<C-h>', '<cmd>OverseerRun<cr>', mode = 'n', desc = 'Run overseer template', },
+  },
+  config = true,
+  opts = {
+    task_list = {
+      direction = 'right',
+      default_detail = 2,
+    },
+    templates = {
+      'builtin',
+      'user.AdbYandexBrowserOpen',
+      'user.http',
+    },
+  },
 }
