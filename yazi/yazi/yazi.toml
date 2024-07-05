@@ -8,9 +8,6 @@ sort_by        = "alphabetical"
 linemode       = "size"
 
 [opener]
-drag = [
-	{ run = 'dragon-drop "$@"',             desc = "D&D", orphan = true, for = "unix" },
-]
 extract = [
 	{ run = '7z x "$1"',             desc = "Extract here", for = "unix" },
 	{ run = '7z -o"${1%.*}" x "$1"', desc = "Extract subfolder", for = "unix" },
