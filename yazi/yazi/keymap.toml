@@ -4,7 +4,7 @@
 
 [manager]
 prepend_keymap = [
-	{ on = [ "U", "f", "m" ], run = "plugin ffmpeg-audio-merge", desc = "ffmpeg replace audio from selected video with hovered one" },
+	{ on = [ "U", "f", "m" ], run = "plugin ffmpeg-audio-merge", desc = "ffmpeg replace audio from hovered video with selected one" },
 	{ on = [ "<C-n>" ], run = '''
 		shell 'dragon-drop -x -i -T "$1"' --confirm
 	''' },
