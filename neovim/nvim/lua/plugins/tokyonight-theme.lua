@@ -7,6 +7,7 @@ return {
       transparent = true,
       on_highlights = function(hl)
         local none = { bg = nil }
+        hl.NormalFloat = none
         hl.FloatBorder = none
         hl.TelescopeNormal = none
         hl.TelescopeBorder = none
