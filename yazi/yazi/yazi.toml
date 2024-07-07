@@ -34,5 +34,6 @@ prepend_rules = [
 	{ name = "*.rpa", use = [ "unrpa" ] },
 	{ name = "*.apk", use = [ "adb-install", "extract" ] },
 
-	{ name = "*.{mkv,mp4}", use = [ "open", "denoise" ] },
+	{ name = "*.{mkv,mp4}", use = [ "play", "denoise" ] },
+	{ name = "*.gif", use = [ "play" ] },
 ]
