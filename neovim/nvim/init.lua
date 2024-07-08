@@ -16,7 +16,8 @@ vim.opt.listchars = 'eol:↵,lead:·,tab:⭾ '
 vim.opt.autoread = true
 vim.opt.autoindent = true
 
-vim.opt.langmap = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
+vim.opt.langmap =
+'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
 
 -- Allow reading per directory .nvim.lua files
 vim.opt.exrc = true
