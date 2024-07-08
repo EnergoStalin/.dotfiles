@@ -3,7 +3,6 @@ source ~/.profile
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.utf8
 
-which starship > /dev/null || (echo "Installing starship..." && sudo pacman -S starship)
 eval $(starship init zsh)
 
 # Set the directory we want to store zinit and plugins
@@ -81,3 +80,6 @@ eval "$(zoxide init --cmd cd zsh)"
 
 # Source yazi wrapper if exists
 [[ -f ~/.config/yazi/wrapper.sh ]] && source ~/.config/yazi/wrapper.sh
+
+# If not in tmux sesion create one
+[[ -z "$TMUX" ]] && ((tmux list-sessions &> /dev/null && tmux attach) || tmux new -s default)
