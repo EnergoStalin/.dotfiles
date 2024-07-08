@@ -20,6 +20,8 @@ font pango:monospace 8
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 # exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id picom -b --backend=glx
+
 
 # Autostart programs
 exec telegram-desktop -startintray
@@ -30,7 +32,7 @@ exec qbittorrent
 
 # Bar and wallpaper
 exec_always ~/.config/polybar/launch.sh
-exec_always ~/.fehbg
+exec_always sleep 2 && ~/.fehbg
 
 exec_always xrandr --output HDMI-0 --off
 
@@ -49,7 +51,6 @@ bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run
-exec --no-startup-id picom -b --backend=glx
 
 # change focus
 bindsym $mod+k focus up
