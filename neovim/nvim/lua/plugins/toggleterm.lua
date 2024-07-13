@@ -5,7 +5,6 @@ return {
 
     { '<C-\\>', '<cmd>:ToggleTerm<cr>', mode = 't', ft = 'toggleterm', },
     { '<esc>',  [[<C-\><C-n>]],         mode = 't', ft = 'toggleterm', },
-    { '<C-w>',  [[<C-\><C-n><C-w>]],    mode = 't', ft = 'toggleterm', },
   },
   opts = {
     direction = 'vertical',
