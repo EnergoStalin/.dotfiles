@@ -2,7 +2,7 @@ package.path = package.path .. ';../?.lua'
 
 local extend = function(tables)
   local table = {}
-  for _, v in pairs(tables) do
+  for _, v in ipairs(tables) do
     table = vim.tbl_deep_extend('force', table, v)
   end
 
@@ -15,6 +15,15 @@ return {
     'williamboman/mason.nvim',
     'neovim/nvim-lspconfig',
   },
+  keys = {
+    { '<leader>bf',  '<cmd>lua vim.lsp.buf.format()<cr>',                   desc = 'Format current buffer', },
+    { '<C-a>',       '<cmd>lua vim.lsp.buf.code_action()<cr>',              desc = 'Perform code action', },
+    { '<leader>rn',  '<cmd>lua vim.lsp.buf.rename()<cr>',                   desc = 'Rename symbol', },
+
+    { '<leader>lsi', '<cmd>LspInfo<cr>',                                    desc = 'LSP info', },
+    { '<leader>lsr', '<cmd>LspRestart<cr>',                                 desc = 'LSP restart', },
+  },
+  event = 'BufEnter',
   config = function()
     require('mason').setup()
     require('mason-lspconfig').setup({
@@ -24,14 +33,6 @@ return {
           local status, config = pcall(require, 'lsp.' .. server)
           if (not status) then config = {} end
           if (config.check ~= nil and not config.check()) then return end
-
-          vim.keymap.set('n', '<leader>bf', '<cmd>lua vim.lsp.buf.format()<cr>', { desc = 'Format current buffer' })
-          vim.keymap.set('n', '<C-a>', '<cmd>lua vim.lsp.buf.code_action()<cr>', { desc = 'Perform code action' })
-          vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', { desc = 'Rename symbol' })
-
-          vim.keymap.set('n', '<leader>lse', '<cmd>LspStop<cr><cmd>lua vim.diagnostic.reset()<cr>', { desc = 'Reset language server diagnostic' })
-          vim.keymap.set('n', '<leader>lsi', '<cmd>LspInfo<cr>', { desc = 'LSP info' })
-          vim.keymap.set('n', '<leader>lsr', '<cmd>LspRestart<cr>', { desc = 'LSP restart' })
 
           require('lspconfig')[server].setup(vim.tbl_deep_extend('force', config, {
             capabilities = extend({
