@@ -12,6 +12,7 @@ extract = [
 	{ run = '7z x "$1"',             desc = "Extract here", for = "unix" },
 	{ run = '7z -o"${1%.*}" x "$1"', desc = "Extract subfolder", for = "unix" },
 	{ run = 'unar "$1"',             desc = "Unarchive here", for = "unix" },
+	{ run = 'tar -xf "$1"',          desc = "Extract tar archive", for = "unix" },
 	{ run = 'unar "%1"',             desc = "Extract here", for = "windows" },
 ]
 unrpa = [
@@ -36,4 +37,6 @@ prepend_rules = [
 
 	{ name = "*.{mkv,mp4}", use = [ "play", "denoise" ] },
 	{ name = "*.gif", use = [ "play" ] },
+
+	{ name = "*.tar.zst", use = [ "extract" ] },
 ]
