@@ -3,16 +3,18 @@
 PIPXPKGLIST="$(which pipx 2> /dev/null && pipx list | grep package | awk '{print $2}')"
 PACMANPKGLIST="$(pacman -Qeq)"
 
-prepare() {
+run() {
+  local hook="$1"
+  shift
+
   local package="$1"
 
-  if [[ -f "$package/prepare.sh" ]]; then
+  if [[ -f "$package/$hook.sh" ]]; then
     local wd="$(pwd)"
     cd "$package"
 
-    set -o xtrace 2> /dev/null
-    sh "prepare.sh" $@
-    { set +o xtrace; } 2> /dev/null
+    echo sh "$hook.sh" $@
+    sh "$hook.sh" $@
 
     cd "$wd"
   fi
@@ -23,11 +25,12 @@ install() {
   local package="$2"
   shift 2
 
-  prepare "$package" "$root"
+  run prepare "$package" "$root"
 
-  set -o xtrace 2> /dev/null
+  echo stow --verbose $@ --target "$root" "$package"
   stow --verbose $@ --target "$root" "$package"
-  { set +o xtrace; } 2> /dev/null
+
+  run post "$package" "$root"
 }
 
 installifexec() {
