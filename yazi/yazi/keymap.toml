@@ -6,7 +6,7 @@
 prepend_keymap = [
 	{ on = [ "U", "f", "m" ], run = "plugin ffmpeg-audio-merge", desc = "ffmpeg replace audio from hovered video with selected one" },
 	{ on = [ "<C-n>" ], run = '''
-		shell 'dragon-drop -x -i -T "$1"' --confirm
+		shell 'dragon-drop --thumb-size 128 --on-top --and-exit --all-compact -- "$@"' --confirm
 	''' },
 	{ on   = "T", run  = "plugin --sync hide-preview", desc = "Hide or show preview" },
 	{ on   = [ "c", "m" ], run  = "plugin chmod", desc = "Chmod on selected files" },
