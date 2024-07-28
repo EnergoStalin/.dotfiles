@@ -2,6 +2,7 @@ local luasnip = {
   'L3MON4D3/LuaSnip',
   version = 'v2.*',
   build = 'make install_jsregexp',
+  event = 'BufEnter',
   config = function()
     local ls = require('luasnip')
     require('luasnip.loaders.from_lua').load({ paths = vim.fn.stdpath('config') .. '/lua/snippets', })
@@ -20,9 +21,9 @@ local luasnip = {
 return {
   'hrsh7th/nvim-cmp',
   dependencies = {
-    { 'hrsh7th/cmp-buffer',       lazy = false, },
+    { 'hrsh7th/cmp-buffer',       event = 'BufEnter', },
     { 'hrsh7th/cmp-nvim-lsp',     dependencies = { 'neovim/nvim-lspconfig', }, },
-    { 'saadparwaiz1/cmp_luasnip', dependencies = { luasnip }, },
+    { 'saadparwaiz1/cmp_luasnip', dependencies = { luasnip, }, },
   },
   config = function()
     local cmp = require('cmp')
@@ -40,8 +41,8 @@ return {
         { name = 'buffer', },
       }),
       mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = true, }),
