@@ -118,6 +118,20 @@ local function register()
   })
 end
 
+local function orwp()
+  return fmt([[
+    overseer.register_template(
+      overseer.wrap_template({}, {}, {{ {} }})
+    )
+  ]], {
+    i(1),
+    c(2, {
+      t('nil'),
+      sn(nil, { t('{ name = \''), i(1), t('\', }') }),
+    }),
+    i(0),
+  })
+end
 
 return {
   s('oregister', register()),
@@ -125,4 +139,5 @@ return {
   s('oparam', param()),
   s('odeps', deps()),
   s('orequire', { t([[local overseer = require('overseer')]]) }),
+  s('orwp', orwp()),
 }
