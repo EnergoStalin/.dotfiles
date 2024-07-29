@@ -75,31 +75,34 @@ pipxinstallconfig() {
   _installconfig "$@" "$PIPXPKGLIST"
 }
 
-installhome stow
+installhome stow &
 
-installconfig alacritty
-installconfig autorandr
-installconfig droidcam
-installconfig ferium
-installconfig flameshot
-installconfig lazygit
-installconfig neovim
-installconfig opentabletdriver
-installconfig polybar
-installconfig stow
-installconfig tmux
-installconfig xdg-desktop-portal
-installconfig yazi
-installconfig sc-controller
-installconfig starship
-installconfig polkit-gnome
+installconfig alacritty &
+installconfig autorandr &
+installconfig droidcam &
+installconfig ferium &
+installconfig flameshot &
+installconfig lazygit &
+installconfig neovim &
+installconfig opentabletdriver &
+installconfig polybar &
+installconfig stow &
+installconfig tmux &
+installconfig xdg-desktop-portal &
+installconfig yazi &
+installconfig sc-controller &
+installconfig starship &
+installconfig polkit-gnome &
+installconfig qbittorrent &
 
 # Workaround for nvim builded from source
-installifexec "$(getconfig)" neovim nvim
+installifexec "$(getconfig)" neovim nvim &
 
-installhome vim
-installhome zsh
-installhome git
-installhome i3
+installhome vim &
+installhome zsh &
+installhome git &
+installhome i3 &
 
-pipxinstallconfig pyload-ng
+pipxinstallconfig pyload-ng &
+
+wait $(jobs -p)
