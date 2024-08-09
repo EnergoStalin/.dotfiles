@@ -1,5 +1,17 @@
 [font]
-size = 16
+size = 20
+
+[font.normal]
+family = "JetBrainsMonoNLNF"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMonoNLNF"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMonoNLNF"
+style = "Italic"
 
 [window]
 opacity = 0.97
