@@ -20,6 +20,9 @@ extract = [
 	{ run = 'tar -xf "$1"',          desc = "Extract tar archive", for = "unix" },
 	{ run = 'unar "%1"',             desc = "Extract here", for = "windows" },
 ]
+extract-iso = [
+	{ run = '7z x -tiso -o"${1%.*}" "$1"', desc = "Extract iso subfolder", for = "unix" },
+]
 unrpa = [
 	{ run = 'unrpa "$1" --mkdir --path "${1%.*}"', desc = "unrpa to subfolder", for = "unix" },
 ]
@@ -44,4 +47,6 @@ prepend_rules = [
 	{ name = "*.gif", use = [ "play" ] },
 
 	{ name = "*.tar.zst", use = [ "extract" ] },
+
+	{ name = "*.iso", use = [ "extract-iso" ] },
 ]
