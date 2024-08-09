@@ -2,14 +2,13 @@
 export EDITOR=nvim
 export VISUAL=nvim
 
-# Scrcpy
-alias scrcpy='scrcpy --turn-screen-off --no-cleanup'
-alias scrcpyao='scrcpy --no-video'
+#scrcpy
+alias sscrcpy='scrcpy -S --no-cleanup'
+alias scrcpyao='sscrcpy --no-video --require-audio'
 
 # Android 13
 alias realmerescanmedia='adb shell content call --method scan_volume --uri content://media --arg external_primary'
 alias termuxstart='adb -e shell am start -n com.termux/.HomeActivity'
-
 
 alias grepi='grep -i'
 alias n=nvim
