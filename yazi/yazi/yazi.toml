@@ -30,7 +30,7 @@ denoise = [
 	{ run = 'ffmpeg -i "$1" -af anlmdn -y "${1%.*}.denoised.${1##*.}"', desc = "apply denoise filter", for = "unix" },
 ]
 rpgmv-decrypt = [
-	{ run = 'rpgmv-decrypter "$(pwd)/www"', desc = "Decrypt rpgmaker folder", for = "unix" },
+	{ run = '[[ -d "$(pwd)/www" ]] && rpgmv-decrypter "$(pwd)/www" || rpgmv-decrypter "$(pwd)"', desc = "Decrypt rpgmaker folder", for = "unix" },
 ]
 adb-install = [
 	{ run = 'adb install "$1"', desc = "Install app to phone through adb", for = "unix" },
