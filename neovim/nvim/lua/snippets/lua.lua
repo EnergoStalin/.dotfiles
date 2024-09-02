@@ -88,7 +88,7 @@ end
 
 local function register()
   return fmt([[
-  overseer.register_tamplate({{
+  overseer.register_template({{
     name = '{}'{}
     builder = function()
       return {{
