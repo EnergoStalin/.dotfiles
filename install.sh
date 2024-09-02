@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PIPXPKGLIST="$(which pipx 2> /dev/null && pipx list | grep package | awk '{print $2}')"
-PACMANPKGLIST="$(pacman -Qeq)"
+PACMANPKGLIST="$(pacman -Qq)"
 
 run() {
   local hook="$1"
