@@ -8,6 +8,8 @@ return {
       'cpp',
       'lua',
       'vimdoc',
+      'jsdoc',
+      'typescript',
       'sh',
       'markdown',
       'markdown_inline',
