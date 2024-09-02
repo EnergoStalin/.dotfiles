@@ -35,6 +35,10 @@ rpgmv-decrypt = [
 adb-install = [
 	{ run = 'adb install "$1"', desc = "Install app to phone through adb", for = "unix" },
 ]
+exe = [
+	{ run = 'ghidra "$1"', desc = "Open in ghidra", for = "unix" },
+	{ run = 'wine "$1"', desc = "Run under wine", for = "unix" },
+]
 
 [open]
 prepend_rules = [
@@ -47,6 +51,8 @@ prepend_rules = [
 	{ name = "*.gif", use = [ "play" ] },
 
 	{ name = "*.tar.zst", use = [ "extract" ] },
+
+	{ name = "*.exe", use = [ "exe" ] },
 
 	{ name = "*.iso", use = [ "extract-iso" ] },
 ]
