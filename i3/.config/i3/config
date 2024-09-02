@@ -34,12 +34,6 @@ exec qbittorrent
 exec_always ~/.config/polybar/launch.sh
 exec_always sleep 2 && ~/.fehbg
 
-exec_always xrandr --output HDMI-0 --off
-
-# Enable/Disable second monitor
-bindsym $mod+m exec xrandr --output HDMI-0 --right-of DP-0 --auto
-bindsym $mod+Shift+m exec xrandr --output HDMI-0 --off
-
 # Use pactl to adjust volume in adb.
 bindsym XF86AudioRaiseVolume exec adb -d shell cmd media_session volume --adj raise
 bindsym XF86AudioLowerVolume exec adb -d shell cmd media_session volume --adj lower
