@@ -179,5 +179,4 @@ mode "arrows" {
     bindcode Return mode "default"
 }
 
-bindcode 66 mode "arrows"
-
+#bindcode 66 mode "arrows"
