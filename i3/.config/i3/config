@@ -10,6 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 set $fm
 set $sn Mod4
 
@@ -137,6 +138,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec i3-msg exit
+
+bindsym $alt+z exec killall -SIGUSR1 gpu-screen-recorder
 
 bindsym $mod+Shift+minus move scratchpad 
 bindsym $mod+minus scratchpad show

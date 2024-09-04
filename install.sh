@@ -94,7 +94,7 @@ installconfig sc-controller &
 installconfig starship &
 installconfig polkit-gnome &
 installconfig qbittorrent &
-installconfig easyeffects &
+installconfig gpu-screen-recorder-git &
 
 # Workaround for nvim builded from source
 installifexec "$(getconfig)" neovim nvim &
