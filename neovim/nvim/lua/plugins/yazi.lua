@@ -1,10 +1,8 @@
----@type LazySpec
 return {
   'mikavilpas/yazi.nvim',
   dependencies = {
     'nvim-lua/plenary.nvim',
   },
-  event = 'VeryLazy',
   keys = {
     -- 👇 in this section, choose your own keymappings!
     {
@@ -15,7 +13,6 @@ return {
       desc = 'Open the file manager',
     },
     {
-      -- Open in the current working directory
       '<leader>e',
       function()
         require('yazi').yazi(nil, vim.fn.getcwd())
@@ -23,7 +20,6 @@ return {
       desc = "Open the file manager in nvim's working directory",
     },
   },
-  ---@type YaziConfig
   opts = {
     open_for_directories = false,
   },
