@@ -7,9 +7,9 @@ return {
     { '<esc>',  [[<C-\><C-n>]],         mode = 't', ft = 'toggleterm', },
   },
   opts = {
-    direction = 'vertical',
+    direction = 'horizontal',
     size = function()
-      return vim.o.columns * 0.4
+      return vim.o.lines * 0.2
     end,
   },
   config = true,
