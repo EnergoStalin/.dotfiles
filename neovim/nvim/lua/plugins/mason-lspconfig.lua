@@ -16,12 +16,12 @@ return {
     'neovim/nvim-lspconfig',
   },
   keys = {
-    { '<leader>bf',  '<cmd>lua vim.lsp.buf.format()<cr>',                   desc = 'Format current buffer', },
-    { '<C-a>',       '<cmd>lua vim.lsp.buf.code_action()<cr>',              desc = 'Perform code action', },
-    { '<leader>rn',  '<cmd>lua vim.lsp.buf.rename()<cr>',                   desc = 'Rename symbol', },
+    { '<leader>bf',  '<cmd>lua vim.lsp.buf.format()<cr>',      desc = 'Format current buffer', },
+    { '<C-a>',       '<cmd>lua vim.lsp.buf.code_action()<cr>', desc = 'Perform code action', },
+    { '<leader>rn',  '<cmd>lua vim.lsp.buf.rename()<cr>',      desc = 'Rename symbol', },
 
-    { '<leader>lsi', '<cmd>LspInfo<cr>',                                    desc = 'LSP info', },
-    { '<leader>lsr', '<cmd>LspRestart<cr>',                                 desc = 'LSP restart', },
+    { '<leader>lsi', '<cmd>LspInfo<cr>',                       desc = 'LSP info', },
+    { '<leader>lsr', '<cmd>LspRestart<cr>',                    desc = 'LSP restart', },
   },
   event = 'BufEnter',
   config = function()
@@ -30,6 +30,10 @@ return {
       ensure_installed = { 'lua_ls', },
       handlers = {
         function(server)
+          server = (({
+            tsserver = 'ts_ls',
+          })[server]) or server
+
           local status, config = pcall(require, 'lsp.' .. server)
           if (not status) then config = {} end
           if (config.check ~= nil and not config.check()) then return end
