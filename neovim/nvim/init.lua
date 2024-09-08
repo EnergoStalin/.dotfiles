@@ -3,7 +3,6 @@ vim.g.maplocalleader = ' '
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
-vim.opt.scrolloff = 15
 
 vim.opt.list = true
 vim.opt.number = true
@@ -26,14 +25,18 @@ vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'indent'
 
+vim.keymap.set('n', 'j', 'jzz')
+vim.keymap.set('n', 'k', 'kzz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+
+vim.keymap.set('n', ',d', '<cmd>b#<bar>bd#<CR>')
+
 vim.keymap.set('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<cr>', { desc = 'open diagnostic quickfix list', })
 vim.keymap.set('n', '<leader>k', ':vertical botright help <C-r><C-w><cr>',
   { desc = 'Open help on subject under cursor', })
 
 vim.keymap.set('n', '<C-e>', '<cmd>qa<CR>', { desc = 'quit neovim', })
-vim.keymap.set('n', '<C-q>', '<cmd>bp<bar>sp<bar>bn<bar>bd<CR>', { desc = 'delete current buffer', })
-vim.keymap.set('n', '<C-n>', '<cmd>bn<cr>', { desc = 'next buffer', })
-vim.keymap.set('n', '<C-p>', '<cmd>bp<cr>', { desc = 'prefious buffer', })
 
 -- Always resource .nvim.lua after writing
 vim.cmd([[
