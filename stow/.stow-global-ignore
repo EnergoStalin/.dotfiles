@@ -3,7 +3,10 @@
 \.stow-local-ignore
 \.stow-global-ignore
 
+\.stowrc
+
 packages\.txt
 prepare\.sh
+post\.sh
 
 .*\.template
