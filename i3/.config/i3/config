@@ -27,7 +27,7 @@ exec --no-startup-id picom -b --backend=glx
 # Autostart programs
 exec telegram-desktop -startintray
 # exec obs --minimize-to-tray --disable-shutdown-check
-exec vesktop --start-minimized
+exec sleep 3 && vesktop --start-minimized
 exec keepassxc
 exec qbittorrent
 
