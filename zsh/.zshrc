@@ -80,6 +80,3 @@ eval "$(zoxide init --cmd cd zsh)"
 
 # Source yazi wrapper if exists
 [[ -f ~/.config/yazi/wrapper.sh ]] && source ~/.config/yazi/wrapper.sh
-
-# If not in tmux sesion create one
-[[ -z "$TMUX" ]] && ((tmux list-sessions &> /dev/null && tmux attach) || tmux new -s default)

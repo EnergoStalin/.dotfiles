@@ -89,7 +89,7 @@ bindsym $mod+Shift+d focus child
 bindsym $mod+b exec firefox
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec wezterm
 
 bindsym --release $mod+Shift+p exec xcolor | xclip -selection clipboard
 bindsym $mod+Shift+s exec flameshot gui --clipboard

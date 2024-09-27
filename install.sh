@@ -77,7 +77,6 @@ pipxinstallconfig() {
 
 installhome stow &
 
-installconfig alacritty &
 installconfig autorandr &
 installconfig droidcam &
 installconfig ferium &
@@ -95,6 +94,7 @@ installconfig starship &
 installconfig polkit-gnome &
 installconfig qbittorrent &
 installconfig gpu-screen-recorder-git &
+installconfig wezterm &
 
 # Workaround for nvim builded from source
 installifexec "$(getconfig)" neovim nvim &
