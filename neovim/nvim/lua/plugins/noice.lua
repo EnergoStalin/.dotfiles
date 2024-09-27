@@ -20,8 +20,8 @@ return {
       },
     },
     routes = {
-      skip_msg({kind = 'search_count'}),
-      skip_msg({find = 'written', kind = ''}),
+      skip_msg({ kind = 'search_count', }),
+      skip_msg({ find = 'written', kind = '', }),
     },
     presets = {
       bottom_search = true,         -- use a classic bottom cmdline for search
