@@ -1,5 +1,5 @@
 [plugin]
-deps = [{ use = "yazi-rs/plugins:hide-preview", rev = "07b36c3" }, { use = "yazi-rs/plugins:chmod", rev = "07b36c3" }, { use = "redbeardymcgee/yazi-plugins:mime", rev = "a378f0d" }]
+deps = [{ use = "yazi-rs/plugins:hide-preview", rev = "c578505" }, { use = "yazi-rs/plugins:chmod", rev = "c578505" }, { use = "redbeardymcgee/yazi-plugins:mime", rev = "a378f0d" }]
 
 [flavor]
 deps = []
