@@ -1,11 +1,10 @@
 return {
   'stevearc/overseer.nvim',
-  keys = {
-    { '<leader>tt', '<cmd>OverseerToggle<cr>', mode = 'n', desc = 'Toggle overseer task view', },
-    { '<C-t>', '<cmd>OverseerTaskAction<cr>', mode = 'n', desc = 'Perform action on task', },
-    { '<C-x>', '<cmd>OverseerRun<cr>', mode = 'n', desc = 'Run overseer template', },
-  },
   config = true,
+  keys = {
+    { '<leader>or', '<cmd>OverseerRun<cr>',        mode = { 'n', }, desc = 'Run overseer task', },
+    { '<leader>ot', '<cmd>OverseerTaskAction<cr>', mode = { 'n', }, desc = 'Perform overseer task action', },
+  },
   opts = {
     task_list = {
       direction = 'right',
