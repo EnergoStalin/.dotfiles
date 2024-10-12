@@ -9,7 +9,7 @@ linemode       = "size"
 
 [opener]
 play = [
-	{ run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
+	{ run = 'mpv --force-window --use-filedir-conf "$@"', orphan = true, for = "unix" },
 	{ run = 'mpv --force-window "%1"', orphan = true, for = "windows" },
 	{ run = '''ffprobe -hide_banner "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
