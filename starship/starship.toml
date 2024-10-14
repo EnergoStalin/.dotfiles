@@ -27,6 +27,7 @@ format = '[$symbol](blue) '
 
 [os.symbols]
 Arch = ' '
+Linux = '❄️ '
 
 [c]
 format = '[($symbol$version(-$name) )]($style)'
