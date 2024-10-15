@@ -80,10 +80,3 @@ eval "$(zoxide init --cmd cd zsh)"
 
 # Source yazi wrapper if exists
 [[ -f ~/.config/yazi/wrapper.sh ]] && source ~/.config/yazi/wrapper.sh
-
-# Vim mode
-bindkey -v
-
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
