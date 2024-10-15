@@ -1,6 +1,7 @@
 package.path = vim.fn.stdpath('config') .. '/?.lua;' .. package.path
 
 require('options')
+require('keybinds')
 require('netrw')
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'

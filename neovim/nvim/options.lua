@@ -32,5 +32,3 @@ vim.cmd([[
     autocmd BufWritePost .nvim.lua source <afile>
   augroup END
 ]])
-
-vim.keymap.set('n', '<leader>,d', '<cmd>bp<bar>sp<bar>bn<bar>bd<CR>')
