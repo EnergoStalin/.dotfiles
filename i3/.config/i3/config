@@ -47,6 +47,9 @@ bindsym $mod+q kill
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run
 
+# start dmenu (a program launcher)
+bindsym $alt+x exec --no-startup-id autorandr --change
+
 # change focus
 bindsym $mod+k focus up
 bindsym $mod+j focus down
