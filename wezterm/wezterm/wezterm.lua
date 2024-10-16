@@ -30,11 +30,6 @@ return {
   -- leader = { key = 'b', mods = 'CTRL' },
   keys = {
     {
-      key = 'Space',
-      mods = 'CTRL|SHIFT',
-      action = action.ActivateCopyMode,
-    },
-    {
       key = '"',
       mods = 'CTRL|SHIFT',
       action = action.SplitVertical { domain = 'CurrentPaneDomain' },
@@ -65,9 +60,34 @@ return {
       action = action.ActivatePaneDirection 'Up'
     },
     {
+      key = 'h',
+      mods = 'CTRL|ALT',
+      action = action.AdjustPaneSize { 'Left', 5 }
+    },
+    {
+      key = 'l',
+      mods = 'CTRL|ALT',
+      action = action.AdjustPaneSize { 'Right', 5 }
+    },
+    {
+      key = 'j',
+      mods = 'CTRL|ALT',
+      action = action.AdjustPaneSize { 'Down', 5 }
+    },
+    {
+      key = 'k',
+      mods = 'CTRL|ALT',
+      action = action.AdjustPaneSize { 'Up', 5 }
+    },
+    {
       key = 'Z',
       mods = 'CTRL|SHIFT',
       action = action.TogglePaneZoomState
+    },
+    {
+      key = 'R',
+      mods = 'CTRL|SHIFT',
+      action = action.RotatePanes 'Clockwise'
     },
   },
 }
