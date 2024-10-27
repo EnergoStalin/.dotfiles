@@ -6,25 +6,31 @@ local hovered_url = ya.sync(function()
 end)
 
 local function gethtml(file)
-  local child, err = Command('curl')
+  local cookies = os.getenv('SAUCENAO_COOKIES')
+  local cmd = Command('curl')
       :arg('--fail')
       :arg('-sL')
       :arg('-X'):arg('POST')
       :arg('https://saucenao.com/search.php')
       :arg('-F'):arg('file=@' .. file)
       :stdout(Command.PIPED)
-      :spawn()
+
+  if cookies then
+    cmd = cmd:arg('-H'):arg('Cookie: ' .. cookies)
+  end
+
+  local child, err = cmd:spawn()
 
   if not child then
     return fail("Spawn `curl` failed with error code %s. Do you have it installed?", err)
   end
 
-  local status, oerr = child:wait_with_output()
-  if not status then
-    return fail('API request failed %s', oerr)
+  local output, _ = child:wait_with_output()
+  if not output.status or not output.status.success then
+    return fail('Curl API request failed with code %s', output.status.code)
   end
 
-  return status.stdout
+  return output.stdout
 end
 
 local function rewrite_paths(content, base_url)
@@ -60,7 +66,12 @@ return {
     local _, nameext, ext = string.match(hovered, '(.-)([^\\/]-%.?([^%.\\/]*))$')
     local name = nameext:sub(0, nameext:len() - ext:len())
 
-    local html = rewrite_paths(gethtml(hovered), 'https://saucenao.com/')
+    local response = gethtml(hovered)
+    if not response then
+      return
+    end
+
+    local html = rewrite_paths(response, 'https://saucenao.com/')
     local tempfile = string.format('%s/%s%s', temp, name, 'html')
 
     Command('mkdir'):arg('-p'):arg(temp):spawn():wait()
