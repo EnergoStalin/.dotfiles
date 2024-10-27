@@ -12,4 +12,5 @@ prepend_keymap = [
 	''' },
 	{ on   = "T", run  = "plugin --sync hide-preview", desc = "Hide or show preview" },
 	{ on   = [ "c", "m" ], run  = "plugin chmod", desc = "Chmod on selected files" },
+	{ on = [ "<C-s>" ], run = "plugin saucenao" },
 ]
