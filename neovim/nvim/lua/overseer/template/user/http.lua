@@ -19,19 +19,23 @@ return {
     cwd = {
       type = 'string',
       optional = true
-    }
+    },
+    components = {
+      name = 'components',
+      type = 'table',
+      default = {},
+      optional = true,
+      description = 'additional components to attach'
+    },
   },
-  builder = function(opts)
+  builder = function(o)
     return {
-      name = 'serving ' .. opts.path,
+      name = 'serving ' .. o.path,
       cmd = {
-        'python', '-m', 'http.server', '-b', opts.address, '-d', vim.fn.fnamemodify(opts.path, ':h'), opts.port
+        'python', '-m', 'http.server', '-b', o.address, '-d', vim.fn.fnamemodify(o.path, ':h'), o.port
       },
-      cwd = opts.cwd,
-      components = {
-        'default',
-        'unique',
-      }
+      cwd = o.cwd,
+      components = vim.tbl_extend('force', { 'default', 'unique', }, o.components)
     }
   end
 }

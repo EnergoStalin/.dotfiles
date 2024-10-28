@@ -7,6 +7,13 @@ return {
       type = 'string',
       description = '%local% substituted as local interface ip'
     },
+    components = {
+      name = 'components',
+      type = 'table',
+      default = {},
+      optional = true,
+      description = 'additional components to attach'
+    },
   },
   builder = function(o)
     local gateway = string.gmatch(io.popen([[ip route | grep default]]):read(), [[dev (%w+)]])()
@@ -28,6 +35,7 @@ return {
         }, ' '),
       },
       cwd = vim.fn.getcwd(),
+      components = vim.tbl_extend('force', { 'default', 'unique', }, o.components)
     }
   end
 }
