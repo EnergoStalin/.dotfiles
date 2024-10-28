@@ -1,4 +1,4 @@
-source ~/.profile
+source "${0:A:h}/.profile"
 
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.utf8
@@ -68,11 +68,6 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-
-# Aliases
-alias ls='ls --color'
-alias vim='nvim'
-alias c='clear'
 
 # Shell integrations
 eval "$(fzf --zsh)"

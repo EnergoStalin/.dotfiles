@@ -6,6 +6,11 @@ alias svim='sudo nvim --clean'
 alias v='nvim'
 alias t='tmux'
 
+# Aliases
+alias ls='ls --color'
+alias vim='nvim'
+alias c='clear'
+
 #scrcpy
 alias sscrcpy='scrcpy -S --no-cleanup'
 alias scrcpyao='sscrcpy --no-video --require-audio'
