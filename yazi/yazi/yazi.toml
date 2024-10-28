@@ -7,6 +7,13 @@ ratio          = [ 0, 4, 4 ]
 sort_by        = "alphabetical"
 linemode       = "size"
 
+[preview]
+max_width = 4000
+max_height = 4000
+image_delay = 0
+image_quality = 90
+image_filter = 'lanczos3'
+
 [[plugin.prepend_fetchers]]
 id   = "mime"
 if   = "!mime"
