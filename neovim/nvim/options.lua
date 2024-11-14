@@ -30,10 +30,19 @@ vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'indent'
 
--- Always resource .nvim.lua after writing
-vim.cmd([[
-  augroup nvim_source
-    autocmd!
-    autocmd BufWritePost .nvim.lua source <afile>
-  augroup END
-]])
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = ".nvim.lua",
+  command = "source <afile>",
+  group = vim.api.nvim_create_augroup("nvim_source", { clear = true }),
+})
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  callback = function()
+    if vim.bo.buftype ~= "terminal" then return end
+
+    vim.wo.number = false
+    vim.wo.relativenumber = false
+  end,
+  group = vim.api.nvim_create_augroup("term_open", { clear = true })
+})
