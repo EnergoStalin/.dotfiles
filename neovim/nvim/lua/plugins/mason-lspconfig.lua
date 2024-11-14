@@ -22,6 +22,10 @@ return {
   },
   event = 'BufEnter',
   config = function()
+    vim.g.markdown_fenced_languages = {
+      'ts=typescript',
+    }
+
     require('mason').setup()
     require('mason-lspconfig').setup({
       ensure_installed = { 'lua_ls', },
