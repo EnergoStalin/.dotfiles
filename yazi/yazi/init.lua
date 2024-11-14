@@ -18,3 +18,7 @@ Status._right = {
   { Status.percentage,  id = 6, order = 2000, },
   { Status.position,    id = 7, order = 3000, },
 }
+
+require("mime-ext"):setup {
+	fallback_file1 = true,
+}
