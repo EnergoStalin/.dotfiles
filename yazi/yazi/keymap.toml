@@ -10,7 +10,7 @@ prepend_keymap = [
 	{ on = [ "<C-n>" ], run = '''
 		shell 'dragon-drop --thumb-size 128 --on-top --and-exit --all-compact -- "$@"' --confirm
 	''' },
-	{ on   = "T", run  = "plugin --sync hide-preview", desc = "Hide or show preview" },
+	{ on   = "T", run  = "plugin hide-preview", desc = "Hide or show preview" },
 	{ on   = [ "c", "m" ], run  = "plugin chmod", desc = "Chmod on selected files" },
 	{ on = [ "<C-s>" ], run = "plugin saucenao" },
 ]
