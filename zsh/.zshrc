@@ -1,5 +1,3 @@
-source "${0:A:h}/.profile"
-
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.utf8
 
@@ -75,3 +73,45 @@ eval "$(zoxide init --cmd cd zsh)"
 
 # Source yazi wrapper if exists
 [[ -f ~/.config/yazi/wrapper.sh ]] && source ~/.config/yazi/wrapper.sh
+
+# Aliases
+alias svim='sudo nvim --clean'
+
+alias ls='ls --color'
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ll -a'
+alias vim='nvim'
+
+#scrcpy
+alias sscrcpy='scrcpy -S --no-cleanup'
+alias scrcpyao='sscrcpy --no-video --require-audio'
+
+# Android 13
+alias realmerescanmedia='adb shell content call --method scan_volume --uri content://media --arg external_primary'
+alias termuxstart='adb -e shell am start -n com.termux/.HomeActivity'
+
+alias grepi='grep -i'
+
+# Upgrade
+PROXY="http_proxy=http://127.0.0.1:9051 https_proxy=http://127.0.0.1:9051"
+alias yayy="$PROXY yay -Sy"
+alias pkgupgrade='sudo pacman -Suyy --noconfirm && yayy && yay -Su --noconfirm'
+
+# fzf
+export FZF_DEFAULT_OPTS='--bind=ctrl-u:preview-up+preview-up,ctrl-d:preview-down+preview-down'
+
+if which youtubeuploader > /dev/null; then
+  # Upload video to youtube
+  ytosusendf() {
+    youtubeuploader \
+      -title "$1" \
+      -filename "$3" \
+      -privacy public \
+      -tags osu \
+      -description \
+      "profile: https://osu.ppy.sh/users/12830952\nmap: $2\nskin: baconBoiCK1.0_blue\nhttps://ordr.issou.best/#/skins"
+  }
+
+  alias ytosusend=ytosusendf
+fi
