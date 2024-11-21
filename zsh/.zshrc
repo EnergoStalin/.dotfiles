@@ -75,7 +75,7 @@ eval "$(zoxide init --cmd cd zsh)"
 [[ -f ~/.config/yazi/wrapper.sh ]] && source ~/.config/yazi/wrapper.sh
 
 # Aliases
-alias svim='sudo nvim --clean'
+alias svim="sudo -E HOME='$HOME' nvim"
 
 alias ls='ls --color'
 alias ll='ls -l'
