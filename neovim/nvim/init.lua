@@ -4,6 +4,10 @@ require('options')
 require('keybinds')
 require('netrw')
 
+if vim.fn.getcwd():match('/opt/zapret') then
+  require('zapret.nvim')
+end
+
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 ---@diagnostic disable-next-line: undefined-field
 if not vim.loop.fs_stat(lazypath) then
