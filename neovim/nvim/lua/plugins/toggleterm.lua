@@ -17,14 +17,17 @@ return
         end
       end,
     })
-    local Terminal = require('toggleterm.terminal').Terminal
 
-    function _G.set_terminal_keymaps()
-      local opts = { buffer = 0, }
-      vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-    end
+    vim.api.nvim_create_autocmd("TermOpen", {
+      pattern = "term://*",
+      callback = function()
+        vim.wo.number = false
+        vim.wo.relativenumber = false
 
-    -- if you only want these mappings for toggle term use term://*toggleterm#* instead
-    vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+        local opts = { buffer = 0, }
+        vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+      end,
+      group = vim.api.nvim_create_augroup("toggleterm", { clear = true })
+    })
   end,
 }
