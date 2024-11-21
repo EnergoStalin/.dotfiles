@@ -1,12 +1,3 @@
--- Basic settings
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
-
-vim.api.nvim_set_hl(0, 'Normal', { bg = 'NONE', ctermbg = 'NONE', })
-
 local function find_line(lines, match)
   for _, line in pairs(lines) do
     if line:match(match) then return line end
@@ -60,8 +51,8 @@ local notify = vim.schedule_wrap(function(msg)
   vim.notify(msg)
 end)
 
-local googlevideo = vim.api.nvim_create_augroup('googlevideo', { clear = true, })
 local ggc_test = nil
+local googlevideo = vim.api.nvim_create_augroup('googlevideo', { clear = true, })
 vim.api.nvim_create_autocmd({ 'BufWritePost', }, {
   group = googlevideo,
   pattern = 'config',
@@ -95,14 +86,6 @@ vim.api.nvim_create_autocmd({ 'BufWritePost', }, {
   end,
 })
 
-vim.api.nvim_create_augroup('source', { clear = true, })
-vim.api.nvim_create_autocmd({ 'BufWritePost', }, {
-  group = 'source',
-  pattern = '.nvim.lua',
-  command = 'source <afile>',
-})
-
--- Key mappings
 vim.keymap.set('n', '\\k', ':!systemctl stop zapret.service<CR>', { noremap = true, silent = true, })
 vim.keymap.set('n', '\\s', function()
   local buf = vim.api.nvim_create_buf(true, true)
