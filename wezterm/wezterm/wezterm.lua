@@ -89,5 +89,10 @@ return {
       mods = 'CTRL|SHIFT',
       action = action.RotatePanes 'Clockwise'
     },
+    {
+      key = 'X',
+      mods = 'CTRL|SHIFT',
+      action = action.ActivateCopyMode
+    },
   },
 }
