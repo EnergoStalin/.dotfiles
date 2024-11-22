@@ -6,3 +6,5 @@ xset s off
 xset s noblank
 
 systemctl --user restart opentabletdriver.service
+
+sh ~/.fehbg
