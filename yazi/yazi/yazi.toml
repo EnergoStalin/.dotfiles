@@ -46,6 +46,12 @@ denoise = [
 rpgmv-decrypt = [
 	{ run = '[[ -d "$(pwd)/www" ]] && rpgmv-decrypter "$(pwd)/www" || rpgmv-decrypter "$(pwd)"', desc = "Decrypt rpgmaker folder", for = "unix" },
 ]
+unity-decrypt = [
+	{ run = 'AssetStudioModCLI "$(pwd)" -m Export -t sprite -o "./$(basename "$(find . -name "*_Data")")_Exported"', desc = "Extract unity assets", for = "unix" },
+]
+images = [
+	{ run = 'find "$1" -name "*.png" -or -name "*.jp*g" | xargs feh --scale-down --auto-zoom', desc = "Show images in folders recursively", for = "unix" },
+]
 adb-install = [
 	{ run = 'adb install "$1"', desc = "Install app to phone through adb", for = "unix" },
 ]
@@ -56,8 +62,9 @@ exe = [
 
 [open]
 prepend_rules = [
-  # Game shortcuts
+	# Game shortcuts
 	{ name = "*Game.exe", use = [ "rpgmv-decrypt" ] },
+	{ name = "*_Data/", use = [ "unity-decrypt" ] },
 	{ name = "*.rpa", use = [ "unrpa" ] },
 	{ name = "*.apk", use = [ "adb-install", "extract" ] },
 
@@ -65,8 +72,12 @@ prepend_rules = [
 	{ name = "*.gif", use = [ "play" ] },
 
 	{ name = "*.tar.zst", use = [ "extract" ] },
+	{ name = "*.rar", use = [ "extract" ] },
 
 	{ name = "*.exe", use = [ "exe" ] },
 
 	{ name = "*.iso", use = [ "extract-iso" ] },
+]
+append_rules = [
+	{ name = "*/", use = [ "images", ] },
 ]
