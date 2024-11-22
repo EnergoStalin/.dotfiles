@@ -93,6 +93,8 @@ alias termuxstart='adb -e shell am start -n com.termux/.HomeActivity'
 
 alias grepi='grep -i'
 
+alias feh='feh --auto-zoom --scale-down'
+
 # Upgrade
 PROXY="http_proxy=http://127.0.0.1:9051 https_proxy=http://127.0.0.1:9051"
 alias yayy="$PROXY yay -Sy"
