@@ -34,6 +34,9 @@ extract = [
 	{ run = 'tar -xf "$1"',          desc = "Extract tar archive", for = "unix" },
 	{ run = 'unar "%1"',             desc = "Extract here", for = "windows" },
 ]
+zip-folder = [
+	{ run = '7z a "${1}.7z" "$1"',             desc = "7z", for = "unix" },
+]
 extract-iso = [
 	{ run = '7z x -tiso -o"${1%.*}" "$1"', desc = "Extract iso subfolder", for = "unix" },
 ]
@@ -79,5 +82,5 @@ prepend_rules = [
 	{ name = "*.iso", use = [ "extract-iso" ] },
 ]
 append_rules = [
-	{ name = "*/", use = [ "images", ] },
+	{ name = "*/", use = [ "images", "zip-folder" ] },
 ]
