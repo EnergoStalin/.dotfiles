@@ -53,7 +53,7 @@ unity-decrypt = [
 	{ run = 'AssetStudioModCLI "$(pwd)" -m Export -t sprite -o "./$(basename "$(find . -name "*_Data")")_Exported"', desc = "Extract unity assets", for = "unix" },
 ]
 images = [
-	{ run = 'find "$1" -name "*.png" -or -name "*.jp*g" | xargs feh --scale-down --auto-zoom', desc = "Show images in folders recursively", for = "unix" },
+	{ run = 'find "$1" \( -name "*.png" -o -name ".jp*g" \) -print0 | xargs -0 feh --scale-down --auto-zoom', desc = "Show images in folders recursively", for = "unix" },
 ]
 adb-install = [
 	{ run = 'adb install "$1"', desc = "Install app to phone through adb", for = "unix" },
