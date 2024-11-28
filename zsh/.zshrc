@@ -97,8 +97,7 @@ alias feh='feh --auto-zoom --scale-down'
 
 # Upgrade
 PROXY="http_proxy=http://127.0.0.1:9051 https_proxy=http://127.0.0.1:9051"
-alias yayy="$PROXY yay -Sy"
-alias pkgupgrade='sudo pacman -Suyy --noconfirm && yayy && yay -Su --noconfirm'
+alias pkgupgrade="sudo pacman -Suyy --noconfirm && $PROXY yay -Su --noconfirm"
 
 # fzf
 export FZF_DEFAULT_OPTS='--bind=ctrl-u:preview-up+preview-up,ctrl-d:preview-down+preview-down'
