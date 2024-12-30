@@ -23,7 +23,7 @@ font pango:monospace 8
 # exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id picom -b --backend=glx
 
-exec --no-startup-id systemd-notify --ready
+# exec --no-startup-id systemd-notify --ready
 
 # Autostart programs
 exec telegram-desktop -startintray
