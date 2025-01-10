@@ -14,29 +14,58 @@ function ggc_wireshark_filter_from_har() {
 
 function ggc_curl_test() {
   IFS=$'\n' urls=($(cat $@))
-  args=(
+  cargs=(
     "-s" "--tlsv1.3"
     "-Z" "--parallel-immediate"
-    "--parallel-max" "200"
-    "-w" '%{urlnum}$%{response_code}@'
-    "--retry" "2"
-    "--max-time" "2"
+    "--parallel-max" "50"
+    "-w" '%{urlnum}$%{response_code}$%{http_version}@'
+    "--max-time" "1"
   )
 
-  for url in ${urls[@]}; do
-    args=(${args[@]} "https://$url" "-o" "/dev/null")
-  done
+  args=()
 
-  success=0
+  for url in ${urls[@]}; do
+    IFS=' '
+    for proto in $GGC_TEST_PROTO; do
+      args=(${args[@]} ${cargs[@]})
+      case "$proto" in
+        "HTTPS")
+          args=(${args[@]} "--http1.1" "--retry" "2")
+          ;;
+        "QUIC")
+          args=(${args[@]} "--http3-only" "--retry" "0")
+          ;;
+      esac
+      args=(${args[@]} "https://$url" "-o" "/dev/null" "--next")
+    done
+  done
+  unset 'args[${#args[@]}-1]'
+
+  success_https=0
+  success_quic=0
   IFS='@'
   for report in $(curl "${args[@]}" 2>/dev/null); do
-    IFS='$' read -r i code <<< "$report"
-    if [[ "$code" -eq "000" ]]; then
+    if [[ "$report" == "" ]]; then continue; fi
+    IFS='$' read -r i code http_version <<< "$report"
+    if [[ "$code" -eq "000" && ! -z "${urls[((i+1))]}" ]]; then
       echo "${urls[((i+1))]} UNAVALIABLE"
     else
-      ((success++))
+      case "$http_version" in
+        "1.1")
+          ((success_https++))
+          ;;
+        "3")
+          ((success_quic++))
+          ;;
+      esac
     fi
   done
 
-  echo Success/Total: $success/${#urls[@]}
+  if [[ "$GGC_TEST_PROTO" =~ HTTPS ]]; then
+    echo HTTPS Success/Total: $success_https/${#urls[@]}
+  fi
+
+  if [[ "$GGC_TEST_PROTO" =~ QUIC ]]; then
+    echo QUIC Success/Total: $success_quic/${#urls[@]}
+  fi
 }

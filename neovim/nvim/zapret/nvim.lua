@@ -1,25 +1,36 @@
-local function find_line(lines, match)
+local function find_lines(lines, match)
+  local l = {}
   for _, line in pairs(lines) do
-    if line:match(match) then return line end
+    if line:match(match) then table.insert(l, line) end
   end
+  return l
 end
 
 local youtubeGVChanged = false
+local youtubeGVChangeType = ""
 local zapret = vim.api.nvim_create_augroup('zapret', { clear = true, })
 vim.api.nvim_create_autocmd({ 'BufWritePre', }, {
   group = zapret,
   pattern = 'config',
   callback = function()
-    local l1 = find_line(
+    local l1 = find_lines(
       vim.api.nvim_buf_get_lines(vim.api.nvim_get_current_buf(), 0, -1, false),
       'youtubeGV.txt'
     )
-    local l2 = find_line(
+    local l2 = find_lines(
       vim.fn.readfile(vim.fn.expand('<afile>')),
       'youtubeGV.txt'
     )
 
-    youtubeGVChanged = l1 ~= l2
+    youtubeGVChanged = false
+    youtubeGVChangeType = ""
+    for i = 1, #l1 do
+      local changed = l1[i] ~= l2[i]
+      if changed then
+        youtubeGVChangeType = youtubeGVChangeType .. (#youtubeGVChangeType == 0 and '' or ' ') .. l1[i]:gmatch([[$(%S+) ]])()
+      end
+      youtubeGVChanged = youtubeGVChanged or changed
+    end
   end,
 })
 vim.api.nvim_create_autocmd({ 'BufWritePre', }, {
@@ -62,12 +73,12 @@ vim.api.nvim_create_autocmd({ 'BufWritePost', }, {
       ggc_test:kill()
     end
 
-    notify('GGC test is running...')
+    notify('GGC "' .. youtubeGVChangeType .. '" test is running...')
 
     local output = ''
     local pipe = vim.uv.new_pipe(false)
     ggc_test = vim.uv.spawn('sh', {
-        args = { '-c', 'source ./butils.sh; ggc_curl_test "$GGCS_TXT"', },
+        args = { '-c', 'source ./butils.sh; GGC_TEST_PROTO="' .. youtubeGVChangeType .. '" ggc_curl_test "$GGCS_TXT"', },
         cwd = string.format('%s/%s', vim.fn.stdpath('config'), 'zapret'),
         stdio = { nil, pipe, nil, },
       },
