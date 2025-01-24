@@ -16,9 +16,9 @@ return {
     'neovim/nvim-lspconfig',
   },
   keys = {
-    { '<leader>bf', '<cmd>lua vim.lsp.buf.format()<cr>',      mode = 'n', desc = 'Format current buffer', },
+    { '<leader>b', '<cmd>lua vim.lsp.buf.format()<cr>',      mode = 'n', desc = 'Format current buffer', },
     { '<C-c>',      '<cmd>lua vim.lsp.buf.code_action()<cr>', mode = 'n', desc = 'Perform code action', },
-    { '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>',      mode = 'n', desc = 'Rename symbol', },
+    { '<leader>n', '<cmd>lua vim.lsp.buf.rename()<cr>',      mode = 'n', desc = 'Rename symbol', },
   },
   event = 'BufEnter',
   config = function()
