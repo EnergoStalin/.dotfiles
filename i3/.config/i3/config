@@ -102,6 +102,7 @@ bindsym $mod+Return exec wezterm
 bindsym --release $mod+Shift+p exec xcolor | xclip -selection clipboard
 bindsym $mod+Shift+s exec flameshot gui --clipboard
 bindsym $mod+Shift+t exec notify-send "$(flameshot gui --raw --accept-on-select | tesseract stdin stdout | tr -d '\n' | crow -i -b -t ru -s en)"
+bindsym --release $alt+z exec kill -USR1 $(systemctl --user show gpu-screen-recorder.service -p MainPID --value)
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -146,8 +147,6 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec i3-msg exit
-
-bindsym $alt+z exec killall -SIGUSR1 gpu-screen-recorder
 
 bindsym $mod+Shift+minus move scratchpad 
 bindsym $mod+minus scratchpad show
