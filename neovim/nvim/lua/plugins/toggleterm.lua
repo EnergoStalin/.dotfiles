@@ -23,9 +23,6 @@ return
       callback = function()
         vim.wo.number = false
         vim.wo.relativenumber = false
-
-        local opts = { buffer = 0, }
-        vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
       end,
       group = vim.api.nvim_create_augroup("toggleterm", { clear = true })
     })
