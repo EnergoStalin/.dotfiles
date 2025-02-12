@@ -7,4 +7,5 @@ return {
     db = 'school21',
     port = 5432,
   },
+  augroup = vim.api.nvim_create_augroup('s21sql', { clear = true, }),
 }

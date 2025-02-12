@@ -34,6 +34,7 @@ return function()
   vim.keymap.set('n', '<Esc>', '<cmd>bd!<CR>', opts)
   vim.keymap.set('n', '.', function() require('s21.sql.ex').advance(1, true) end, opts)
   vim.api.nvim_create_autocmd('BufLeave', {
+    group = config.augroup,
     buffer = opts.buffer,
     callback = function(a)
       vim.api.nvim_buf_delete(a.buf, { force = true, })

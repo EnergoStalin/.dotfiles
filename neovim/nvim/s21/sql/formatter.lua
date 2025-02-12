@@ -1,3 +1,5 @@
+local config = require('s21.sql.config')
+
 local formatter_path = nil
 
 local function formatter()
@@ -33,9 +35,9 @@ end
 
 vim.api.nvim_set_option_value('formatexpr', 'v:lua.s21.sql:formatexpr()', { scope = 'global', })
 vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.sql',
   callback = function() formatexpr(true) end,
-  group = vim.api.nvim_create_augroup('s21sql', { clear = true, }),
+  group = config.augroup,
+  pattern = '*.sql',
 })
 
 return formatexpr
