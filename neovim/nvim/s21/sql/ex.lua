@@ -10,16 +10,18 @@ local function get_last_ex_num_for_buf(buf)
   return tonumber(vim.api.nvim_buf_get_name(buf):match('_ex(%d+)'))
 end
 
+---Search for buffer with extractable _ex number in open windows
+---@return number
 function M.get_last_ex_num()
   local num = get_last_ex_num_for_buf(0)
   if num then return num end
 
-  for _, bn in ipairs(vim.api.nvim_list_bufs()) do
-    num = get_last_ex_num_for_buf(bn)
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    num = get_last_ex_num_for_buf(vim.api.nvim_win_get_buf(win))
     if num then return num end
   end
 
-  return nil
+  return 0
 end
 
 ---@param ex number

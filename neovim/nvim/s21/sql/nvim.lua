@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd('BufNew', {
     local opts = { buffer = a.buf, }
     vim.keymap.set('n', '<leader>p', psqlexecbuf, opts)
     vim.keymap.set('n', ',', function() ex.advance(-1) end, opts)
-    vim.keymap.set('n', '.', function() ex.advance(1) end, opts)
+    vim.keymap.set('n', '.', function() ex.advance(1, true) end, opts)
   end,
   group = group,
 })

@@ -26,18 +26,21 @@ return function()
     return
   end
 
-  local opts = { buf = vim.api.nvim_create_buf(false, true), }
-  vim.api.nvim_buf_set_lines(opts.buf, 0, -1, false, vim.split(h.stdout, '\n'))
-  vim.api.nvim_set_option_value('modifiable', false, opts)
+  local opts = { buffer = vim.api.nvim_create_buf(false, true), }
+  vim.api.nvim_buf_set_lines(opts.buffer, 0, -1, false, vim.split(h.stdout, '\n'))
+  vim.api.nvim_set_option_value('modifiable', false, { buf = opts.buffer, })
 
-  vim.keymap.set('n', '<CR>', '<cmd>bd!<CR>', { buffer = opts.buf, })
-  vim.keymap.set('n', '<Esc>', '<cmd>bd!<CR>', { buffer = opts.buf, })
+  vim.keymap.set('n', '<CR>', '<cmd>bd!<CR>', opts)
+  vim.keymap.set('n', '<Esc>', '<cmd>bd!<CR>', opts)
+  vim.keymap.set('n', '.', function() require('s21.sql.ex').advance(1, true) end, opts)
   vim.api.nvim_create_autocmd('BufLeave', {
-    buffer = opts.buf,
-    command = ':bd!',
+    buffer = opts.buffer,
+    callback = function(a)
+      vim.api.nvim_buf_delete(a.buf, { force = true, })
+    end,
   })
 
-  vim.api.nvim_open_win(opts.buf, true, {
+  vim.api.nvim_open_win(opts.buffer, true, {
     win = 0,
     split = 'below',
     height = math.floor(vim.api.nvim_win_get_height(0) * 0.9),
