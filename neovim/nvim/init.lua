@@ -4,6 +4,9 @@ require('options')
 require('keybinds')
 require('netrw')
 
+-- File speficic actions
+vim.cmd(string.format('source %s/%s', vim.fn.stdpath('config'), 'files.vim'))
+
 if vim.fn.getcwd():match('/opt/zapret') then
   require('zapret.nvim')
 end
