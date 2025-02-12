@@ -26,3 +26,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins', {})
+
+local cwd = vim.fn.getcwd()
+-- Requires overseer to be loaded
+if cwd:match('/s21/') then
+  require('s21.nvim')
+  if cwd:match('/SQL/') then require('s21.sql.nvim') end
+end
