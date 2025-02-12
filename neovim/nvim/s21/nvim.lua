@@ -73,3 +73,5 @@ if vim.system({ 'git', 'switch', 'develop', }):wait().code ~= 0 then
 end
 
 _G.s21 = M
+
+if vim.fn.getcwd():match('/SQL/') then require('s21.sql.nvim') end
