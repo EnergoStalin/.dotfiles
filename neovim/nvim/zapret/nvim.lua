@@ -6,47 +6,56 @@ local function find_lines(lines, match)
   return l
 end
 
-local youtubeGVChanged = false
-local youtubeGVChangeType = ""
-local zapret = vim.api.nvim_create_augroup('zapret', { clear = true, })
+local GVT = {
+  config = {
+    state = {
+      changed = false,
+      types = {},
+    },
+  },
+  handle = nil,
+}
+
+function GVT.config.state:reset()
+  self.changed = false
+  self.types = {}
+end
+
 vim.api.nvim_create_autocmd({ 'BufWritePre', }, {
-  group = zapret,
   pattern = 'config',
-  callback = function()
+  callback = function(args)
     local l1 = find_lines(
-      vim.api.nvim_buf_get_lines(vim.api.nvim_get_current_buf(), 0, -1, false),
+      vim.api.nvim_buf_get_lines(0, 0, -1, false),
       'youtubeGV.txt'
     )
     local l2 = find_lines(
-      vim.fn.readfile(vim.fn.expand('<afile>')),
+      vim.fn.readfile(args.file),
       'youtubeGV.txt'
     )
 
-    youtubeGVChanged = false
-    youtubeGVChangeType = ""
+    local state = GVT.config.state
+
+    state:reset()
     for i = 1, #l1 do
       local changed = l1[i] ~= l2[i]
       if changed then
-        youtubeGVChangeType = youtubeGVChangeType .. (#youtubeGVChangeType == 0 and '' or ' ') .. l1[i]:gmatch([[$(%S+) ]])()
+        table.insert(state.types, l1[i]:gmatch([[$(%S+) ]])())
       end
-      youtubeGVChanged = youtubeGVChanged or changed
+      state.changed = state.changed or changed
     end
   end,
 })
 vim.api.nvim_create_autocmd({ 'BufWritePre', }, {
-  group = zapret,
   pattern = 'config',
   command = 'silent !systemctl stop zapret.service',
 })
 vim.api.nvim_create_autocmd({ 'BufWritePost', }, {
-  group = zapret,
   pattern = 'config',
   command = 'silent !systemctl start zapret.service',
 })
-vim.api.nvim_create_autocmd('BufRead', {
-  group = zapret,
+vim.api.nvim_create_autocmd('BufEnter', {
   pattern = 'config',
-  callback = function ()
+  callback = function()
     vim.bo.filetype = 'sh'
     vim.keymap.set('n', 'gf', function()
       local word = vim.fn.expand('<cWORD>')
@@ -54,7 +63,7 @@ vim.api.nvim_create_autocmd('BufRead', {
       if prefix == 'LIST' or prefix == 'IPSET' then
         vim.cmd('edit /opt/zapret/ipset/' .. fname)
       end
-    end, { noremap = true, silent = true, buffer = true })
+    end, { noremap = true, silent = true, buffer = 0, })
   end,
 })
 
@@ -62,61 +71,48 @@ local notify = vim.schedule_wrap(function(msg)
   vim.notify(msg)
 end)
 
-local ggc_test = nil
-local googlevideo = vim.api.nvim_create_augroup('googlevideo', { clear = true, })
 vim.api.nvim_create_autocmd({ 'BufWritePost', }, {
-  group = googlevideo,
   pattern = 'config',
   callback = function()
-    if not youtubeGVChanged then return end
-    if ggc_test then
-      ggc_test:kill()
+    if not GVT.config.state.changed then return end
+    if GVT.handle then
+      GVT.handle:kill(15) -- sigterm
     end
 
-    notify('GGC "' .. youtubeGVChangeType .. '" test is running...')
+    local types = vim.fn.join(GVT.config.state.types, ' ')
 
-    local output = ''
-    local pipe = vim.uv.new_pipe(false)
-    ggc_test = vim.uv.spawn('sh', {
-        args = { '-c', 'source ./butils.sh; GGC_TEST_PROTO="' .. youtubeGVChangeType .. '" ggc_curl_test "$GGCS_TXT"', },
-        cwd = string.format('%s/%s', vim.fn.stdpath('config'), 'zapret'),
-        stdio = { nil, pipe, nil, },
-      },
-      function(_, signal)
-        ggc_test = nil
-        if signal == 15 then -- sigterm
-          return
-        end
-        notify(output)
+    notify('GGC "' .. types .. '" test is running...')
+
+    GVT.handle = vim.system({ 'sh', '-c',
+      'source ./butils.sh; GGC_TEST_PROTO="' .. types .. '" ggc_curl_test "$GGCS_TXT"',
+    }, {
+      cwd = string.format('%s/%s', vim.fn.stdpath('config'), 'zapret'),
+    }, function(out)
+      GVT.handle = nil
+      if out.signal == 15 then -- sigterm
+        return
       end
-    )
-
-    pipe:read_start(function(_, chunk)
-      if chunk then output = output .. chunk end
+      notify(out.stdout)
     end)
   end,
 })
 
 vim.keymap.set('n', '\\k', ':!systemctl stop zapret.service<CR>', { noremap = true, silent = true, })
 vim.keymap.set('n', '\\s', function()
-  local buf = vim.api.nvim_create_buf(true, true)
+  local buf = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_name(buf, 'zapret.service')
   vim.api.nvim_set_current_buf(buf)
-  local stdout = vim.uv.new_pipe()
 
-  vim.uv.spawn('systemctl', {
-      args = { 'status', 'zapret.service', },
-      stdio = { nil, stdout, nil, },
-    },
-    vim.schedule_wrap(function()
-      vim.api.nvim_set_option_value('modified', false, { scope = 'local', buf = buf, })
-      vim.api.nvim_set_option_value('modifiable', false, { scope = 'local', buf = buf, })
-    end)
-  )
+  local h = vim.system({ 'systemctl', 'status', 'zapret.service', }, {}):wait()
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(h.stdout, '\n', { plain = true, }))
+  vim.api.nvim_set_option_value('modifiable', false, { buf = buf, })
 
-  stdout:read_start(vim.schedule_wrap(function(_, data)
-    if data then
-      vim.api.nvim_buf_set_lines(buf, -1, -1, false, vim.split(data, '\n', { plain = true, }))
-    end
-  end))
+  vim.keymap.set('n', '<CR>', '<cmd>bd!<cr>', { buffer = buf, })
+  vim.keymap.set('n', '<Esc>', '<cmd>bd!<cr>', { buffer = buf, })
+  vim.api.nvim_create_autocmd('BufLeave', {
+    buffer = buf,
+    callback = function(args)
+      vim.api.nvim_buf_delete(args.buf, { force = true, })
+    end,
+  })
 end, { noremap = true, silent = true, })
