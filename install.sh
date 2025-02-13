@@ -99,6 +99,9 @@ installconfig wezterm &
 # Workaround for nvim builded from source
 installifexec "$(getconfig)" neovim nvim &
 
+# Workaround for wakatime installed by neovim
+installifexec "$HOME" wakatime ~/.wakatime/wakatime-cli &
+
 installhome vim &
 installhome zsh &
 installhome git &
