@@ -11,7 +11,7 @@ local psqlexecbuf = require('s21.sql.psqlexec')
 local config = require('s21.sql.config')
 local ex = require('s21.sql.ex')
 
-vim.api.nvim_create_autocmd('BufNew', {
+vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '*.sql',
   group = config.group,
   callback = function(a)
