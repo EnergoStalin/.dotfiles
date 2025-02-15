@@ -1,24 +1,17 @@
 package.path = package.path .. ';../?.lua'
 
-local extend = function(tables)
-  local table = {}
-  for _, v in ipairs(tables) do
-    table = vim.tbl_deep_extend('force', table, v)
-  end
-
-  return table
-end
-
 return {
   'williamboman/mason-lspconfig.nvim',
   dependencies = {
     'williamboman/mason.nvim',
     'neovim/nvim-lspconfig',
+    'hrsh7th/nvim-cmp',
   },
   keys = {
-    { '<leader>b', '<cmd>lua vim.lsp.buf.format()<cr>',      mode = 'n', desc = 'Format current buffer', },
+    { '<leader>b',  '<cmd>lua vim.lsp.buf.format()<cr>',      mode = 'n', desc = 'Format current buffer', },
     { '<C-c>',      '<cmd>lua vim.lsp.buf.code_action()<cr>', mode = 'n', desc = 'Perform code action', },
-    { '<leader>n', '<cmd>lua vim.lsp.buf.rename()<cr>',      mode = 'n', desc = 'Rename symbol', },
+    { '<leader>n',  '<cmd>lua vim.lsp.buf.rename()<cr>',      mode = 'n', desc = 'Rename symbol', },
+    { '<leader>lr', '<cmd>LspRestart<cr>',                    mode = 'n', desc = 'Rename symbol', },
   },
   event = 'BufEnter',
   config = function()
@@ -36,14 +29,16 @@ return {
           })[server]) or server
 
           local status, config = pcall(require, 'lsp.' .. server)
-          if (not status) then config = {} end
+          if not status then config = {} end
           if (config.check ~= nil and not config.check()) then return end
 
-          require('lspconfig')[server].setup(vim.tbl_deep_extend('force', config, {
-            capabilities = extend({
-              require('cmp_nvim_lsp').default_capabilities(),
-            }),
-          }))
+          require('lspconfig')[server].setup(
+            vim.tbl_deep_extend('force', config, {
+              capabilities = {
+                unpack(require('cmp_nvim_lsp').default_capabilities()),
+              },
+            })
+          )
         end,
       },
     })
