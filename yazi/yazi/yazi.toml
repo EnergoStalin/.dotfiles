@@ -7,19 +7,19 @@ ratio          = [ 0, 4, 4 ]
 sort_by        = "alphabetical"
 linemode       = "size"
 
+[[plugin.prepend_fetchers]]
+id = 'mime'
+name = '*'
+if = '!mime'
+run = 'mime-ext'
+prio = 'high'
+
 [preview]
 max_width = 4000
 max_height = 4000
 image_delay = 0
 image_quality = 90
 image_filter = 'lanczos3'
-
-[[plugin.prepend_fetchers]]
-id   = "mime"
-if   = "!mime"
-name = "*"
-run  = "mime-ext"
-prio = "high"
 
 [opener]
 play = [
@@ -28,14 +28,14 @@ play = [
 	{ run = '''ffprobe -hide_banner "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
 extract = [
-	{ run = '7z x "$1"',             desc = "Extract here", for = "unix" },
-	{ run = '7z -o"${1%.*}" x "$1"', desc = "Extract subfolder", for = "unix" },
+	{ run = '7z -bsp1 x "$1"',             desc = "Extract here", for = "unix" },
+	{ run = '7z -bsp1 -o"${1%.*}" x "$1"', desc = "Extract subfolder", for = "unix" },
 	{ run = 'unar "$1"',             desc = "Unarchive here", for = "unix" },
 	{ run = 'tar -xf "$1"',          desc = "Extract tar archive", for = "unix" },
 	{ run = 'unar "%1"',             desc = "Extract here", for = "windows" },
 ]
 zip-folder = [
-	{ run = '7z a "${1}.7z" "$1"',             desc = "7z", for = "unix" },
+	{ run = 'cd "$1" && 7z a "${1}.7z" .',             desc = "7z", for = "unix" },
 ]
 extract-iso = [
 	{ run = '7z x -tiso -o"${1%.*}" "$1"', desc = "Extract iso subfolder", for = "unix" },
@@ -53,7 +53,22 @@ unity-decrypt = [
 	{ run = 'AssetStudioModCLI "$(pwd)" -m Export -t sprite -o "./$(basename "$(find . -name "*_Data")")_Exported"', desc = "Extract unity assets", for = "unix" },
 ]
 images = [
-	{ run = 'find "$1" \( -name "*.png" -o -name ".jp*g" \) -print0 | xargs -0 feh --scale-down --auto-zoom', desc = "Show images in folders recursively", for = "unix" },
+	{ run = '''
+    find "$1" \( -name "*.png" -o -name ".jp*g" \) -print0 | sort -z -n |
+      xargs -0 feh --scale-down --auto-zoom -D 5
+  ''', desc = "Show images in folders recursively", for = "unix" },
+	{ run = '''
+    find "$1" \( -name "*.png" -o -name ".jp*g" \) -print0 | while IFS= read -r -d '' img; do
+      dimensions=$(identify -format "%w %h" "$img" 2>/dev/null)
+      if [[ $? -eq 0 ]]; then
+        read width height <<< "$dimensions"
+
+        if [[ $width -ge 600 && $height -ge 400 ]]; then
+            printf "%s\0" "$img"
+        fi
+      fi
+    done | sort -z -n | xargs -0 feh --scale-down --auto-zoom --no-menus --hide-pointer
+  ''', desc = "Show images bigger than 600x400 in folders recursively", for = "unix" },
 ]
 adb-install = [
 	{ run = 'adb install "$1"', desc = "Install app to phone through adb", for = "unix" },
@@ -67,6 +82,7 @@ exe = [
 prepend_rules = [
 	# Game shortcuts
 	{ name = "*Game.exe", use = [ "rpgmv-decrypt" ] },
+	{ name = "*nw", use = [ "rpgmv-decrypt" ] },
 	{ name = "*_Data/", use = [ "unity-decrypt" ] },
 	{ name = "*.rpa", use = [ "unrpa" ] },
 	{ name = "*.apk", use = [ "adb-install", "extract" ] },
