@@ -26,6 +26,3 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins', {})
-
--- Requires overseer to be loaded
-if vim.fn.getcwd():match('/s21/') then require('s21.nvim') end
