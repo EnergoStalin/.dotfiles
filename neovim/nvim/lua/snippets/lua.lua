@@ -127,10 +127,16 @@ local function orwp()
     i(1),
     c(2, {
       t('nil'),
-      sn(nil, { t('{ name = \''), i(1), t('\', }') }),
+      sn(nil, { t('{ name = \''), i(1), t('\', }'), }),
     }),
     i(0),
   })
+end
+
+local function vins()
+  return {
+    t('print(vim.inspect('), i(1), t('))'),
+  }
 end
 
 return {
@@ -138,6 +144,7 @@ return {
   s('orun', run()),
   s('oparam', param()),
   s('odeps', deps()),
-  s('orequire', { t([[local overseer = require('overseer')]]) }),
+  s('orequire', { t([[local overseer = require('overseer')]]), }),
   s('orwp', orwp()),
+  s('vins', vins()),
 }
