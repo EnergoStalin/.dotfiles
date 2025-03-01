@@ -12,12 +12,7 @@ function Status:owner()
   }
 end
 
-Status._right = {
-  { Status.owner,       id = 4, order = 1000, },
-  { Status.permissions, id = 5, order = 1000, },
-  { Status.percentage,  id = 6, order = 2000, },
-  { Status.position,    id = 7, order = 3000, },
-}
+Status:children_add(Status.owner, 1, Status.RIGHT)
 
 require("mime-ext"):setup {
 	fallback_file1 = true,
