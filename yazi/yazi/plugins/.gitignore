@@ -1,4 +1,5 @@
 # ignore tracked by package manager
-hide-preview.yazi
+toggle-pane.yazi
 chmod.yazi
 mime-ext.yazi
+mount.yazi

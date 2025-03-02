@@ -17,3 +17,7 @@ Status:children_add(Status.owner, 1, Status.RIGHT)
 require("mime-ext"):setup {
 	fallback_file1 = true,
 }
+
+if os.getenv("NVIM") then
+  require("toggle-pane"):entry("min-preview")
+end

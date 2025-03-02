@@ -7,7 +7,7 @@ prepend_keymap = [
 	{ on = [ "<C-q>" ], run = "close", desc = "Close the current tab, or quit if it is last tab" },
 	{ on = [ "U", "f", "m" ], run = "plugin ffmpeg-audio-merge", desc = "ffmpeg replace audio from hovered video with selected one" },
 	{ on = [ "U", "h", "h", "c", "e" ], run = "plugin hcextract", desc = "extract characters from honeycome scene data !!!WARNING!!! hcextract executable must be in folder"},
-	{ on = [ "<C-n>" ], run = '''
+	{ on = [ "<C-d>" ], run = '''
 		shell 'dragon-drop --thumb-size 128 --on-top --and-exit --all-compact -- "$@"' --confirm
 	''' },
 	{ on = [ "<C-t>" ], run = '''
@@ -19,8 +19,9 @@ prepend_keymap = [
       tdl upload --photo -c "$TG_CHAT" "${args[@]}";
     ' --confirm
 	''', sync = true },
-	{ on   = "T", run  = "plugin hide-preview", desc = "Hide or show preview" },
 	{ on   = [ "c", "m" ], run  = "plugin chmod", desc = "Chmod on selected files" },
 	{ on = [ "<C-s>" ], run = "plugin saucenao" },
 	{ on = [ "<C-p>" ], run = "plugin pixiv" },
+	{ on = [ "m" ], run = "plugin mount" },
+	{ on = [ "T" ], run = "plugin toggle-pane min-preview" },
 ]
