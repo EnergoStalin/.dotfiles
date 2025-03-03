@@ -5,6 +5,8 @@ if trim(system('id -u')) == '0'
   au BufWritePost /etc/yggdrasil.conf !systemctl restart yggdrasil.service && journalctl -fu yggdrasil.service
   au BufWritePost /etc/nftables.conf !nft -f <afile>
 
+  au BufWritePost /etc/nginx/* !systemctl restart nginx.service && journalctl -fu nginx.service
+
   au BufWritePost /etc/systemd/* !systemctl daemon-reload
 endif
 
