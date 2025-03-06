@@ -1,21 +1,21 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "3d0c7c6"
+rev = "a1b678d"
 hash = "2f1053f89d1a301a648ab181d0948e38"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mime-ext"
-rev = "3d0c7c6"
+rev = "a1b678d"
 hash = "1f9fc0e55ff859a32e793833403ee7bd"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "3d0c7c6"
+rev = "a1b678d"
 hash = "dd97eede8e20e59cd2604e8006e470e2"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "3d0c7c6"
+rev = "a1b678d"
 hash = "812fd49667ab6823250f0411f8cf793a"
 
 [[flavor.deps]]
