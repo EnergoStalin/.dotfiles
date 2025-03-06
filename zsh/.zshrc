@@ -90,7 +90,7 @@ alias scrcpyao='nohup scrcpy --turn-screen-off --no-cleanup --no-video --require
 
 # Android 13
 alias realmerescanmedia='adb shell content call --method scan_volume --uri content://media --arg external_primary'
-alias termuxstart='adb -e shell am start -n com.termux/.HomeActivity'
+alias realmesetprocesslimit='adb shell service call activity 44 i32'
 
 alias grepi='grep -i'
 
