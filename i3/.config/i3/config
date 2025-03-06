@@ -94,7 +94,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+d focus child
 
 # Applications
-bindsym $mod+b exec librewolf
+bindsym $mod+b exec chromium
 
 # start a terminal
 bindsym $mod+Return exec wezterm
