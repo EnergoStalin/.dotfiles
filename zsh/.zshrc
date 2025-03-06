@@ -85,8 +85,8 @@ alias vim='nvim'
 alias vimp='vim +"set nomodified"'
 
 #scrcpy
-alias sscrcpy='scrcpy -S --no-cleanup'
-alias scrcpyao='sscrcpy --no-video --require-audio'
+alias sscrcpy='scrcpy --turn-screen-off --no-cleanup'
+alias scrcpyao='nohup scrcpy --turn-screen-off --no-cleanup --no-video --require-audio >& /dev/null &'
 
 # Android 13
 alias realmerescanmedia='adb shell content call --method scan_volume --uri content://media --arg external_primary'
