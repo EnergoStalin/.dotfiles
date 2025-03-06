@@ -82,7 +82,7 @@ alias ll='ls -l'
 alias la='ls -a'
 alias lla='ll -a'
 alias vim='nvim'
-alias vimp='vim +"set nomodified" -'
+alias vimp='vim +"set nomodified"'
 
 #scrcpy
 alias sscrcpy='scrcpy -S --no-cleanup'
