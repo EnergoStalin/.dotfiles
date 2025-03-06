@@ -106,6 +106,7 @@ installhome vim &
 installhome zsh &
 installhome git &
 installhome i3 &
+installhome wireplumber &
 
 pipxinstallconfig pyload-ng &
 
