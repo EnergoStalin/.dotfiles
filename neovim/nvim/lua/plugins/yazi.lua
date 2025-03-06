@@ -22,5 +22,7 @@ return {
   },
   opts = {
     open_for_directories = false,
+    floating_window_scaling_factor = 1,
+    yazi_floating_window_border = 'none',
   },
 }
