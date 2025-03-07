@@ -92,8 +92,11 @@ alias scrcpyao='nohup scrcpy --turn-screen-off --no-cleanup --no-video --require
 alias realmerescanmedia='adb shell content call --method scan_volume --uri content://media --arg external_primary'
 alias realmesetprocesslimit='adb shell service call activity 44 i32'
 
-alias droidcam="adb shell monkey -p com.dev47apps.droidcam -c android.intent.category.LAUNCHER 1 >& /dev/null && sleep 1.5 && droidcam-cli -size=1920x1080 -v adb 4747 && adb shell am force-stop com.dev47apps.droidcam"
+function adbintent {
+  adb shell dumpsys package $1 | grep -m 1 -A1 android.intent.action.MAIN | awk 'NR==2 {print $2}'
+}
 
+alias droidcam='APP=com.dev47apps.droidcam; adb shell am start-activity -W $(adbintent $APP) >& /dev/null && sleep 2 && droidcam-cli -size=1920x1080 -v adb 4747 && adb shell am force-stop $APP && unset APP'
 alias grepi='grep -i'
 
 alias feh='feh --auto-zoom --scale-down'
