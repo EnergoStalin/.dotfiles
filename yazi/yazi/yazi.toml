@@ -27,7 +27,7 @@ image_filter = 'lanczos3'
 
 [opener]
 play = [
-	{ run = 'mpv --force-window --use-filedir-conf "$@"', orphan = true, for = "unix" },
+	{ run = 'mpv --force-window --use-filedir-conf "$@" >& /dev/null & disown', orphan = true, for = "unix" },
 	{ run = 'mpv --force-window "%1"', orphan = true, for = "windows" },
 	{ run = '''ffprobe -hide_banner "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
@@ -78,8 +78,8 @@ adb-install = [
 	{ run = 'adb install "$1"', desc = "Install app to phone through adb", for = "unix" },
 ]
 exe = [
-	{ run = 'ghidra "$1"', desc = "Open in ghidra", for = "unix" },
-	{ run = 'wine "$1"', desc = "Run under wine", for = "unix" },
+	{ run = 'ghidra "$1" >& /dev/null & disown', desc = "Open in ghidra", for = "unix" },
+	{ run = 'wine "$1" >& /dev/null & disown', desc = "Run under wine", for = "unix" },
 ]
 
 [open]
