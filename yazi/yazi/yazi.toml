@@ -84,10 +84,59 @@ exe = [
 libreoffice = [
 	{ run = 'libreoffice "$1" >& /dev/null & disown', desc = "Open in libreoffice", for = "unix" },
 ]
+dnspy = [
+	{ run = '''
+    fexe() {
+      path="$1"
+      ret=""
+      for _ in {1..5}; do
+        ret=$(
+        find "$(realpath "$path")" -maxdepth 1 \
+          -not -name 'Unity*' -and \
+          -not -name 'crashpad_handler.exe' -and \
+          -name '*.exe' -print -quit
+        )
+        [ -f "$ret" ] && break
+        path="$path/.."
+      done
+      echo "$ret"
+    }
+    export EXE="$(fexe "$PWD")"
+    if ! [ -f "$EXE" ]; then
+      echo "Executable not found can't lookup lutris config"
+      exit 1
+    fi
+
+    export GAME=$(
+      yq -ej "select(.game.exe == \"$EXE\")" \
+      "$HOME"/.config/lutris/games/*.yml
+    )
+    if [ -z "$GAME" ]; then
+      echo "Couldn't find associated lutris game config so prefix can't be resolved"
+      exit 1
+    fi
+
+    export WINEPREFIX=$(
+      echo "$GAME" | jq -r .game.prefix
+    )
+    export WINEVERSION=$(
+      echo "$GAME" | \
+      jq -er '.wine.version // empty' || \
+      yq -r .wine.version "$HOME/.config/lutris/runners/wine.yml"
+    )
+    export WINE="$HOME/.local/share/Steam/compatibilitytools.d/$WINEVERSION/files/bin/wine"
+    [ -f "$WINE" ] || export WINE="$HOME/.local/share/lutris/runners/wine/$WINEVERSION/bin/wine"
+
+    echo "$WINE"
+    echo "$WINEPREFIX"
+    /usr/bin/umu-run "$DNSPY_EXE" "$1"
+  ''', desc = "DNSPY", for = "unix" },
+]
 
 [open]
 prepend_rules = [
 	# Game shortcuts
+	{ name = "*.dll", use = [ "dnspy" ] },
 	{ name = "*Game.exe", use = [ "rpgmv-decrypt" ] },
 	{ name = "*nw", use = [ "rpgmv-decrypt" ] },
 	{ name = "*_Data/", use = [ "unity-decrypt" ] },
