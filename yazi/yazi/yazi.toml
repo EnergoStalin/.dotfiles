@@ -81,6 +81,9 @@ exe = [
 	{ run = 'ghidra "$1" >& /dev/null & disown', desc = "Open in ghidra", for = "unix" },
 	{ run = 'wine "$1" >& /dev/null & disown', desc = "Run under wine", for = "unix" },
 ]
+libreoffice = [
+	{ run = 'libreoffice "$1" >& /dev/null & disown', desc = "Open in libreoffice", for = "unix" },
+]
 
 [open]
 prepend_rules = [
@@ -100,6 +103,8 @@ prepend_rules = [
 	{ name = "*.exe", use = [ "exe" ] },
 
 	{ name = "*.iso", use = [ "extract-iso" ] },
+
+	{ name = "*.{pdf,docx,doc}", use = [ "libreoffice" ] },
 ]
 append_rules = [
 	{ name = "*/", use = [ "images", "zip-folder" ] },
