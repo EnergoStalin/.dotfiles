@@ -97,6 +97,8 @@ function adbintent {
 }
 
 alias droidcam='APP=com.dev47apps.droidcam; adb shell am start-activity -W $(adbintent $APP) >& /dev/null && sleep 2 && droidcam-cli -size=1920x1080 -v adb 4747 && adb shell am force-stop $APP && unset APP'
+alias realmeaudiobook='adb shell "svc bluetooth enable && am start-activity -W $(adbintent de.ph1b.audiobook)"'
+
 alias grepi='grep -i'
 
 alias feh='feh --auto-zoom --scale-down'
