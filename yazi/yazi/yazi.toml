@@ -14,6 +14,10 @@ if = '!mime'
 run = 'mime-ext'
 prio = 'high'
 
+[[plugin.prepend_previewers]]
+mime = "video/*"
+run = "noop"
+
 [preview]
 max_width = 4000
 max_height = 4000
