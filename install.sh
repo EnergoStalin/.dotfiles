@@ -101,6 +101,9 @@ installifexec "$(getconfig)" neovim nvim &
 
 # Workaround for wakatime installed by neovim
 installifexec "$HOME" wakatime ~/.wakatime/wakatime-cli &
+#
+# Workaround for nix installed by script
+installifexec "$(getconfig)" nix ~/.nix-profile/bin/nix &
 
 installhome vim &
 installhome zsh &
