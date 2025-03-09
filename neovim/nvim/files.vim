@@ -10,7 +10,7 @@ if trim(system('id -u')) == '0'
   au BufWritePost /etc/systemd/* !systemctl daemon-reload
 endif
 
-au BufWritePost ~/.local/share/wireplumber/scripts/*,~/.config/wireplumber/* !
+au BufWritePost */.local/share/wireplumber/scripts/*,*/.config/wireplumber/* !
       \ systemctl --user restart pipewire-session-manager.service &&
       \ journalctl --user -fu pipewire-session-manager.service
 
