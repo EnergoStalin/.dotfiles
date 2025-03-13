@@ -90,7 +90,6 @@ alias scrcpyao='nohup scrcpy --turn-screen-off --no-cleanup --no-video --require
 
 # Android 13
 alias realmerescanmedia='adb shell content call --method scan_volume --uri content://media --arg external_primary'
-alias realmesetprocesslimit='adb shell service call activity 44 i32'
 
 function adbintent {
   adb shell dumpsys package $1 | grep -m 1 -A1 android.intent.action.MAIN | awk 'NR==2 {print $2}'
