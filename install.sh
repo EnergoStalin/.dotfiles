@@ -44,7 +44,7 @@ installifexec() {
   fi
 }
 
-_installifneeded() {
+_installifpkg() {
   local root="$1"
   local package="$2"
   local pkglist="$3"
@@ -56,11 +56,11 @@ _installifneeded() {
 }
 
 _installconfig() {
-  _installifneeded "$(getconfig)" "$@"
+  _installifpkg "$(getconfig)" "$@"
 }
 
 installhome() {
-  _installifneeded "$HOME" "$@" "$PACMANPKGLIST"
+  _installifpkg "$HOME" "$@" "$PACMANPKGLIST"
 }
 
 getconfig() {
