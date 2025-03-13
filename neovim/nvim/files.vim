@@ -1,5 +1,5 @@
 if trim(system('id -u')) == '0'
-  au BufWritePost /etc/sing-box/config.json !systemctl restart sing-box.service && journalctl -fu sing-box.service
+  au BufWritePost /etc/sing-box/* !systemctl restart sing-box.service && journalctl -fu sing-box.service
   au BufWritePost /etc/docker/daemon.json !systemctl restart docker.service && journalctl -fu docker.service
   au BufWritePost /etc/coredns/Corefile !systemctl restart coredns.service && journalctl -fu coredns.service
   au BufWritePost /etc/yggdrasil.conf !systemctl restart yggdrasil.service && journalctl -fu yggdrasil.service
