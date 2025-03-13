@@ -24,4 +24,9 @@ prepend_keymap = [
 	{ on = [ "<C-p>" ], run = "plugin pixiv" },
 	{ on = [ "m" ], run = "plugin mount" },
 	{ on = [ "T" ], run = "plugin toggle-pane min-preview" },
+
+	{ on = [ "g", "r" ], run = "cd /", desc = "Go /" },
+	{ on = [ "g", "e" ], run = "cd /etc", desc = "Go /etc" },
+	{ on = [ "g", "m" ], run = "cd /mnt", desc = "Go /mnt" },
+	{ on = [ "g", "t" ], run = "cd /mnt/trash", desc = "Go /mnt/trash" },
 ]
