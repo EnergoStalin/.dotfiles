@@ -26,20 +26,20 @@ exec --no-startup-id picom -b --backend=glx
 # exec --no-startup-id systemd-notify --ready
 
 # Autostart programs
-exec telegram-desktop -startintray
+exec --no-startup-id telegram-desktop -startintray
 # exec obs --minimize-to-tray --disable-shutdown-check
-exec sleep 3 && vesktop --start-minimized
+exec --no-startup-id sleep 3 && vesktop --start-minimized
 exec keepassxc
-exec qbittorrent
+exec --no-startup-id qbittorrent
 
 # Bar and wallpaper
 exec_always ~/.config/polybar/launch.sh
 exec_always sleep 2 && ~/.fehbg
 
 # Use pactl to adjust volume in adb.
-bindsym XF86AudioRaiseVolume exec adb -d shell cmd media_session volume --adj raise
-bindsym XF86AudioLowerVolume exec adb -d shell cmd media_session volume --adj lower
-bindsym XF86AudioPlay exec adb -d shell cmd media_session dispatch play-pause
+bindsym XF86AudioRaiseVolume exec --no-startup-id adb -d shell cmd media_session volume --adj raise
+bindsym XF86AudioLowerVolume exec --no-startup-id adb -d shell cmd media_session volume --adj lower
+bindsym XF86AudioPlay exec --no-startup-id adb -d shell cmd media_session dispatch play-pause
 # bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # kill focused window
@@ -94,15 +94,15 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+d focus child
 
 # Applications
-bindsym $mod+b exec chromium
+bindsym --release $mod+b exec chromium
 
 # start a terminal
 bindsym $mod+Return exec wezterm
 
-bindsym --release $mod+Shift+p exec xcolor | xclip -selection clipboard
-bindsym --release $mod+Shift+s exec flameshot gui --clipboard
-bindsym --release Print exec flameshot screen --clipboard
-bindsym --release $alt+z exec kill -USR1 $(systemctl --user show gpu-screen-recorder.service -p MainPID --value)
+bindsym --release $mod+Shift+p exec --no-startup-id xcolor | xclip -selection clipboard
+bindsym --release $mod+Shift+s exec --no-startup-id flameshot gui --clipboard
+bindsym --release Print exec --no-startup-id flameshot screen --clipboard
+bindsym --release $alt+z exec --no-startup-id kill -USR1 $(systemctl --user show gpu-screen-recorder.service -p MainPID --value)
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -146,7 +146,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec i3-msg exit
+bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
 
 bindsym $mod+Shift+minus move scratchpad 
 bindsym $mod+minus scratchpad show
@@ -173,10 +173,10 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 mode "arrows" {
-    bindsym --release l exec xdotool key Right
-    bindsym --release h exec xdotool key Left
-    bindsym --release j exec xdotool key Down
-    bindsym --release k exec xdotool key Up
+    bindsym --release l exec --no-startup-id xdotool key Right
+    bindsym --release h exec --no-startup-id xdotool key Left
+    bindsym --release j exec --no-startup-id xdotool key Down
+    bindsym --release k exec --no-startup-id xdotool key Up
 
     bindcode 66 mode "default"
     bindcode Escape mode "default"
