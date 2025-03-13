@@ -179,8 +179,8 @@ mode "arrows" {
     bindsym --release k exec --no-startup-id xdotool key Up
 
     bindcode 66 mode "default"
-    bindcode Escape mode "default"
-    bindcode Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
 }
 
 #bindcode 66 mode "arrows"
