@@ -30,6 +30,11 @@ return {
   -- leader = { key = 'b', mods = 'CTRL' },
   keys = {
     {
+      key = 'W',
+      mods = 'CTRL|SHIFT',
+      action = action.CloseCurrentPane { confirm = true },
+    },
+    {
       key = '"',
       mods = 'CTRL|SHIFT',
       action = action.SplitVertical { domain = 'CurrentPaneDomain' },
