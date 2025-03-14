@@ -9,7 +9,7 @@ return {
     },
     components = {
       name = 'components',
-      type = 'table',
+      type = 'list',
       default = {},
       optional = true,
       description = 'additional components to attach'
