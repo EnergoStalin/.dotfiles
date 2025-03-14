@@ -31,7 +31,7 @@ return {
           'am', 'start',
           '-n', 'com.yandex.browser/com.yandex.browser.YandexBrowserMainActivity',
           '-a', 'android.intent.action.VIEW',
-          '-d', o.url
+          '-d', string.format("'%s'", o.url)
         }, ' '),
       },
       cwd = vim.fn.getcwd(),
