@@ -1,10 +1,10 @@
 customCommands:
   - key: '<c-g>'
     context: 'global'
-    command: 'gh browse --branch {{.SelectedLocalBranch.Name}}'
+    command: "gh browse --branch '{{.SelectedLocalBranch.Name}}'"
   - key: '<c-S>'
     context: 'global'
-    command: "gh repo sync $(git ls-remote --get-url {{.SelectedLocalBranch.UpstreamRemote}} | sed 's/^git@.+:|.git$//g') -b {{.SelectedLocalBranch.Name}}"
+    command: "gh repo sync $(git ls-remote --get-url '{{.SelectedLocalBranch.UpstreamRemote}}' | sed 's/^git@.+:|.git$//g') -b '{{.SelectedLocalBranch.Name}}'"
   - key: '<c-f>'
     context: 'global'
     command: "gh repo fork --default-branch-only"
