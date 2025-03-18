@@ -100,8 +100,6 @@ alias realmeaudiobook='adb shell "svc bluetooth enable && am start-activity -W $
 
 alias grepi='grep -i'
 
-alias feh='feh --auto-zoom --scale-down'
-
 # Upgrade
 function LOCAL_PROXY {
   local proxy="http://127.0.0.1:$1"

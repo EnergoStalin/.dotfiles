@@ -75,6 +75,8 @@ pipxinstallconfig() {
   _installconfig "$@" "$PIPXPKGLIST"
 }
 
+mkdir -p .local/bin
+
 installhome stow &
 
 installconfig autorandr &
@@ -105,6 +107,7 @@ installifexec "$HOME" wakatime ~/.wakatime/wakatime-cli &
 # Workaround for nix installed by script
 installifexec "$(getconfig)" nix ~/.nix-profile/bin/nix &
 
+installhome feh &
 installhome vim &
 installhome zsh &
 installhome git &

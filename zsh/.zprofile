@@ -1,5 +1,9 @@
-export GTK_THEME=Adwaita:dark
-export XCURSOR_SIZE=24
+set -a
 
-export EDITOR=nvim
-export VISUAL=nvim
+GTK_THEME=Adwaita:dark
+XCURSOR_SIZE=24
+
+EDITOR=nvim
+VISUAL=nvim
+
+PATH="$HOME/.local/bin:$PATH"

@@ -56,10 +56,13 @@ rpgmv-decrypt = [
 unity-decrypt = [
 	{ run = 'AssetStudioModCLI "$(pwd)" -m Export -t sprite -o "./$(basename "$(find . -name "*_Data")")_Exported"', desc = "Extract unity assets", for = "unix" },
 ]
+feh = [
+  { run = 'feh "$@"', desc = "Show images with feh", for = "unix" },
+]
 images = [
 	{ run = '''
     find "$1" \( -name "*.png" -o -name ".jp*g" \) -print0 | sort -z -n |
-      xargs -0 feh --scale-down --auto-zoom -D 5
+      xargs -0 feh --title "%f [%u/%l] %wx%h"
   ''', desc = "Show images in folders recursively", for = "unix" },
 	{ run = '''
     find "$1" \( -name "*.png" -o -name ".jp*g" \) -print0 | while IFS= read -r -d '' img; do
@@ -71,7 +74,7 @@ images = [
             printf "%s\0" "$img"
         fi
       fi
-    done | sort -z -n | xargs -0 feh --scale-down --auto-zoom --no-menus --hide-pointer
+    done | sort -z -n | xargs -0 feh --title "%f [%u/%l] %wx%h"
   ''', desc = "Show images bigger than 600x400 in folders recursively", for = "unix" },
 ]
 adb-install = [
@@ -154,6 +157,8 @@ prepend_rules = [
 	{ name = "*.iso", use = [ "extract-iso" ] },
 
 	{ name = "*.{pdf,docx,doc}", use = [ "libreoffice" ] },
+
+  { mime = "image/*", use = [ "feh" ] },
 ]
 append_rules = [
 	{ name = "*/", use = [ "images", "zip-folder" ] },
