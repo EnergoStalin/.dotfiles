@@ -1,82 +1,85 @@
 ---@diagnostic disable: undefined-global
 
+local function dfmt(direct, str, nodes)
+  local w = string.match(str, '%s*') or ''
+  local prefix = (not direct and (w .. ',\n') or '')
+  return fmt(prefix .. str, nodes)
+end
+
+local function dwrap(str, nodes)
+  return function(direct)
+    return dfmt(direct, str, vim.deepcopy(nodes))
+  end
+end
+
 local function param()
   return fmt([[
-  {} = {{
-    type = '{}',
-    default = {},
-    optional = {},
-    description = '{}',
-  }},
+    {} = {{
+      type = '{}',
+      default = {},
+      optional = {},
+      description = '{}',
+    }},
   ]], {
-    i(1),
+    i(1, 'name'),
     c(2, {
       t('string'),
       t('number'),
       t('list'),
     }),
-    i(3),
+    i(3, '\'\''),
     c(4, { t('true'), t('false'), }),
-    i(0),
+    i(0, 'none'),
   })
 end
 
 local function params()
   return fmt([[
-  {},
-  params = {{
-    {}
-  }},
-  ]], {
-    t(''),
-    sn(1, param()),
-  })
-end
-
-local function cmd()
-  return fmt([[
-  cmd = {},
-  cwd = vim.fn.getcwd(),
-  ]], {
-    c(1, {
-      sn(nil, { t('\''), i(1), t('\''), }),
-      sn(nil, { t('{ \''), i(1), t('\', }'), }),
-    }),
-  })
-end
-
-local function deps()
-  return fmt([[
-  {{
-    'dependencies',
-    seqential = {},
-    task_names = {{
-      {},
-    }},
-  }},
-  ]], {
-    c(1, { t('true'), t('false'), }),
-    i(0),
-  })
-end
-
-local function orchestrator()
-  return fmt([[
-  ,
-  strategy = {{
-    'orchestrator',
-    tasks = {{
+    params = {{
       {}
     }},
-  }},
   ]], {
-    i(0),
+    isn(1, param(), '$PARENT_INDENT  '),
   })
 end
+
+local cmd = dwrap([[
+    cmd = {},
+    cwd = vim.fn.getcwd(),
+  ]], {
+  c(1, {
+    sn(nil, { t('\''), i(1, 'echo kill it'), t('\''), }),
+    sn(nil, { t('{ \''), i(1, 'echo kill it'), t('\', }'), }),
+  }),
+})
+
+local deps = dwrap([[
+    {{
+      'dependencies',
+      seqential = {},
+      task_names = {{
+        '{}',
+      }},
+    }},
+  ]], {
+  c(1, { t('true'), t('false'), }),
+  i(2, 'build'),
+})
+
+local orchestrator = dwrap([[
+    strategy = {{
+    'orchestrator',
+    tasks = {{
+    '{}',
+    }},
+    }},
+  ]], {
+  i(1, 'build'),
+})
 
 local function run()
   return fmt([[
-  overseer.run_template({{ name = '{}' }}{})
+    overseer.run_template({{ name = '{}' }}{})
   ]], {
     i(1),
     c(2, {
@@ -88,32 +91,32 @@ end
 
 local function register()
   return fmt([[
-  overseer.register_template({{
-    name = '{}'{}
-    builder = function()
-      return {{
-        name = '{}'{}
-        components = {{
-          'default',{}
-        }},
-      }}
-    end
-  }})
+    overseer.register_template({{
+      name = '{}',{}
+      builder = function()
+        return {{
+          name = '{}',{}
+          components = {{
+            'default',{}
+          }},
+        }}
+      end
+    }})
   ]], {
     i(1),
     c(2, {
-      t(','),
-      sn(nil, params()),
+      t(''),
+      isn(nil, params(), '  '),
     }),
     f(function(a) return a[1] end, 1),
     c(3, {
-      t(','),
-      sn(nil, cmd()),
-      sn(nil, orchestrator()),
+      t(''),
+      isn(nil, cmd(), '      '),
+      isn(nil, orchestrator(), '      '),
     }),
     c(4, {
       t(''),
-      sn(nil, deps()),
+      isn(nil, deps(), '        '),
     }),
   })
 end
@@ -142,8 +145,8 @@ end
 return {
   s('oregister', register()),
   s('orun', run()),
-  s('oparam', param()),
-  s('odeps', deps()),
+  s('oparam', param(true)),
+  s('odeps', deps(true)),
   s('orequire', { t([[local overseer = require('overseer')]]), }),
   s('orwp', orwp()),
   s('vins', vins()),
