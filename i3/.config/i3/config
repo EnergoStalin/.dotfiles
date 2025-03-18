@@ -97,7 +97,7 @@ bindsym $mod+Shift+d focus child
 bindsym --release $mod+b exec chromium
 
 # start a terminal
-bindsym $mod+Return exec wezterm
+bindsym $mod+Return exec kitty
 
 bindsym --release $mod+Shift+p exec --no-startup-id xcolor | xclip -selection clipboard
 bindsym --release $mod+Shift+s exec --no-startup-id flameshot gui --clipboard

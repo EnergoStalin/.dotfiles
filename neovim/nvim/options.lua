@@ -17,7 +17,7 @@ vim.opt.splitbelow = true
 vim.opt.cursorline = true
 
 vim.opt.list = true
-vim.opt.listchars = 'eol:↵,lead:·,tab:⭾ '
+vim.opt.listchars = 'eol:,lead:·,tab:⭾ '
 
 vim.opt.autoread = true
 vim.opt.autoindent = true

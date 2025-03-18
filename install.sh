@@ -94,7 +94,7 @@ installconfig starship &
 installconfig polkit-gnome &
 installconfig qbittorrent &
 installconfig gpu-screen-recorder-git &
-installconfig wezterm &
+installconfig kitty &
 
 # Workaround for nvim builded from source
 installifexec "$(getconfig)" neovim nvim &
