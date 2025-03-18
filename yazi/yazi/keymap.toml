@@ -6,7 +6,6 @@
 prepend_keymap = [
 	{ on = [ "<C-q>" ], run = "close", desc = "Close the current tab, or quit if it is last tab" },
 	{ on = [ "U", "f", "m" ], run = "plugin ffmpeg-audio-merge", desc = "ffmpeg replace audio from hovered video with selected one" },
-	{ on = [ "U", "h", "h", "c", "e" ], run = "plugin hcextract", desc = "extract characters from honeycome scene data !!!WARNING!!! hcextract executable must be in folder"},
 
 	{ on = [ "U", "w" ], run = 'shell "feh --bg-fill \"$0\""', desc = "Set wallpaper" },
 
