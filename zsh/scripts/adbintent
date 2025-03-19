@@ -1,0 +1,5 @@
+#!/bin/env sh
+
+adb shell dumpsys package "$1" | \
+	grep -m 1 -A1 android.intent.action.MAIN | \
+	awk 'NR==2 {print $2}'

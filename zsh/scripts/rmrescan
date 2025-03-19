@@ -1,0 +1,7 @@
+#!/bin/env sh
+
+adb shell \
+	content call \
+	--method scan_volume \
+	--uri content://media \
+	--arg external_primary

@@ -1,0 +1,6 @@
+#!/bin/env sh
+
+proxy="http://127.0.0.1:$1"
+shift
+
+http_proxy=$proxy https_proxy=$proxy all_proxy=$proxy exec $@

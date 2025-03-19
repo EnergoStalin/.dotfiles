@@ -1,0 +1,12 @@
+#!/bin/env sh
+
+APP='com.dev47apps.droidcam'
+
+adb shell am start-activity -W "$(adbintent $APP)" >& /dev/null
+
+sleep 2
+
+sh -c 'sleep 5 && adb shell input keyevent 26' &
+
+trap "adb shell am force-stop '$APP'" EXIT
+droidcam-cli -size=1920x1080 -v adb 4747

@@ -1,0 +1,18 @@
+#!/bin/env sh
+
+if ! command -v youtubeuploader > /dev/null; then
+	echo "youtubeuploader is not installed install it before running first"
+	exit 1
+fi
+
+ytosendf() {
+	youtubeuploader \
+		-title "$1" \
+		-filename "$3" \
+		-privacy public \
+		-tags osu \
+		-description \
+		"profile: https://osu.ppy.sh/users/12830952\nmap: $2\nskin: baconBoiCK1.0_blue\nhttps://ordr.issou.best/#/skins"
+}
+
+alias ytosend=ytosendf

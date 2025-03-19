@@ -1,0 +1,7 @@
+#!/bin/env sh
+
+adb shell <<-EOF
+	svc bluetooth enable
+	am start-activity -W $(adbintent de.ph1b.audiobook)
+	input keyevent 26
+EOF
