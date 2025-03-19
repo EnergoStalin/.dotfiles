@@ -31,4 +31,5 @@ prepend_keymap = [
 	{ on = [ "g", "e" ], run = "cd /etc", desc = "Go /etc" },
 	{ on = [ "g", "m" ], run = "cd /mnt", desc = "Go /mnt" },
 	{ on = [ "g", "t" ], run = "cd /mnt/trash", desc = "Go /mnt/trash" },
+	{ on = [ "g", "s" ], run = "cd $HOME/Source", desc = "Go $HOME/Source" },
 ]
