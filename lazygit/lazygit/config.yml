@@ -1,10 +1,58 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+
+os:
+  editPreset: nvim-remote
+
+notARepository: quit
+disableStartupPopups: true
+
 customCommands:
-  - key: '<c-g>'
-    context: 'global'
-    command: "gh browse --branch '{{.SelectedLocalBranch.Name}}'"
-  - key: '<c-S>'
-    context: 'global'
-    command: "gh repo sync $(git ls-remote --get-url '{{.SelectedLocalBranch.UpstreamRemote}}' | sed 's/^git@.+:|.git$//g') -b '{{.SelectedLocalBranch.Name}}'"
-  - key: '<c-f>'
-    context: 'global'
-    command: "gh repo fork --default-branch-only"
+  - key: <c-w>
+    description: Workflow manipulations
+    commandMenu:
+      - key: f
+        description: Delete all failed workflow runs in the repository
+        command: |
+          export GH_FILTERS="--status failure"
+          export GLAB_FILTERS="--status failed"
+
+          sh ~/.config/lazygit/scripts/delete-workflow-runs.sh
+      - key: k
+        description: Delete failed workflow runs for selected branch
+        command: |
+          BRANCH='{{.SelectedLocalBranch.Name}}'
+          export GH_FILTERS="\
+          --status failure \
+          --branch '$BRANCH' \
+          "
+          export GLAB_FILTERS="\
+          --status failed \
+          --branch '$BRANCH' \
+          "
+
+          sh ~/.config/lazygit/scripts/delete-workflow-runs.sh
+      - key: b
+        description: Delete all workflow runs for selected branch
+        command: |
+          BRANCH='{{.SelectedLocalBranch.Name}}'
+          export GH_FILTERS="--branch '$BRANCH'"
+          export GLAB_FILTERS="--branch '$BRANCH'"
+
+          sh ~/.config/lazygit/scripts/delete-workflow-runs.sh
+      - key: h
+        description: Install git hook to cleanup workflows for branch on deletion
+        command: |
+          sh ~/.config/lazygit/scripts/install-workflows-deletion-with-branch-hook.sh
+  - key: <c-g>
+    context: localBranches
+    command: |
+      _glab() { glab repo view -wb '{{.SelectedLocalBranch.Name}}'; }
+      _gh() { gh browse --branch '{{.SelectedLocalBranch.Name}}'; }
+
+      source ~/.config/lazygit/scripts/call.sh
+  - key: <c-S>
+    context: localBranches
+    command: gh repo sync $(git ls-remote --get-url '{{.SelectedLocalBranch.UpstreamRemote}}' | sed 's/^git@github\.com:|.git$//g') -b '{{.SelectedLocalBranch.Name}}'
+  - key: <c-f>
+    context: remoteBranches
+    command: gh repo fork --default-branch-only
