@@ -10,3 +10,6 @@ insert_final_newline = false
 trim_trailing_whitespace = true
 
 quote_style = single
+
+[*.y*ml]
+indent_style = space
