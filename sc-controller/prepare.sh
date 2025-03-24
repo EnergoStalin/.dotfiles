@@ -1,4 +1,5 @@
-#!/bin/env sh
+#!/usr/bin/env sh
+set -euo pipefail
 
 export CONFIG="$2/scc"
 

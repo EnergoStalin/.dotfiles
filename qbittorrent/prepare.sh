@@ -1,4 +1,5 @@
-#!/bin/env sh
+#!/usr/bin/env sh
+set -euo pipefail
 
 CONFIG=$2
 PWD_ESCAPED="$(pwd | sed 's/\//\\\//g')"
