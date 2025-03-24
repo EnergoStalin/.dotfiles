@@ -89,8 +89,9 @@ alias vimp='vim +"set nomodified"'
 
 alias grepi='grep -i'
 
-alias xcopy='xclip -selection clipboard'
-alias xpaste='xclip -selection clipboard -o'
+alias xc='xclip -selection clipboard'
+alias xp='xclip -selection clipboard -o'
+alias hc='fc -ln -1 | tr -d "\n" | xcopy'
 
 #scrcpy
 alias sscrcpy='scrcpy --turn-screen-off --no-cleanup'
