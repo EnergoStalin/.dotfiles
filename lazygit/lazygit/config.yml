@@ -25,11 +25,11 @@ customCommands:
           BRANCH='{{.SelectedLocalBranch.Name}}'
           export GH_FILTERS="\
           --status failure \
-          --branch '$BRANCH' \
+          --branch $BRANCH \
           "
           export GLAB_FILTERS="\
           --status failed \
-          --branch '$BRANCH' \
+          --ref $BRANCH \
           "
 
           sh ~/.config/lazygit/scripts/delete-workflow-runs.sh
@@ -38,8 +38,8 @@ customCommands:
         loadingText: Deleting...
         command: |
           BRANCH='{{.SelectedLocalBranch.Name}}'
-          export GH_FILTERS="--branch '$BRANCH'"
-          export GLAB_FILTERS="--branch '$BRANCH'"
+          export GH_FILTERS="--branch $BRANCH"
+          export GLAB_FILTERS="--ref $BRANCH"
 
           sh ~/.config/lazygit/scripts/delete-workflow-runs.sh
       - key: h

@@ -11,7 +11,8 @@ _gh() {
 _glab() {
 	glab ci list \
 		$GLAB_FILTERS \
-		--json databaseId --jq '.[].databaseId' \
+		--output json \
+	| jq -r '.[].id' \
 	| xargs -P 8 -rL 1 glab ci delete
 }
 
