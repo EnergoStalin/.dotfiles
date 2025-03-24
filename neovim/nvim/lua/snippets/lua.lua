@@ -68,13 +68,24 @@ local deps = dwrap([[
 
 local orchestrator = dwrap([[
     strategy = {{
-    'orchestrator',
-    tasks = {{
-    '{}',
-    }},
+      'orchestrator',
+      tasks = {{
+        '{}',
+      }},
     }},
   ]], {
   i(1, 'build'),
+})
+
+local components = dwrap([[
+    components = {{
+      'default',{}
+    }},{}
+  ]], {
+  c(1, {
+    t({ '', "  'unique',"}),
+    t(''),
+  }), i(0),
 })
 
 local function run()
@@ -96,9 +107,7 @@ local function register()
       builder = function()
         return {{
           name = '{}',{}
-          components = {{
-            'default',{}
-          }},
+          {}
         }}
       end
     }})
@@ -117,6 +126,7 @@ local function register()
     c(4, {
       t(''),
       isn(nil, deps(), '        '),
+      isn(nil, components(), '        '),
     }),
   })
 end
@@ -145,8 +155,9 @@ end
 return {
   s('oregister', register()),
   s('orun', run()),
-  s('oparam', param(true)),
+  s('oparam', param()),
   s('odeps', deps(true)),
+  s('ocomponents', components(true)),
   s('orequire', { t([[local overseer = require('overseer')]]), }),
   s('orwp', orwp()),
   s('vins', vins()),
