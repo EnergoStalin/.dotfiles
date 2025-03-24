@@ -1,3 +1,5 @@
+vim.opt.mouse = ''
+
 vim.g.mapleader      = ' '
 vim.g.maplocalleader = ' '
 
@@ -25,25 +27,27 @@ vim.opt.autoindent = true
 vim.opt.langmap =
 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
 
-vim.opt.exrc = true
+if not vim.g.as_pager then
+	vim.opt.exrc = true
+end
 
 vim.opt.foldenable = false
 vim.opt.foldlevel  = 99
 vim.opt.foldmethod = 'indent'
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = ".nvim.lua",
-  command = "source <afile>",
-  group = vim.api.nvim_create_augroup("nvim_source", { clear = true }),
+	pattern = ".nvim.lua",
+	command = "source <afile>",
+	group = vim.api.nvim_create_augroup("nvim_source", { clear = true }),
 })
 
 vim.api.nvim_create_autocmd("TermOpen", {
-  pattern = "*",
-  callback = function()
-    if vim.bo.buftype ~= "terminal" then return end
+	pattern = "*",
+	callback = function()
+		if vim.bo.buftype ~= "terminal" then return end
 
-    vim.wo.number         = false
-    vim.wo.relativenumber = false
-  end,
-  group = vim.api.nvim_create_augroup("term_open", { clear = true })
+		vim.wo.number         = false
+		vim.wo.relativenumber = false
+	end,
+	group = vim.api.nvim_create_augroup("term_open", { clear = true })
 })
