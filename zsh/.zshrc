@@ -93,6 +93,8 @@ alias xc='xclip -selection clipboard'
 alias xp='xclip -selection clipboard -o'
 alias hc='fc -ln -1 | tr -d "\n" | xcopy'
 
+function man() { nvim -c ":hide Man $@" }
+
 #scrcpy
 alias sscrcpy='scrcpy --turn-screen-off --no-cleanup'
 alias scrcpyao='scrcpy --turn-screen-off --no-cleanup --no-video --require-audio >& /dev/null & disown'
