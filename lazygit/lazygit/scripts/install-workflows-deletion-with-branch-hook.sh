@@ -1,7 +1,9 @@
-#!/bin/env sh
+#!/usr/bin/env sh
+set -euo pipefail
 
 cat <<EOF > "$(git rev-parse --git-dir)/hooks/update"
-#!/bin/sh
+#!/usr/bin/env sh
+set -euo pipefail
 
 refname="\$1"
 newrev="\$3"

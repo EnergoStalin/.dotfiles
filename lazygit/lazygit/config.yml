@@ -12,6 +12,7 @@ customCommands:
     commandMenu:
       - key: f
         description: Delete all failed workflow runs in the repository
+        loadingText: Deleting...
         command: |
           export GH_FILTERS="--status failure"
           export GLAB_FILTERS="--status failed"
@@ -19,6 +20,7 @@ customCommands:
           sh ~/.config/lazygit/scripts/delete-workflow-runs.sh
       - key: k
         description: Delete failed workflow runs for selected branch
+        loadingText: Deleting...
         command: |
           BRANCH='{{.SelectedLocalBranch.Name}}'
           export GH_FILTERS="\
@@ -33,6 +35,7 @@ customCommands:
           sh ~/.config/lazygit/scripts/delete-workflow-runs.sh
       - key: b
         description: Delete all workflow runs for selected branch
+        loadingText: Deleting...
         command: |
           BRANCH='{{.SelectedLocalBranch.Name}}'
           export GH_FILTERS="--branch '$BRANCH'"

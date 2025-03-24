@@ -1,4 +1,5 @@
-#!/bin/env sh
+#!/usr/bin/env sh
+set -euo pipefail
 
 ORIGIN="$(git remote get-url origin)"
 if
