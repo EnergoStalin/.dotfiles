@@ -1,10 +1,8 @@
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.utf8
 
-set -a
-FZF_DEFAULT_OPTS='--bind=ctrl-u:preview-up+preview-up,ctrl-d:preview-down+preview-down'
-PATH="$(dirname $(realpath "$0"))/scripts:$PATH"
-set +a
+export FZF_DEFAULT_OPTS='--bind=ctrl-u:preview-up+preview-up,ctrl-d:preview-down+preview-down'
+export PATH="$(dirname $(realpath "$0"))/scripts:$PATH"
 
 eval $(starship init zsh)
 
