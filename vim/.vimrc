@@ -11,6 +11,7 @@ set number
 set expandtab
 set relativenumber
 set splitbelow
+set splitright
 set cursorline
 set listchars="eol:$,tab:>-,trail:~,extends:>,precedes:<"
 
@@ -18,7 +19,6 @@ set listchars="eol:$,tab:>-,trail:~,extends:>,precedes:<"
 map <leader>e :Ex<Cr>
 
 " Buffer navigation
-map bn :bn<Cr>
-map bp :bp<Cr>
-map bd :bd<Cr>
-map bl :ls<Cr>
+map <c-n> <cmd>bn<cr>
+map <c-p> <cmd>bp<cr>
+map <leader>b <cmd>bp<bar>sp<bar>bn<bar>bd<cr>zz
