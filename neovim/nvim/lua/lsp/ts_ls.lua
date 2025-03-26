@@ -1,8 +1,12 @@
 local util = require 'lspconfig.util'
 
-return {
+local config = {
   single_file_support = false,
   root_dir = util.root_pattern('tsconfig.json', 'jsconfig.json', 'package.json'),
-
-  vim.fn.executable('tsgo') and unpack({ cmd = { 'tsgo', 'lsp', '--stdio', } }) or nil,
 }
+
+if vim.fn.executable('tsgo') and not vim.fn.getcwd():match('/Vencord/?') then
+	config.cmd = { 'tsgo', 'lsp', '--stdio', }
+end
+
+return config
