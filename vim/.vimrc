@@ -7,6 +7,9 @@ set tabstop=2
 set scrolloff=15
 set shiftwidth=2
 
+set nobackup
+set nowritebackup
+
 set number
 set expandtab
 set relativenumber
