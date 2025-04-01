@@ -31,12 +31,21 @@ play = [
 	{ run = 'mpv --force-window "%1"', orphan = true, for = "windows" },
 	{ run = 'ffprobe -hide_banner "$1"; echo "Press enter to exit"; read _', block = true, desc = "Show media info", for = "unix" },
 ]
+asar = [
+	{ run = 'asar extract "$1"', desc = "Extract here", for = "unix" },
+	{ run = 'asar extract "$1" "${1%.*}" ', desc = "Extract subfolder", for = "unix" },
+]
+rar = [
+	{ run = 'unar "$1"', desc = "Extract here", for = "unix" },
+	{ run = 'unar -output-directory "${1%.*}" "$1"', desc = "Extract subfolder", for = "unix" },
+]
+tar = [
+	{ run = 'tar -xf "$1"', desc = "Extract here", for = "unix" },
+	{ run = 'mkdir "${1%.*}" && tar -C "${1%.*}" -xf "$1"', desc = "Extract subfolder", for = "unix" },
+]
 extract = [
 	{ run = '7z -bsp1 x "$1"', desc = "Extract here", for = "unix" },
 	{ run = '7z -bsp1 -o"${1%.*}" x "$1"', desc = "Extract subfolder", for = "unix" },
-	{ run = 'unar "$1"', desc = "Unarchive here", for = "unix" },
-	{ run = 'tar -xf "$1"', desc = "Extract tar archive", for = "unix" },
-	{ run = 'unar "%1"', desc = "Extract here", for = "windows" },
 ]
 zip-folder = [
 	{ run = 'cd "$1" && 7z a "${1}.7z" .', desc = "7z", for = "unix" },
@@ -102,8 +111,10 @@ prepend_rules = [
 	{ name = "*.{mkv,mp4}", use = ["play", "denoise"] },
 	{ name = "*.gif", use = ["play"] },
 
-	{ name = "*.tar.zst", use = ["extract"] },
-	{ name = "*.rar", use = ["extract"] },
+	{ name = "*.tar*", use = ["tar"] },
+	{ name = "*.rar", use = ["rar"] },
+
+	{ name = "*.asar", use = ["asar"] },
 
 	{ name = "*.exe", use = ["exe"] },
 
