@@ -8,10 +8,10 @@ return {
     'hrsh7th/nvim-cmp',
   },
   keys = {
-    { '<leader>b',  '<cmd>lua vim.lsp.buf.format()<cr>',      mode = 'n', desc = 'Format current buffer', },
-    { '<C-c>',      '<cmd>lua vim.lsp.buf.code_action()<cr>', mode = 'n', desc = 'Perform code action', },
-    { '<leader>n',  '<cmd>lua vim.lsp.buf.rename()<cr>',      mode = 'n', desc = 'Rename symbol', },
-    { '<leader>lr', '<cmd>LspRestart<cr>',                    mode = 'n', desc = 'Rename symbol', },
+    { '<leader>b', '<cmd>lua vim.lsp.buf.format()<cr>', mode = 'n', desc = 'Format current buffer', },
+    { 'glr',       '<cmd>LspRestart<cr>',               mode = 'n', desc = 'Rename symbol', },
+    { 'gli',       '<cmd>LspInfo<cr>',                  mode = 'n', desc = 'Lsp info', },
+    { 'gls',       '<cmd>LspStop<cr>',                  mode = 'n', desc = 'Lsp stop', },
   },
   event = 'FileType',
   config = function()
