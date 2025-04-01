@@ -3,6 +3,7 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'BurntSushi/ripgrep',
+    'nvim-tree/nvim-web-devicons',
   },
   keys = {
     { '<leader>f', '<cmd>Telescope find_files<cr>',            desc = 'Fuzzy find files respecting gitignore',             },
