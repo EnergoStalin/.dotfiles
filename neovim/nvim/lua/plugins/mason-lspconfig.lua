@@ -13,7 +13,7 @@ return {
     { '<leader>n',  '<cmd>lua vim.lsp.buf.rename()<cr>',      mode = 'n', desc = 'Rename symbol', },
     { '<leader>lr', '<cmd>LspRestart<cr>',                    mode = 'n', desc = 'Rename symbol', },
   },
-  event = 'BufEnter',
+  event = 'FileType',
   config = function()
     vim.g.markdown_fenced_languages = {
       'ts=typescript',
