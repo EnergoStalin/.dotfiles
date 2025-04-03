@@ -12,7 +12,13 @@ return {
   opts = {
     switch = true,
     task = {
-      preview = true,
+      preview = function()
+        local api = require('s21.api')
+        if not api.i3.window_title_contains('README.*%.md', { plain = false, }) then
+          vim.system({ 'sh', '-c', 'chromium --new-window file://$(find "' ..
+          vim.fs.joinpath(api:project_root(), '" -type f -name "README*.md" -print -quit)'), })
+        end
+      end,
     },
     sql = {
       format = true,
