@@ -105,7 +105,7 @@ osu = [
 prepend_rules = [
 	# Game shortcuts
 	{ name = "*.dll", use = ["dnspy"] },
-	{ name = "*Game.exe", use = ["rpgmv-decrypt"] },
+	{ name = "*Game.{exe,rpgproject}", use = ["rpgmv-decrypt"] },
 	{ name = "*nw", use = ["rpgmv-decrypt"] },
 	{ name = "*_Data/", use = ["unity-decrypt"] },
 	{ name = "*.rpa", use = ["unrpa"] },
