@@ -94,6 +94,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+d focus child
 
 # Applications
+bindsym --release $mod+o exec osu-lazer
 bindsym --release $mod+b exec chromium
 
 # start a terminal
