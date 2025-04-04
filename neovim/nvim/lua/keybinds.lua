@@ -8,7 +8,9 @@ vim.keymap.set('n', ']b', '<cmd>bn<cr>')
 vim.keymap.set('n', '[b', '<cmd>bp<cr>')
 
 vim.keymap.set('n', '<leader>c', function()
-  if vim.fn.expand('%:p:h') == vim.fn.getcwd() then
+  if
+    vim.fn.expand('%:p:h') == vim.fn.getcwd()
+  then
     vim.cmd('cd -')
   else
     vim.cmd('cd %:h')
