@@ -22,7 +22,7 @@ function GVT.config.state:reset()
 end
 
 vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = 'config',
+  pattern = 'nfqws',
   callback = function(args)
     local l1 = find_lines(
       vim.api.nvim_buf_get_lines(0, 0, -1, false),
@@ -47,17 +47,17 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = 'config',
+  pattern = 'nfqws',
   command = 'silent !systemctl stop zapret.service',
 })
 
 vim.api.nvim_create_autocmd('BufWritePost', {
-  pattern = 'config',
+  pattern = 'nfqws',
   command = 'silent !systemctl start zapret.service',
 })
 
 vim.api.nvim_create_autocmd('BufEnter', {
-  pattern = 'config',
+  pattern = 'nfqws',
   callback = function()
     vim.bo.filetype = 'sh'
     vim.bo.path = vim.fn.join({vim.bo.path, '/opt/zapret/ipset'}, ',')
@@ -70,7 +70,7 @@ local notify = vim.schedule_wrap(function(msg)
 end)
 
 vim.api.nvim_create_autocmd('BufWritePost', {
-  pattern = 'config',
+  pattern = 'nfqws',
   callback = function()
     if not GVT.config.state.changed then return end
     if GVT.handle then
