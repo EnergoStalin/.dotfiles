@@ -95,17 +95,21 @@ libreoffice = [
 	{ run = 'libreoffice "$1" >& /dev/null & disown', desc = "Open in libreoffice", for = "unix" },
 ]
 dnspy = [
-	{ run = 'dnspy $@', desc = "DNSPY", for = "unix" },
+	{ run = 'dnspy "$1"', desc = "DNSPY", for = "unix" },
 ]
 osu = [
-	{ run = 'osu $@', desc = "osu!lazer", for = "unix" },
+	{ run = 'osu "$@"', desc = "osu!lazer", for = "unix" },
+]
+evbunpack = [
+	{ run = 'evbunpack "$1" unpack', desc = "Unpack enigma executable", for = "unix" },
 ]
 
 [open]
 prepend_rules = [
 	# Game shortcuts
 	{ name = "*.dll", use = ["dnspy"] },
-	{ name = "*Game.{exe,rpgproject}", use = ["rpgmv-decrypt"] },
+	{ name = "*Game.exe", use = ["rpgmv-decrypt", "evbunpack"] },
+	{ name = "*Game.rpgproject", use = ["rpgmv-decrypt"] },
 	{ name = "*nw", use = ["rpgmv-decrypt"] },
 	{ name = "*_Data/", use = ["unity-decrypt"] },
 	{ name = "*.rpa", use = ["unrpa"] },
