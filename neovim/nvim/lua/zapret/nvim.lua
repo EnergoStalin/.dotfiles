@@ -88,7 +88,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
         types
       ),
     }, {
-      cwd = string.format('%s/%s', vim.fn.stdpath('config'), 'zapret'),
+      cwd = vim.fs.joinpath(vim.fn.stdpath('config'), 'lua', 'zapret'),
     }, function(out)
       GVT.handle = nil
       -- Print nothing on sigterm

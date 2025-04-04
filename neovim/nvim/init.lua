@@ -4,7 +4,6 @@ vim.cmd('source ' .. vim.fs.joinpath(vim.fn.stdpath('config'), 'not_init.vim'))
 require('options')
 require('keybinds')
 require('netrw')
-require('clipboard')
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 ---@diagnostic disable-next-line: undefined-field
