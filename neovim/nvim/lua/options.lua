@@ -10,6 +10,7 @@ vim.opt.signcolumn     = 'yes'
 
 vim.opt.tabstop        = 2
 vim.opt.shiftwidth     = 2
+vim.opt.wrap           = false
 
 vim.opt.number         = true
 vim.opt.expandtab      = true
