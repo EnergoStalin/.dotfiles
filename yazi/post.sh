@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-/bin/ya pack -u &> /dev/null
+/bin/ya pack -i &> /dev/null
