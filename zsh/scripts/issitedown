@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+set -euo pipefail
+
+jreq() {
+  url="$1"; shift
+  curl -sH 'Accept: application/json' "$url" | jq -r "$@"
+}
+
+report=$(jreq "https://check-host.net/check-http?host=$1" .permanent_link)
+
+echo $report
+result=$(echo $report | sed s/report/result/)
+
+sleep 20
+
+jreq "$result" 'to_entries[] | "\(.key) => \(.value[0][2])"'
