@@ -104,6 +104,9 @@ osu = [
 evbunpack = [
 	{ run = 'evbunpack "$1" unpack', desc = "Unpack enigma executable", for = "unix" },
 ]
+gimp = [
+	{ run = 'gimp "$@"', desc = "GIMP", for = "unix" },
+]
 
 [open]
 prepend_rules = [
@@ -115,6 +118,8 @@ prepend_rules = [
 	{ name = "*_Data/", use = ["unity-decrypt"] },
 	{ name = "*.rpa", use = ["unrpa"] },
 	{ name = "*.apk", use = ["adb-install", "extract"] },
+
+	{ name = "*.psd", use = ["gimp"] },
 
 	{ name = "*.{mkv,mp4}", use = ["play", "denoise"] },
 	{ name = "*.gif", use = ["play"] },
@@ -132,6 +137,6 @@ prepend_rules = [
 
 	{ name = "*.{pdf,docx,doc}", use = ["libreoffice"] },
 
-	{ mime = "image/*", use = ["feh"] },
+	{ mime = "image/*", use = ["feh", "gimp"] },
 ]
 append_rules = [{ name = "*/", use = ["images", "zip-folder"] }]
