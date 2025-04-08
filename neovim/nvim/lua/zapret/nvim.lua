@@ -103,9 +103,9 @@ vim.keymap.set('n', '\\s', function()
   vim.cmd([[
     new zapret.service
     silent r!systemctl status zapret.service
-    setlocal nomodifiable nomodified
-    nnoremap <buffer> <CR> :bd<CR>
-    nnoremap <buffer> <Esc> :bd<CR>
-    autocmd BufLeave <buffer> execute 'bd ' . bufnr('%')
+    setlocal nomodified nomodifiable
+    augroup zapret_service
+      au! | au BufLeave <buffer> bd!
+    augroup END
   ]])
 end, { noremap = true, silent = true, })
