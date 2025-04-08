@@ -6,6 +6,7 @@
 ratio = [0, 4, 4]
 sort_by = "alphabetical"
 linemode = "size"
+mouse_events = []
 
 [plugin]
 prepend_fetchers = [
