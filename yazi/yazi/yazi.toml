@@ -69,8 +69,7 @@ unity-decrypt = [
 feh = [{ run = 'feh "$@"', desc = "Show images with feh", for = "unix" }]
 images = [
 	{ run = '''
-    find "$1" \( -name "*.png" -o -name ".jp*g" \) -print0 | sort -z -n |
-      xargs -0 feh --title "%f [%u/%l] %wx%h"
+    find "$1" -type d -print0 | xargs -0 feh --title "%f [%u/%l] %wx%h"
   ''', desc = "Show images in folders recursively", for = "unix" },
 	{ run = '''
     find "$1" \( -name "*.png" -o -name ".jp*g" \) -print0 | while IFS= read -r -d '' img; do
