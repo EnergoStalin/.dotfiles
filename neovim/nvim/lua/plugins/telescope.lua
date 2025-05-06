@@ -25,6 +25,7 @@ return {
       live_grep = {
         hidden = true,
         prompt_prefix = '󱔗 ',
+        smartcase = true,
       },
     },
     defaults = {
@@ -32,6 +33,8 @@ return {
         '.git/',
         'node_modules/',
         '.xmake/',
+        '.venv/',
+        '__pycache__/',
       },
     },
   },
