@@ -9,7 +9,6 @@ end
 local GVT = {
   config = {
     state = {
-      changed = false,
       types = {},
     },
   },
@@ -17,8 +16,14 @@ local GVT = {
 }
 
 function GVT.config.state:reset()
-  self.changed = false
   self.types = {}
+  return self
+end
+
+---@param line string
+---@return string
+local function parsetype(line)
+  return line:gmatch([[$(%S+) ]])()
 end
 
 vim.api.nvim_create_autocmd('BufWritePre', {
@@ -33,15 +38,20 @@ vim.api.nvim_create_autocmd('BufWritePre', {
       'youtubeGV.txt'
     )
 
-    local state = GVT.config.state
+    local state = GVT.config.state:reset()
 
-    state:reset()
+    local line = vim.fn.getline('.')
+    local type = parsetype(line)
+    if type then -- Always test for current line type
+      state.types[type] = true
+    end
+
     for i = 1, #l1 do
       local changed = l1[i] ~= l2[i]
       if changed then
-        table.insert(state.types, l1[i]:gmatch([[$(%S+) ]])())
+        type = parsetype(l1[i])
+        if type then state.types[type] = true end
       end
-      state.changed = state.changed or changed
     end
   end,
 })
@@ -72,12 +82,12 @@ end)
 vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = 'nfqws',
   callback = function()
-    if not GVT.config.state.changed then return end
+    if next(GVT.config.state.types) == nil then return end
     if GVT.handle then
       GVT.handle:kill(15) -- sigterm
     end
 
-    local types = vim.fn.join(GVT.config.state.types, ' ')
+    local types = vim.fn.join(vim.tbl_keys(GVT.config.state.types), ' ')
 
     notify('GGC "' .. types .. '" test is running...')
 
