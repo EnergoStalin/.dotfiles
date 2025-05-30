@@ -106,6 +106,9 @@ evbunpack = [
 gimp = [
 	{ run = 'gimp "$@"', desc = "GIMP", for = "unix" },
 ]
+wallpaper = [
+  { run = 'echo -e "preload = $1\nwallpaper = ,$1" > ~/.config/hypr/hyprpaper.conf && hyprctl hyprpaper reload ,"$1"', desc = 'Set wallpaper (hyprland)', for = 'unix' }
+]
 
 [open]
 prepend_rules = [
@@ -136,6 +139,6 @@ prepend_rules = [
 
 	{ name = "*.{pdf,docx,doc}", use = ["libreoffice"] },
 
-	{ mime = "image/*", use = ["feh", "gimp"] },
+	{ mime = "image/*", use = ["feh", "wallpaper", "gimp"] },
 ]
 append_rules = [{ name = "*/", use = ["images", "zip-folder"] }]

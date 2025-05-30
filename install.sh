@@ -2,9 +2,6 @@
 
 set -euo pipefail
 
-PIPXPKGLIST="$(which pipx 2> /dev/null && pipx list | grep package | awk '{print $2}')"
-PACMANPKGLIST="$(pacman -Qq)"
-
 run() {
   local hook="$1"
   shift
@@ -49,10 +46,9 @@ installifexec() {
 _installifpkg() {
   local root="$1"
   local package="$2"
-  local pkglist="$3"
-  shift 3
+  shift 2
 
-  if grep -q "$package" <<< "$pkglist"; then
+  if pacman -Qi "$package" &> /dev/null; then
     install "$root" "$package" "$@"
   fi
 }
@@ -62,7 +58,7 @@ _installconfig() {
 }
 
 installhome() {
-  _installifpkg "$HOME" "$@" "$PACMANPKGLIST"
+  _installifpkg "$HOME" "$@"
 }
 
 getconfig() {
@@ -70,25 +66,21 @@ getconfig() {
 }
 
 installconfig() {
-  _installconfig "$@" "$PACMANPKGLIST"
-}
-
-pipxinstallconfig() {
-  _installconfig "$@" "$PIPXPKGLIST"
+  _installconfig "$@"
 }
 
 mkdir -p .local/bin
 
 installhome stow &
 
-installconfig autorandr &
+# installconfig autorandr &
 installconfig droidcam &
 installconfig ferium &
 installconfig flameshot &
 installconfig lazygit &
 installconfig neovim &
 installconfig opentabletdriver &
-installconfig polybar &
+# installconfig polybar &
 installconfig stow &
 installconfig tmux &
 installconfig xdg-desktop-portal &
@@ -100,6 +92,10 @@ installconfig qbittorrent &
 installconfig gpu-screen-recorder-git &
 installconfig kitty &
 installconfig btop &
+
+installconfig waybar &
+installconfig uwsm &
+installconfig hyprland &
 
 # Workaround for nvim builded from source
 installifexec "$(getconfig)" neovim nvim &
@@ -114,9 +110,7 @@ installhome feh &
 installhome vim &
 installhome zsh &
 installhome git &
-installhome i3 &
+# installhome i3 &
 installhome wireplumber &
-
-pipxinstallconfig pyload-ng &
 
 wait $(jobs -p)
