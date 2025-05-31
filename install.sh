@@ -73,14 +73,11 @@ mkdir -p .local/bin
 
 installhome stow &
 
-# installconfig autorandr &
 installconfig droidcam &
 installconfig ferium &
-installconfig flameshot &
 installconfig lazygit &
 installconfig neovim &
 installconfig opentabletdriver &
-# installconfig polybar &
 installconfig stow &
 installconfig tmux &
 installconfig xdg-desktop-portal &
@@ -110,7 +107,6 @@ installhome feh &
 installhome vim &
 installhome zsh &
 installhome git &
-# installhome i3 &
 installhome wireplumber &
 
 wait $(jobs -p)
