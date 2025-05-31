@@ -2,27 +2,36 @@
     "height": 30,
     "spacing": 4,
     "modules-left": [
-        "hyprland/workspaces",
-        "hyprland/mode"
+        "hyprland/workspaces"
     ],
     "modules-center": [
         "clock"
     ],
     "modules-right": [
         "cpu",
+        "custom/separator",
         "memory",
+        "custom/separator",
         "temperature",
+        "custom/separator",
         "hyprland/language",
+        "custom/separator",
         "tray"
     ],
+    "custom/separator": {
+      "format": "|",
+      "interval": "once",
+      "tooltip": false
+    },
     "tray": {
         "icon-size": 21,
         "spacing": 10
     },
     "clock": {
+        "interval": 1,
         "timezone": "Europe/Moscow",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": " {%Y-%m-%d} |  {%H:%M:%S}"
+        "format": " {:%Y-%m-%d |  %H:%M:%S}"
     },
     "cpu": {
         "format": "FULL: {usage}%",
@@ -32,7 +41,7 @@
     "memory": {
         "interval": 1,
         "tooltip": false,
-        "format": "{}/{total}%"
+        "format": "{used}/{total}GB"
     },
     "temperature": {
         "critical-threshold": 80,
