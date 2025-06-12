@@ -89,6 +89,7 @@ installconfig qbittorrent &
 installconfig gpu-screen-recorder-git &
 installconfig kitty &
 installconfig btop &
+installconfig mpv &
 
 installconfig waybar &
 installconfig uwsm &
