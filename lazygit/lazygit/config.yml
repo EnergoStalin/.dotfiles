@@ -53,7 +53,7 @@ customCommands:
       _gh() { gh browse --branch '{{.SelectedLocalBranch.Name}}'; }
 
       source ~/.config/lazygit/scripts/call.sh
-  - key: <c-S>
+  - key: <c-s>
     context: localBranches
     command: gh repo sync $(git ls-remote --get-url '{{.SelectedLocalBranch.UpstreamRemote}}' | sed 's/^git@github\.com:|.git$//g') -b '{{.SelectedLocalBranch.Name}}'
   - key: <c-f>
