@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "a1b678d"
+rev = "55bf699"
 hash = "2f1053f89d1a301a648ab181d0948e38"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mime-ext"
-rev = "a1b678d"
-hash = "1f9fc0e55ff859a32e793833403ee7bd"
+rev = "55bf699"
+hash = "5e24c167e9ae9a203a48f2a438b8c705"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
