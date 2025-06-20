@@ -5,7 +5,10 @@
         "hyprland/workspaces"
     ],
     "modules-center": [
-        "clock"
+        "hyprland/window",
+        "custom/separator",
+        "clock",
+        "custom/separator"
     ],
     "modules-right": [
         "cpu",
