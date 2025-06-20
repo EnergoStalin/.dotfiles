@@ -12,8 +12,6 @@
         "custom/separator",
         "memory",
         "custom/separator",
-        "temperature",
-        "custom/separator",
         "hyprland/language",
         "custom/separator",
         "tray"
@@ -42,10 +40,5 @@
         "interval": 1,
         "tooltip": false,
         "format": "{used}/{total}GB"
-    },
-    "temperature": {
-        "critical-threshold": 80,
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
     }
 }
