@@ -25,6 +25,9 @@ vim.opt.listchars      = 'eol:,lead:·,tab:⭾ '
 vim.opt.autoread       = true
 vim.opt.autoindent     = true
 
+vim.opt.ignorecase     = true
+vim.opt.smartcase      = true
+
 vim.opt.langmap        =
 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
 
