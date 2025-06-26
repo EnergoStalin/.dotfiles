@@ -103,6 +103,9 @@ osu = [
 evbunpack = [
 	{ run = 'evbunpack "$1" unpack', desc = "Unpack enigma executable", for = "unix" },
 ]
+gameripper = [
+	{ run = 'gameripper "$@"', desc = "Gameripper", for = "unix" },
+]
 gimp = [
 	{ run = 'gimp "$@"', desc = "GIMP", for = "unix" },
 ]
@@ -139,6 +142,6 @@ prepend_rules = [
 
 	{ name = "*.{pdf,docx,doc}", use = ["libreoffice"] },
 
-	{ mime = "image/*", use = ["feh", "wallpaper", "gimp"] },
+	{ mime = "image/*", use = ["gameripper", "feh", "wallpaper", "gimp"] },
 ]
 append_rules = [{ name = "*/", use = ["images", "zip-folder"] }]
