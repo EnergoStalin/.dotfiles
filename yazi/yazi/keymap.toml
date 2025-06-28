@@ -2,7 +2,7 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
-[manager]
+[mgr]
 prepend_keymap = [
 	{ on = [ "<C-q>" ], run = "close", desc = "Close the current tab, or quit if it is last tab" },
 	{ on = [ "U", "f", "m" ], run = "plugin ffmpeg-audio-merge", desc = "ffmpeg replace audio from hovered video with selected one" },
