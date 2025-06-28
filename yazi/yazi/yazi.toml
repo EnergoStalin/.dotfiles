@@ -113,7 +113,7 @@ ffprobe = [
 	{ run = 'ffprobe -hide_banner "$@" && read', desc = "ffprobe", for = "unix", block = true },
 ]
 wallpaper = [
-  { run = 'echo -e "preload = $1\nwallpaper = ,$1" > ~/.config/hypr/hyprpaper.conf && hyprctl hyprpaper reload ,"$1"', desc = 'Set wallpaper (hyprland)', for = 'unix' }
+	{ run = 'echo -e "preload = $1\nwallpaper = ,$1" > ~/.config/hypr/hyprpaper.conf && hyprctl hyprpaper reload ,"$1"', desc = 'Set wallpaper (hyprland)', for = 'unix' }
 ]
 
 [open]
