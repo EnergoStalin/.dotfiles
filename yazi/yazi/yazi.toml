@@ -109,6 +109,9 @@ gameripper = [
 gimp = [
 	{ run = 'gimp "$@"', desc = "GIMP", for = "unix" },
 ]
+ffprobe = [
+	{ run = 'ffprobe -hide_banner "$@" && read', desc = "ffprobe", for = "unix", block = true },
+]
 wallpaper = [
   { run = 'echo -e "preload = $1\nwallpaper = ,$1" > ~/.config/hypr/hyprpaper.conf && hyprctl hyprpaper reload ,"$1"', desc = 'Set wallpaper (hyprland)', for = 'unix' }
 ]
@@ -126,7 +129,7 @@ prepend_rules = [
 
 	{ name = "*.psd", use = ["gimp"] },
 
-	{ name = "*.{mkv,mp4}", use = ["play", "denoise"] },
+	{ name = "*.{mkv,mp4}", use = ["play", "denoise", "ffprobe"] },
 	{ name = "*.gif", use = ["play"] },
 
 	{ name = "*.os{z,k}", use = ["osu", "extract"] },
