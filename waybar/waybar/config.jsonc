@@ -10,6 +10,12 @@
         "clock",
         "custom/separator"
     ],
+    "hyprland/language": {
+        "format": "󰌌  {}",
+        "format-ru": "RU",
+        "format-en": "EN",
+        "tooltip": false
+    },
     "modules-right": [
         "cpu",
         "custom/separator",
