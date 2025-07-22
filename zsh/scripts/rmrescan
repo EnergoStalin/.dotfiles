@@ -1,7 +1,16 @@
 #!/bin/env sh
 
-adb shell \
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
+
+notify-send Realme 'Media rescan started.'
+
+if adb shell \
 	content call \
 	--method scan_volume \
 	--uri content://media \
-	--arg external_primary
+	--arg external_primary; then
+  notify-send Realme 'Media rescan finished.'
+else
+  notify-send Realme 'Media rescan failed.'
+  exit 1
+fi
