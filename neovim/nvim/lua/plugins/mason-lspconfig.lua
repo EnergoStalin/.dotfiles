@@ -1,5 +1,3 @@
-package.path = package.path .. ';../?.lua'
-
 return {
   'williamboman/mason-lspconfig.nvim',
   dependencies = {
@@ -19,28 +17,15 @@ return {
       'ts=typescript',
     }
 
+    local capabilities = vim.list_extend({}, vim.lsp.protocol.make_client_capabilities())
+    capabilities = vim.list_extend(capabilities, require('cmp_nvim_lsp').default_capabilities())
+    vim.lsp.config('*', {
+      capabilities,
+    })
+
     require('mason').setup()
     require('mason-lspconfig').setup({
       ensure_installed = { 'lua_ls', },
-      handlers = {
-        function(server)
-          server = (({
-            tsserver = 'ts_ls',
-          })[server]) or server
-
-          local status, config = pcall(require, 'lsp.' .. server)
-          if not status then config = {} end
-          if (config.check ~= nil and not config.check()) then return end
-
-          require('lspconfig')[server].setup(
-            vim.tbl_deep_extend('force', config, {
-              capabilities = {
-                unpack(require('cmp_nvim_lsp').default_capabilities()),
-              },
-            })
-          )
-        end,
-      },
     })
   end,
 }
