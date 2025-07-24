@@ -6,6 +6,10 @@ local function find_lines(lines, match)
   return l
 end
 
+local function is_zapret_running()
+  return vim.system({'systemctl', 'show', '-P', 'SubState', 'zapret.service'}):wait().stdout == 'running\n'
+end
+
 local GVT = {
   config = {
     state = {
@@ -83,6 +87,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = 'nfqws',
   callback = function()
     if next(GVT.config.state.types) == nil then return end
+    if not vim.wait(1000, is_zapret_running, 200) then notify('zapret is not running aborting test') return end
     if GVT.handle then
       GVT.handle:kill(15) -- sigterm
     end
