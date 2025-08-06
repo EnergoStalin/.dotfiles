@@ -31,10 +31,6 @@ vim.opt.smartcase      = true
 vim.opt.langmap        =
 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
 
-if not vim.g.as_pager then
-  vim.opt.exrc = true
-end
-
 vim.opt.foldenable = false
 vim.opt.foldlevel  = 99
 vim.opt.foldmethod = 'indent'
@@ -59,3 +55,6 @@ vim.api.nvim_create_autocmd('TermOpen', {
 if vim.fn.getcwd():match('/Dostup/') then
   vim.env.GIT_CONFIG_GLOBAL = vim.env.HOME .. '/Source/Dostup/.gitconfig'
 end
+
+require('options.netrw')
+require('options.pager')

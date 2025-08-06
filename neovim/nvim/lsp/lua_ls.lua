@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 return {
   on_init = function(client)
     local path = client.workspace_folders[1].name
@@ -20,4 +21,4 @@ return {
   settings = {
     Lua = {}
   }
-} --[[@as vim.lsp.Config]]
+}
