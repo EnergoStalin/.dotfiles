@@ -30,10 +30,14 @@ function ggc_curl_test() {
       args=(${args[@]} ${cargs[@]})
       case "$proto" in
         "HTTPS")
-          args=(${args[@]} "--http1.1" "--retry" "2")
+          args=(${args[@]} "--http1.1" "--retry" "0")
           ;;
         "QUIC")
           args=(${args[@]} "--http3-only" "--retry" "0")
+          ;;
+        *)
+          echo "Unsopported protocol $proto"
+          return
           ;;
       esac
       args=(${args[@]} "https://$url" "-o" "/dev/null" "--next")
