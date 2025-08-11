@@ -1,3 +1,5 @@
+local notify = vim.schedule_wrap(function(...) vim.notify(...) end)
+
 local function find_lines(lines, match)
   local l = {}
   for _, line in pairs(lines) do
@@ -9,6 +11,21 @@ end
 local function is_zapret_running()
   return vim.system({'systemctl', 'show', '-P', 'SubState', 'zapret.service'}):wait().stdout == 'running\n'
 end
+
+local show_buffer = vim.schedule_wrap(function (title, text)
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_buf_set_name(buf, title)
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(text, '\n', { trimempty = true, plain = true }))
+  vim.api.nvim_create_autocmd('BufLeave', {
+    buffer = buf,
+    callback = function (args)
+      vim.api.nvim_win_close(vim.api.nvim_get_current_win(), true)
+      vim.api.nvim_buf_delete(args.buf, { force = true })
+    end
+  })
+  vim.api.nvim_open_win(buf, true, { split = "below" })
+  vim.api.nvim_set_current_buf(buf)
+end)
 
 local GVT = {
   config = {
@@ -22,6 +39,14 @@ local GVT = {
 function GVT.config.state:reset()
   self.types = {}
   return self
+end
+
+function GVT:kill()
+  if self.handle then
+    notify('Killing previous execution', vim.log.levels.WARN)
+    self.handle:kill(15)
+    self.handle:wait()
+  end
 end
 
 ---@param line string
@@ -62,7 +87,10 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = 'nfqws',
-  command = 'silent !systemctl stop zapret.service',
+  callback = function ()
+    GVT:kill()
+    vim.cmd('silent !systemctl stop zapret.service')
+  end
 })
 
 vim.api.nvim_create_autocmd('BufWritePost', {
@@ -79,36 +107,28 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
-local notify = vim.schedule_wrap(function(msg)
-  vim.notify(msg)
-end)
-
 vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = 'nfqws',
   callback = function()
-    if next(GVT.config.state.types) == nil then return end
+    local types = GVT.config.state.types
+    if next(types) == nil then return end
+
     if not vim.wait(1000, is_zapret_running, 200) then notify('zapret is not running aborting test') return end
-    if GVT.handle then
-      GVT.handle:kill(15) -- sigterm
-    end
 
-    local types = vim.fn.join(vim.tbl_keys(GVT.config.state.types), ' ')
+    local type = vim.fn.join(vim.tbl_keys(types), ' ')
+    local prefix = 'GGC "' .. type .. '" test'
 
-    notify('GGC "' .. types .. '" test is running...')
+    notify(prefix .. ' is running...')
 
     GVT.handle = vim.system({
-      'sh', '-c',
-      string.format(
-        'source ./butils.sh; GGC_TEST_PROTO="%s" ggc_curl_test "$GGCS_TXT"',
-        types
-      ),
+      'sh', '-c', 'source ./butils.sh; GGC_TEST_PROTO="' .. type .. '" ggc_curl_test "$GGCS_TXT"',
     }, {
-      cwd = vim.fs.joinpath(vim.fn.stdpath('config'), 'lua', 'zapret'),
+      cwd = vim.fs.joinpath(vim.fn.stdpath('config'), 'lua', 'core', 'mode', 'zapret'),
     }, function(out)
       GVT.handle = nil
       -- Print nothing on sigterm
       if out.signal == 15 then return end
-      notify(out.stdout)
+      show_buffer(prefix .. ' results', out.stdout)
     end)
   end,
 })
