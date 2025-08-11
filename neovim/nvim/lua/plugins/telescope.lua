@@ -12,6 +12,7 @@ return {
     { '<F2>',      '<cmd>Telescope lsp_references<cr>',        desc = 'LSP references',                                    },
     { '<F3>',      '<cmd>Telescope lsp_implementations<cr>',   desc = 'LSP implementations',                               },
     { '<leader>k', '<cmd>Telescope grep_string<cr>',           desc = 'Search for selected word in the current directory', },
+    { '<leader>K', '<cmd>Telescope keymaps<cr>',           desc = 'Search for selected word in the current directory', },
 
     { '<leader>c', '<cmd>Telescope git_bcommits_range<cr>', mode = { 'v', 'x', 'o', }, desc = 'Show commits referencing selected lines',           },
   },

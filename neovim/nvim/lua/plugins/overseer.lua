@@ -3,7 +3,7 @@ return {
   config = true,
   keys = {
     { '<leader>r', '<cmd>OverseerRun<cr>',        mode = { 'n', }, desc = 'Run overseer task', },
-    { '<leader>o', '<cmd>OverseerTaskAction<cr>', mode = { 'n', }, desc = 'Perform overseer task action', },
+    { '<leader><cr>', '<cmd>OverseerTaskAction<cr>', mode = { 'n', }, desc = 'Perform overseer task action', },
   },
   opts = {
     task_list = {

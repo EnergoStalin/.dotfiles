@@ -10,6 +10,8 @@ return {
     { 'glr',       '<cmd>LspRestart<cr>',               mode = 'n', desc = 'Rename symbol', },
     { 'gli',       '<cmd>LspInfo<cr>',                  mode = 'n', desc = 'Lsp info', },
     { 'gls',       '<cmd>LspStop<cr>',                  mode = 'n', desc = 'Lsp stop', },
+    { 'gll',       '<cmd>LspLog<cr>',                   mode = 'n', desc = 'Lsp log', },
+    { '<leader>M', '<cmd>Mason<cr>',                    mode = 'n', desc = 'Mason', },
   },
   event = 'FileType',
   config = function()
