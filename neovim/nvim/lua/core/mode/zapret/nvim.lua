@@ -1,4 +1,5 @@
 local notify = vim.schedule_wrap(function(...) vim.notify(...) end)
+local plugin_dir = vim.fs.joinpath(vim.fn.stdpath('config'), 'lua', 'core', 'mode', 'zapret')
 
 local function find_lines(lines, match)
   local l = {}
@@ -89,13 +90,13 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = 'nfqws',
   callback = function ()
     GVT:kill()
-    vim.cmd('silent !systemctl stop zapret.service')
+    vim.cmd('silent !sudo systemctl stop zapret.service')
   end
 })
 
 vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = 'nfqws',
-  command = 'silent !systemctl start zapret.service',
+  command = 'silent !sudo systemctl start zapret.service',
 })
 
 vim.api.nvim_create_autocmd('BufEnter', {
@@ -123,7 +124,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
     GVT.handle = vim.system({
       'sh', '-c', 'source ./butils.sh; GGC_TEST_PROTO="' .. type .. '" ggc_curl_test "$GGCS_TXT"',
     }, {
-      cwd = vim.fs.joinpath(vim.fn.stdpath('config'), 'lua', 'core', 'mode', 'zapret'),
+      cwd = plugin_dir,
     }, function(out)
       GVT.handle = nil
       -- Print nothing on sigterm
@@ -133,7 +134,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   end,
 })
 
-vim.keymap.set('n', '\\k', ':!systemctl stop zapret.service<cr>', { noremap = true, silent = true, })
+vim.keymap.set('n', '\\k', ':!sudo systemctl stop zapret.service<cr>', { noremap = true, silent = true, })
 vim.keymap.set('n', '\\s', function()
   vim.cmd([[
     new zapret.service
