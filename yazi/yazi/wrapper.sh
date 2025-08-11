@@ -10,4 +10,3 @@ function _ya() {
 }
 
 function ya() { _ya yazi "$@" }
-function sya() { _ya sudo -E yazi "$@" }
