@@ -64,7 +64,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
       'youtubeGV.txt'
     )
     local l2 = find_lines(
-      vim.fn.readfile(args.file),
+      vim.fn.readfile(args.file:gsub('%w+://', '')),
       'youtubeGV.txt'
     )
 
