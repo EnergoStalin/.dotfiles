@@ -1,14 +1,12 @@
-if trim(system('id -u')) == '0'
-  au BufWritePost /etc/sing-box/* !systemctl restart sing-box.service && journalctl -o cat -fu sing-box.service
-  au BufWritePost /etc/docker/daemon.json !systemctl restart docker.service && journalctl -o cat -fu docker.service
-  au BufWritePost /etc/coredns/Corefile !systemctl restart coredns.service && journalctl -o cat -fu coredns.service
-  au BufWritePost /etc/yggdrasil.conf !systemctl restart yggdrasil.service && journalctl -o cat -fu yggdrasil.service
-  au BufWritePost /etc/nftables.conf !nft -f <afile>
+au BufWritePost suda:///etc/sing-box/* !sudo systemctl restart sing-box.service && journalctl -o cat -fu sing-box.service
+au BufWritePost suda:///etc/docker/daemon.json !sudo systemctl restart docker.service && journalctl -o cat -fu docker.service
+au BufWritePost suda:///etc/coredns/Corefile !sudo systemctl restart coredns.service && journalctl -o cat -fu coredns.service
+au BufWritePost suda:///etc/yggdrasil.conf !sudo systemctl restart yggdrasil.service && journalctl -o cat -fu yggdrasil.service
+au BufWritePost suda:///etc/nftables.conf silent !sudo nft -f /etc/nftables.conf
 
-  au BufWritePost /etc/nginx/* !systemctl restart nginx.service && journalctl -o cat -fu nginx.service
+au BufWritePost suda:///etc/nginx/* !sudo systemctl restart nginx.service && journalctl -o cat -fu nginx.service
 
-  au BufWritePost /etc/systemd/* !systemctl daemon-reload
-endif
+au BufWritePost suda:///etc/systemd/* silent !sudo systemctl daemon-reload
 
 au BufWritePost */.local/share/wireplumber/scripts/*,*/.config/wireplumber/* !
       \ systemctl --user restart pipewire-session-manager.service &&
