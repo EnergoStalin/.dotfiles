@@ -1,5 +1,6 @@
 set -a
 
+QT_QPA_PLATFORMTHEME=gtk3
 GTK_THEME=Adwaita:dark
 XCURSOR_SIZE=24
 
