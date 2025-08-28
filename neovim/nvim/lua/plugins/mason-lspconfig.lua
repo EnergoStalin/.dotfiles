@@ -6,7 +6,6 @@ return {
     'hrsh7th/nvim-cmp',
   },
   keys = {
-    { '<leader>b', '<cmd>lua vim.lsp.buf.format()<cr>', mode = 'n', desc = 'Format current buffer', },
     { 'glr',       '<cmd>LspRestart<cr>',               mode = 'n', desc = 'Rename symbol', },
     { 'gli',       '<cmd>LspInfo<cr>',                  mode = 'n', desc = 'Lsp info', },
     { 'gls',       '<cmd>LspStop<cr>',                  mode = 'n', desc = 'Lsp stop', },
