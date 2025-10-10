@@ -9,7 +9,9 @@ return {
     },
     formatters_by_ft = {
       ["_"] = { "trim_whitespace" },
-      python = { "isort", "black" }
+      python = { "isort", "black" },
+      rust = { "rustfmt", lsp_format = "fallback" },
+      lua = { lsp_format = "fallback" },
     }
   }
 }
