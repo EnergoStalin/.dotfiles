@@ -93,4 +93,3 @@ alias scrcpyao='scrcpy --turn-screen-off --no-cleanup --no-video --require-audio
 
 # Upgrade
 function yayy { sprox 9051 yay $@ }
-alias pkgupgrade="sudo pacman -Suyy --noconfirm && yayy -Su --noconfirm"
