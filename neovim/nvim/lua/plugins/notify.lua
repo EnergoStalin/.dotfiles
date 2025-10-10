@@ -1,7 +1,7 @@
 return {
   'rcarriga/nvim-notify',
   keys = {
-    { '<c-a>', '<cmd>Notifications<cr>', mode = 'n', desc = 'Show notification history' }
+    { '<leader>N', '<cmd>Notifications<cr>', mode = 'n', desc = 'Show notification history' }
   },
   lazy = false,
   config = function()
