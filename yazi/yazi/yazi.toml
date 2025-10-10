@@ -64,7 +64,7 @@ rpgmv-decrypt = [
 	{ run = '[[ -d "$(pwd)/www" ]] && rpgmv-decrypter "$(pwd)/www" || rpgmv-decrypter "$(pwd)"', desc = "Decrypt rpgmaker folder", for = "unix" },
 ]
 unity-decrypt = [
-	{ run = 'AssetStudioModCLI "$(pwd)" -m Export -t sprite -o "./$(basename "$(find . -name "*_Data")")_Exported"', desc = "Extract unity assets", for = "unix" },
+	{ run = 'AssetStudioModCLI "$(pwd)" -m Export -t sprite,video -o "./$(basename "$(find . -name "*_Data")")_Exported"', desc = "Extract unity assets", for = "unix" },
 ]
 feh = [{ run = 'feh "$@"', desc = "Show images with feh", for = "unix" }]
 images = [
@@ -83,6 +83,7 @@ images = [
       fi
     done | sort -z -n | xargs -0 feh --title "%f [%u/%l] %wx%h"
   ''', desc = "Show images bigger than 600x400 in folders recursively", for = "unix" },
+	{ run = '''cd "$1"; find . -maxdepth 1 -name '*.jpg' -print0 | xargs -0 -P 16 -I{} ffmpeg -y -i "{}" -vf "scale='if(gt(a,1),1920,-1)':'if(gt(a,1),-1,1920)'" "{}.png"; rm *.jpg; for f in *.jpg.png; do mv -- "$f" "${f%.jpg.png}.png"; done''', desc = 'Scale jpegs to 1080p', for = 'unix' },
 ]
 adb-install = [
 	{ run = 'adb install "$1"', desc = "Install app to phone through adb", for = "unix" },
@@ -109,11 +110,8 @@ gameripper = [
 gimp = [
 	{ run = 'gimp "$@"', desc = "GIMP", for = "unix" },
 ]
-ffprobe = [
-	{ run = 'ffprobe -hide_banner "$@" && read', desc = "ffprobe", for = "unix", block = true },
-]
 wallpaper = [
-	{ run = 'echo -e "preload = $1\nwallpaper = ,$1" > ~/.config/hypr/hyprpaper.conf && hyprctl hyprpaper reload ,"$1"', desc = 'Set wallpaper (hyprland)', for = 'unix' }
+	{ run = '''echo -e "preload = $1\nwallpaper = ,$1" > ~/.config/hypr/hyprpaper.conf && hyprctl hyprpaper reload ,"$1"''', desc = 'Set wallpaper (hyprland)', for = 'unix' }
 ]
 
 [open]
@@ -125,11 +123,13 @@ prepend_rules = [
 	{ name = "*nw", use = ["rpgmv-decrypt"] },
 	{ name = "*_Data/", use = ["unity-decrypt"] },
 	{ name = "*.rpa", use = ["unrpa"] },
-	{ name = "*.apk", use = ["adb-install", "extract"] },
+	{ name = "*.apk", use = ["extract", "*.apk"] },
 
 	{ name = "*.psd", use = ["gimp"] },
+	{ name = "*.xml", use = ["edit"] },
+	{ name = "*.bat", use = ["edit"] },
 
-	{ name = "*.{mkv,mp4}", use = ["play", "denoise", "ffprobe"] },
+	{ name = "*.{mkv,mp4}", use = ["play", "denoise"] },
 	{ name = "*.gif", use = ["play"] },
 
 	{ name = "*.os{z,k}", use = ["osu", "extract"] },
@@ -145,6 +145,6 @@ prepend_rules = [
 
 	{ name = "*.{pdf,docx,doc}", use = ["libreoffice"] },
 
-	{ mime = "image/*", use = ["gameripper", "feh", "wallpaper", "gimp"] },
+	{ mime = "image/*", use = ["feh", "gimp", "wallpaper", "gameripper", ] },
 ]
 append_rules = [{ name = "*/", use = ["images", "zip-folder"] }]
