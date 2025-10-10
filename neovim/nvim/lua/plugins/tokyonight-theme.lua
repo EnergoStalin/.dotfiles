@@ -14,6 +14,7 @@ return {
         hl.TelescopeTitle = none
         hl.TelescopePromptBorder = none
         hl.TelescopePromptTitle = none
+        hl.LspInlayHint.bg = nil
       end,
     })
 
