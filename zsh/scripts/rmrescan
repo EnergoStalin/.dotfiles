@@ -1,13 +1,23 @@
 #!/bin/env sh
 
-function notify {
+function notify() {
   export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
   notify-send 'Realme Media rescan' "$@"
 }
 
-notify 'Waiting 5 seconds.'
+function check() {
+  [ "$(adb devices | wc -l)" -eq "2" ]
+}
 
-sleep 5
+if check; then
+  notify 'Waiting 5 seconds.'
+  sleep 5
+fi
+
+if check; then
+  notify 'No devices'
+  exit 0
+fi
 
 notify 'Started'
 
