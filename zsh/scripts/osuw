@@ -1,0 +1,8 @@
+#!/bin/env sh
+
+brightness=$(ddcutil getvcp 10 | grep -oE '[0-9]+' | awk 'NR==3')
+ddcutil setvcp 10 100
+
+osu
+
+ddcutil setvcp 10 $brightness
