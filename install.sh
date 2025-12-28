@@ -98,6 +98,7 @@ installconfig flameshot &
 
 # Workaround for nvim builded from source
 installifexec "$(getconfig)" neovim nvim &
+installifexec "$(getconfig)" mangohud mangohud &
 
 # Workaround for wakatime installed by neovim
 installifexec "$HOME" wakatime ~/.wakatime/wakatime-cli &
