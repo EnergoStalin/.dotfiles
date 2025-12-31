@@ -111,7 +111,7 @@ gimp = [
 	{ run = 'gimp "$@"', desc = "GIMP", for = "unix" },
 ]
 wallpaper = [
-	{ run = '''echo -e "preload = $1\nwallpaper = ,$1" > ~/.config/hypr/hyprpaper.conf && hyprctl hyprpaper reload ,"$1"''', desc = 'Set wallpaper (hyprland)', for = 'unix' }
+	{ run = 'setwp "$1" && hyprctl hyprpaper wallpaper ,"$1"', desc = 'Set wallpaper (hyprland)', for = 'unix' }
 ]
 
 [open]

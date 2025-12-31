@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+set -euo pipefail
+
+wp="$1"
+
+cat <<EOF > ~/.config/hypr/hyprpaper.conf
+wallpaper = {
+  path = $wp
+}
+EOF
