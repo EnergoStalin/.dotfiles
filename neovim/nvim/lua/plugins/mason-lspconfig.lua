@@ -21,7 +21,7 @@ return {
     local capabilities = vim.list_extend({}, vim.lsp.protocol.make_client_capabilities())
     capabilities = vim.list_extend(capabilities, require('cmp_nvim_lsp').default_capabilities())
     vim.lsp.config('*', {
-      capabilities,
+      capabilities = capabilities,
     })
 
     require('mason').setup()
