@@ -1,7 +1,7 @@
 ---@type vim.lsp.Config
 return {
   on_init = function(client)
-    local path = client.workspace_folders[1].name
+    local path = (client.workspace_folders or {{ name = '.' }})[1].name
     if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
       return
     end
