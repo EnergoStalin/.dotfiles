@@ -20,7 +20,7 @@ return {
   },
   keys = {
     { '<leader>n',  function() Snacks.notifier.show_history() end, desc = 'Notification History' },
-    { '<leader>d',  function() Snacks.bufdelete() end,             desc = 'Delete Buffer' },
+    { '<leader>x',  function() Snacks.bufdelete() end,             desc = 'Delete Buffer' },
     { '<leader>cR', function() Snacks.rename.rename_file() end,    desc = 'Rename File' },
     { '<leader>lg', function() Snacks.lazygit() end,               desc = 'Lazygit' },
     { '<leader>t',  function() Snacks.terminal() end,              desc = 'Toggle Terminal' },

@@ -9,9 +9,9 @@ return {
     { '<leader>f', '<cmd>Telescope find_files<cr>',            desc = 'Fuzzy find files respecting gitignore', },
     { '<leader>g', '<cmd>Telescope live_grep<cr>',             desc = 'Fuzzy search for file content', },
     { '<leader>B', '<cmd>Telescope buffers<cr>',               desc = 'Fuzzy search open buffers', },
-    { '<F1>',      '<cmd>Telescope lsp_workspace_symbols<cr>', desc = 'LSP workspace symbols', },
-    { '<F2>',      '<cmd>Telescope lsp_references<cr>',        desc = 'LSP references', },
-    { '<F3>',      '<cmd>Telescope lsp_implementations<cr>',   desc = 'LSP implementations', },
+    { '<F10>',     '<cmd>Telescope lsp_workspace_symbols<cr>', desc = 'LSP workspace symbols', },
+    { '<F11>',     '<cmd>Telescope lsp_references<cr>',        desc = 'LSP references', },
+    { '<F12>',     '<cmd>Telescope lsp_implementations<cr>',   desc = 'LSP implementations', },
     { '<leader>k', '<cmd>Telescope grep_string<cr>',           desc = 'Search for selected word in the current directory', },
     { '<leader>K', '<cmd>Telescope keymaps<cr>',               desc = 'Search for selected word in the current directory', },
 
