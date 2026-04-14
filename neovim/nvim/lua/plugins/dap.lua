@@ -75,7 +75,6 @@ return {
     vim.keymap.set('n', '<F4>', dap.step_out)
     vim.keymap.set('n', '<F5>', dap.step_back)
     vim.keymap.set('n', '<F6>', dap.restart)
-    vim.keymap.set('n', '<F7>', dap.restart)
 
     local b = dap.listeners.before
     b.attach.dapui_config = ui.open

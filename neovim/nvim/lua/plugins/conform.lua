@@ -5,13 +5,13 @@ return {
   },
   opts = {
     default_format_opts = {
-      lsp_format = "fallback",
+      lsp_format = 'fallback',
     },
     formatters_by_ft = {
-      ["_"] = { "trim_whitespace" },
-      python = { "isort", "black" },
-      rust = { "rustfmt", lsp_format = "fallback" },
-      lua = { lsp_format = "fallback" },
+      ['_'] = { 'trim_whitespace' },
+      python = { 'ruff' },
+      rust = { 'rustfmt', lsp_format = 'fallback' },
+      lua = { lsp_format = 'fallback' },
     }
   }
 }

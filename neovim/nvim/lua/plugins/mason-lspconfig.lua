@@ -1,3 +1,7 @@
+local function toggle_hints()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end
+
 return {
   'williamboman/mason-lspconfig.nvim',
   dependencies = {
@@ -6,11 +10,12 @@ return {
     'hrsh7th/nvim-cmp',
   },
   keys = {
-    { 'glr',       '<cmd>LspRestart<cr>',               mode = 'n', desc = 'Rename symbol', },
-    { 'gli',       '<cmd>LspInfo<cr>',                  mode = 'n', desc = 'Lsp info', },
-    { 'gls',       '<cmd>LspStop<cr>',                  mode = 'n', desc = 'Lsp stop', },
-    { 'gll',       '<cmd>LspLog<cr>',                   mode = 'n', desc = 'Lsp log', },
-    { '<leader>M', '<cmd>Mason<cr>',                    mode = 'n', desc = 'Mason', },
+    { 'glr',       '<cmd>LspRestart<cr>', mode = 'n', desc = 'Rename symbol', },
+    { 'gli',       '<cmd>LspInfo<cr>',    mode = 'n', desc = 'Lsp info', },
+    { 'gls',       '<cmd>LspStop<cr>',    mode = 'n', desc = 'Lsp stop', },
+    { 'gll',       '<cmd>LspLog<cr>',     mode = 'n', desc = 'Lsp log', },
+    { '<leader>M', '<cmd>Mason<cr>',      mode = 'n', desc = 'Mason', },
+    { '<leader>i', toggle_hints,          mode = 'n', desc = 'Mason', },
   },
   event = 'FileType',
   config = function()
