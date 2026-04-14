@@ -46,6 +46,7 @@ tar = [
 ]
 extract = [
 	{ run = '7z -bsp1 x "$1"', desc = "Extract here", for = "unix" },
+	{ run = 'basename "${1%.*}" | 7z -bsp1 x "$1"', desc = "Extract here (pswd)", for = "unix" },
 	{ run = '7z -bsp1 -o"${1%.*}" x "$1"', desc = "Extract subfolder", for = "unix" },
 ]
 zip-folder = [

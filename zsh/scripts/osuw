@@ -3,6 +3,6 @@
 brightness=$(ddcutil getvcp 10 | grep -oE '[0-9]+' | awk 'NR==3')
 ddcutil setvcp 10 100
 
-osu
+OSU_SDL3=1 PIPEWIRE_LATENCY=256/48000 osu
 
 ddcutil setvcp 10 $brightness
