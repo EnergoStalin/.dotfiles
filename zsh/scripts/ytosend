@@ -10,10 +10,18 @@ if ! command -v youtubeuploader > /dev/null; then
 	exit 1
 fi
 
+SKIN="Vaxei (CK Bacon boi 1.0 blue)"
+SKIN_WEBSITE="https://ordr.issou.best/skins"
+PROFILE_LINK="https://osu.ppy.sh/users/12830952"
+
+TITLE="$1"
+FILE="$3"
+MAP_LINK="$2"
+
 youtubeuploader \
-	-title "$1" \
-	-filename "$3" \
+	-title "$TITLE" \
+	-filename "$FILE" \
 	-privacy public \
 	-tags osu \
 	-description \
-	"profile: https://osu.ppy.sh/users/12830952\nmap: $2\nskin: baconBoiCK1.0_blue\nhttps://ordr.issou.best/skins"
+	"profile: $PROFILE_LINK\nmap: $MAP_LINK\nskin: $SKIN\n$SKIN_WEBSITE"
