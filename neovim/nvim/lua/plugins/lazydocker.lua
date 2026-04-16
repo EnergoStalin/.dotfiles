@@ -3,18 +3,20 @@ return {
   dependencies = { 'MunifTanjim/nui.nvim', },
   config = true,
   opts = {
-    popup_window = {
-      size = {
-        width = '100%',
-        height = '100%',
+    window = {
+      settings = {
+        width = 1,
+        height = 1,
+        border = nil,
       },
-      border = nil,
     },
   },
   keys = {
     {
       '<leader>ld',
-      '<cmd>LazyDocker<cr>',
+      function()
+        require('lazydocker').open({ engine = 'docker' })
+      end,
       desc = 'Open Lazydocker floating window',
     },
   },
