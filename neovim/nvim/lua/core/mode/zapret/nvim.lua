@@ -128,8 +128,11 @@ vim.api.nvim_create_autocmd('BufWritePost', {
     }, function(out)
       GVT.handle = nil
       -- Print nothing on sigterm
-      if out.signal == 15 then return end
-      show_buffer(prefix .. ' results', out.stdout)
+      if out.code == 147 then -- supposedly returned code 403
+        notify(prefix .. ' unsupported protocol.')
+      elseif out.signal ~= 15 then
+        show_buffer(prefix .. ' results', out.stdout)
+      end
     end)
   end,
 })

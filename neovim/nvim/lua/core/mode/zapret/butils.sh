@@ -36,8 +36,8 @@ function ggc_curl_test() {
           args=(${args[@]} "--http3-only" "--retry" "0")
           ;;
         *)
-          echo "Unsopported protocol $proto"
-          return
+          echo "Unsupported protocol $proto"
+          return 403
           ;;
       esac
       args=(${args[@]} "https://$url" "-o" "/dev/null" "--next")
