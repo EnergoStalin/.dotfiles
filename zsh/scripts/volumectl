@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+set -euo pipefail
+
+default_sink="$(pactl get-default-sink)"
+getvolume() {
+  pactl get-sink-volume $default_sink | awk '{print $5}'
+}
+
+current_volume=$(getvolume)
+volume="$1"
+
+if [ "${current_volume%\%}" -ge 100 ] && [[ "$volume" == "+"* ]]; then
+  volume=""
+fi
+
+if ! [ -z "$volume" ]; then
+  pactl set-sink-volume $default_sink $volume
+fi
+
+current_volume="$(getvolume)"
+
+notify-send "Volume $current_volume"
