@@ -4,12 +4,12 @@ set -euo pipefail
 wp="$1"
 monitor=$(hyprctl monitors -j | jq -r '.[] | select(.id == 0) | .name')
 
-cat <<EOF > ~/.config/hypr/hyprpaper.conf
-wallpaper = {
+cat <<EOF | tee ~/.config/hypr/hyprpaper.conf
+wallpaper {
   monitor = $monitor
-  path = '$wp'
+  path = $wp
   fit_mode = cover
 }
 EOF
 
-hyprctl hyprpaper wallpaper $monitor,"$wp"
+hyprctl hyprpaper wallpaper $monitor,"$wp",cover
