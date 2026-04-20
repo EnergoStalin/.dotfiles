@@ -38,6 +38,10 @@ return {
         '.venv/',
         '__pycache__/',
       },
+      layout_strategy = 'vertical',
+      layout_config = {
+        vertical = { width = 0.99, height = 0.99, preview_height = 0.6, preview_cutoff = 0.4 }
+      }
     },
   },
 }
