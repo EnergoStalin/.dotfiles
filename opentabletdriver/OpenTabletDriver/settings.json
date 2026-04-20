@@ -1,9 +1,10 @@
 {
+  "Revision": "0.6.6.2",
   "Profiles": [
     {
       "Tablet": "Wacom CTL-672",
       "OutputMode": {
-        "Path": "OpenTabletDriver.Desktop.Output.AbsoluteMode",
+        "Path": "OpenTabletDriver.Desktop.Output.LinuxArtistMode",
         "Settings": [],
         "Enable": true
       },
@@ -17,7 +18,7 @@
           "Rotation": 0.0
         },
         "Tablet": {
-          "Width": 71.0,
+          "Width": 70.76,
           "Height": 39.8,
           "X": 35.5,
           "Y": 19.9,
@@ -45,7 +46,9 @@
         "AuxButtons": [],
         "MouseButtons": [],
         "MouseScrollUp": null,
-        "MouseScrollDown": null
+        "MouseScrollDown": null,
+        "DisablePressure": false,
+        "DisableTilt": false
       }
     }
   ],

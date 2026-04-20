@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-set -euo pipefail
+set -u
 
 run() {
   local hook="$1"
@@ -78,6 +78,7 @@ installconfig ferium &
 installconfig lazygit &
 installconfig neovim &
 installconfig opentabletdriver &
+installconfig easyeffects &
 installconfig stow &
 installconfig tmux &
 installconfig xdg-desktop-portal &
