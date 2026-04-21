@@ -9,7 +9,7 @@ return {
     },
     formatters_by_ft = {
       ['_'] = { 'trim_whitespace' },
-      python = { 'ruff' },
+      python = { 'ruff_format' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
       lua = { lsp_format = 'fallback' },
     }
