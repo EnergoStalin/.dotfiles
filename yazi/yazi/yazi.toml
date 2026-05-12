@@ -1,6 +1,7 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+#:schema https://yazi-rs.github.io/schemas/yazi.json
 
 [mgr]
 ratio = [0, 4, 4]
@@ -10,13 +11,13 @@ mouse_events = []
 
 [plugin]
 prepend_fetchers = [
-	{ id = "mime", name = "*", if = "!mime", run = "mime-ext", prio = "high" },
+	{ id = "mime", url = "*", if = "!mime", run = "mime-ext.local", prio = "high", group = "mime" },
 ]
 prepend_previewers = [
-	{ id = "video", mime = "video/*", run = "noop", prio = "high" },
+	{ id = "video", mime = "video/*", run = "noop", prio = "high", group = "mime" },
 ]
 prepend_preloaders = [
-	{ id = "video", mime = "video/*", run = "noop", prio = "high" },
+	{ id = "video", mime = "video/*", run = "noop", prio = "high", group = "mime" },
 ]
 
 [preview]
@@ -118,34 +119,34 @@ wallpaper = [
 [open]
 prepend_rules = [
 	# Game shortcuts
-	{ name = "*.dll", use = ["dnspy"] },
-	{ name = "*Game.exe", use = ["rpgmv-decrypt", "evbunpack"] },
-	{ name = "*Game.rpgproject", use = ["rpgmv-decrypt"] },
-	{ name = "*nw", use = ["rpgmv-decrypt"] },
-	{ name = "*_Data/", use = ["unity-decrypt"] },
-	{ name = "*.rpa", use = ["unrpa"] },
-	{ name = "*.apk", use = ["extract", "*.apk"] },
+	{ url = "*.dll", use = ["dnspy"] },
+	{ url = "*Game.exe", use = ["rpgmv-decrypt", "evbunpack"] },
+	{ url = "*Game.rpgproject", use = ["rpgmv-decrypt"] },
+	{ url = "*nw", use = ["rpgmv-decrypt"] },
+	{ url = "*_Data/", use = ["unity-decrypt"] },
+	{ url = "*.rpa", use = ["unrpa"] },
+	{ url = "*.apk", use = ["extract", "*.apk"] },
 
-	{ name = "*.psd", use = ["gimp"] },
-	{ name = "*.xml", use = ["edit"] },
-	{ name = "*.bat", use = ["edit"] },
+	{ url = "*.psd", use = ["gimp"] },
+	{ url = "*.xml", use = ["edit"] },
+	{ url = "*.bat", use = ["edit"] },
 
-	{ name = "*.{mkv,mp4}", use = ["play", "denoise"] },
-	{ name = "*.gif", use = ["play"] },
+	{ url = "*.{mkv,mp4}", use = ["play", "denoise"] },
+	{ url = "*.gif", use = ["play"] },
 
-	{ name = "*.os{z,k}", use = ["osu", "extract"] },
+	{ url = "*.os{z,k}", use = ["osu", "extract"] },
 
-	{ name = "*.tar*", use = ["tar"] },
-	{ name = "*.rar", use = ["rar"] },
+	{ url = "*.tar*", use = ["tar"] },
+	{ url = "*.rar", use = ["rar"] },
 
-	{ name = "*.asar", use = ["asar"] },
+	{ url = "*.asar", use = ["asar"] },
 
-	{ name = "*.exe", use = ["exe"] },
+	{ url = "*.exe", use = ["exe"] },
 
-	{ name = "*.iso", use = ["extract-iso"] },
+	{ url = "*.iso", use = ["extract-iso"] },
 
-	{ name = "*.{pdf,docx,doc}", use = ["libreoffice"] },
+	{ url = "*.{pdf,docx,doc}", use = ["libreoffice"] },
 
 	{ mime = "image/*", use = ["feh", "gimp", "wallpaper", "gameripper", ] },
 ]
-append_rules = [{ name = "*/", use = ["images", "zip-folder"] }]
+append_rules = [{ mime = "*/", use = ["images", "zip-folder"] }]

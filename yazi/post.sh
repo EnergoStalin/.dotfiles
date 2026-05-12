@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-/bin/ya pack -i &> /dev/null
+/bin/ya pkg install --discard &> /dev/null

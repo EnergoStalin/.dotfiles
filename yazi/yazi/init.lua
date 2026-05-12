@@ -14,11 +14,11 @@ end
 
 Status:children_add(Status.owner, 1, Status.RIGHT)
 
-require("mime-ext"):setup {
+require("mime-ext.local"):setup {
   fallback_file1 = true,
 }
 
 if os.getenv("NVIM") then
   require("toggle-pane"):entry("min-preview")
-  ya.mgr_emit("hidden", { show = true, })
+  ya.emit("hidden", { show = true, })
 end
