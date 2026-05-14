@@ -1,0 +1,3 @@
+[binds]
+n = next 1
+p = next -1

@@ -70,9 +70,7 @@ unity-decrypt = [
 ]
 feh = [{ run = 'feh "$@"', desc = "Show images with feh", for = "unix" }]
 images = [
-	{ run = '''
-    find "$1" -type d -print0 | xargs -0 feh --title "%f [%u/%l] %wx%h"
-  ''', desc = "Show images in folders recursively", for = "unix" },
+	{ run = 'imv -r "$1"', desc = "Show images in folders recursively", for = "unix" },
 	{ run = '''
     find "$1" \( -name "*.png" -o -name ".jp*g" \) -print0 | while IFS= read -r -d '' img; do
       dimensions=$(identify -format "%w %h" "$img" 2>/dev/null)
@@ -83,7 +81,7 @@ images = [
             printf "%s\0" "$img"
         fi
       fi
-    done | sort -z -n | xargs -0 feh --title "%f [%u/%l] %wx%h"
+    done | sort -z -n | xargs -0 imv"
   ''', desc = "Show images bigger than 600x400 in folders recursively", for = "unix" },
 	{ run = '''cd "$1"; find . -maxdepth 1 -name '*.jpg' -print0 | xargs -0 -P 16 -I{} ffmpeg -y -i "{}" -vf "scale='if(gt(a,1),1920,-1)':'if(gt(a,1),-1,1920)'" "{}.png"; rm *.jpg; for f in *.jpg.png; do mv -- "$f" "${f%.jpg.png}.png"; done''', desc = 'Scale jpegs to 1080p', for = 'unix' },
 ]
@@ -149,4 +147,4 @@ prepend_rules = [
 
 	{ mime = "image/*", use = ["feh", "gimp", "wallpaper", "gameripper", ] },
 ]
-append_rules = [{ mime = "*/", use = ["images", "zip-folder"] }]
+append_rules = [{ url = "*/", use = ["images", "zip-folder"] }]

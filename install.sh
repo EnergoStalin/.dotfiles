@@ -96,6 +96,7 @@ installconfig waybar &
 installconfig uwsm &
 installconfig hyprland &
 installconfig flameshot &
+installconfig imv &
 
 # Workaround for nvim builded from source
 installifexec "$(getconfig)" neovim nvim &
