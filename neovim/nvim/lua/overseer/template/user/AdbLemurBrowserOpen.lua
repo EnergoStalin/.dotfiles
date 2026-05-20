@@ -1,5 +1,5 @@
 return {
-  name = 'AdbYandexBrowserOpen',
+  name = 'AdbLemurBrowserOpen',
   hide = true,
   params = {
     url = {
@@ -23,13 +23,13 @@ return {
     if string.find(o.url, '%%local%%') then o.url = string.gsub(o.url, '%%local%%', ip) end
 
     return {
-      name = 'YandexBrowserOpen',
+      name = 'LemurBrowserOpen',
       cmd = {
         'adb',
         'shell',
         vim.fn.join({
           'am', 'start',
-          '-n', 'com.yandex.browser/com.yandex.browser.YandexBrowserMainActivity',
+          '-n', 'com.lemurbrowser.exts/com.google.android.apps.chrome.Main',
           '-a', 'android.intent.action.VIEW',
           '-d', string.format("'%s'", o.url)
         }, ' '),

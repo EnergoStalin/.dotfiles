@@ -12,7 +12,7 @@ return {
     },
     templates = {
       'builtin',
-      'user.AdbYandexBrowserOpen',
+      'user.AdbLemurBrowserOpen',
       'user.http',
     },
   },
