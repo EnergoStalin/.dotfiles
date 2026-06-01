@@ -23,6 +23,7 @@ return {
       'svelte',
       'html',
       'css',
+      'helm',
     }
 
     vim.api.nvim_create_autocmd('FileType', {
