@@ -55,8 +55,6 @@ hl.config({
   },
 })
 
-hl.env('XDG_CURRENT_DESKTOP', 'Hyprland')
-
 hl.on('hyprland.start', function ()
   hl.exec_cmd(app.uwsm('qbittorrent'))
   hl.exec_cmd(app.uwsm('Telegram -startintray'))
