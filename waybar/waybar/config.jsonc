@@ -16,6 +16,9 @@
         "format-en": "EN",
         "tooltip": false
     },
+    "hyprland/workspaces": {
+        "enable-bar-scroll": true
+    },
     "modules-right": [
         "cpu",
         "custom/separator",
