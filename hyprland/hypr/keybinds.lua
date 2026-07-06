@@ -42,7 +42,7 @@ hl.bind(mod .. 'mouse:273', hl.dsp.window.resize(), { mouse = true })
 
 hl.bind(modS .. 'M', hl.dsp.layout('togglesplit'))
 
-hl.bind(mod .. 'minus', hl.dsp.workspace.toggle_special())
+hl.bind(mod .. 'minus', hl.dsp.workspace.toggle_special('magic'))
 hl.bind(modS .. 'minus', hl.dsp.window.move({ workspace = 'special:magic', follow = false }))
 
 local XF86OPTS = { locked = true, repeating = true }
