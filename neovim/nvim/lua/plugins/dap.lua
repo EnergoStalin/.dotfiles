@@ -13,33 +13,44 @@ return {
     local dap_python = require('dap-python')
 
     require('dapui').setup({
-      layouts = { {
-        elements = { {
-          id = 'scopes',
-          size = 1
-        }, {
-          id = 'breakpoints',
-          size = 0
-        }, {
-          id = 'stacks',
-          size = 0
-        }, {
-          id = 'watches',
-          size = 0
-        } },
-        position = 'left',
-        size = 60
-      }, {
-        elements = { {
-          id = 'repl',
+      layouts = {
+        {
+          elements = {
+            {
+              id = 'scopes',
+              size = 60
+            },
+            {
+              id = 'breakpoints',
+              size = 0
+            },
+            {
+              id = 'stacks',
+              size = 0
+            },
+            {
+              id = 'watches',
+              size = 0
+            }
+          },
+          position = 'left',
+          size = 60
+        },
+        {
+          elements = {
+            {
+              id = 'repl',
+              size = 0.2
+            },
+            {
+              id = 'console',
+              size = 0.2
+            }
+          },
+          position = 'bottom',
           size = 0.2
-        }, {
-          id = 'console',
-          size = 0.2
-        } },
-        position = 'bottom',
-        size = 5
-      } }
+        }
+      }
     })
 
     require('nvim-dap-virtual-text').setup({
