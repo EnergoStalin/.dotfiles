@@ -1,4 +1,5 @@
 require('keybinds')
+require('gestures')
 require('windowrules')
 
 local app = require('apps')
