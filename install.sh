@@ -98,6 +98,8 @@ installconfig hyprland &
 installconfig flameshot &
 installconfig imv &
 
+installifexec "$(getconfig)" lfk lfk &
+
 # Workaround for nvim builded from source
 installifexec "$(getconfig)" neovim nvim &
 installifexec "$(getconfig)" mangohud mangohud &
