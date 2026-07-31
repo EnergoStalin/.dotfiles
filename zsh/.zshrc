@@ -4,6 +4,8 @@ export LC_CTYPE=en_US.utf8
 export FZF_DEFAULT_OPTS='--bind=ctrl-u:preview-up+preview-up,ctrl-d:preview-down+preview-down'
 export PATH="$(dirname $(realpath "$0"))/scripts:$PATH"
 
+export GPG_TTY=$(tty)
+
 eval $(starship init zsh)
 
 # Set the directory we want to store zinit and plugins
