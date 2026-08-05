@@ -114,6 +114,7 @@ installhome feh &
 installhome vim &
 installhome zsh &
 installhome git &
+installhome gnupg &
 installhome wireplumber &
 
 wait $(jobs -p)
