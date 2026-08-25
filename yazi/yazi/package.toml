@@ -1,22 +1,22 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "bb758e2"
-hash = "5b1c276b75cae91cbbdbe7863f39a540"
+rev = "044c3cc"
+hash = "87472b05a8c420100f6a2b9cde1e7746"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mime-ext"
-rev = "bb758e2"
-hash = "b32d06923a619e353fca3cacf2ebe9cd"
+rev = "044c3cc"
+hash = "3bcc00df11efc3ae5d15f2dba860be7"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "bb758e2"
-hash = "15e5b67a241172cbb86b8fbf9e63692"
+rev = "044c3cc"
+hash = "5b2fbef7d1513ce38ff72623a071a5e"
 
 [[plugin.deps]]
 use = "EnergoStalin/yazi-plugins:mount"
-rev = "d8c57d4"
-hash = "61b598f5d5be9901011d267d199d04cf"
+rev = "9c5da1c"
+hash = "3a962293caf9f12fd31a1e54c10eef79"
 
 [[flavor.deps]]
 use = "BennyOe/tokyo-night"
