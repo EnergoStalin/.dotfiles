@@ -29,38 +29,38 @@ image_filter = 'lanczos3'
 
 [opener]
 play = [
-	{ run = 'mpv --force-window --use-filedir-conf "$@" >& /dev/null & disown', orphan = true, for = "unix" },
-	{ run = 'mpv --force-window "%1"', orphan = true, for = "windows" },
-	{ run = 'ffprobe -hide_banner "$1"; echo "Press enter to exit"; read _', block = true, desc = "Show media info", for = "unix" },
+	{ run = 'mpv --force-window --use-filedir-conf %s >& /dev/null & disown', orphan = true, for = "unix" },
+	{ run = 'mpv --force-window "%%1"', orphan = true, for = "windows" },
+	{ run = 'ffprobe -hide_banner %s1; echo "Press enter to exit"; read _', block = true, desc = "Show media info", for = "unix" },
 ]
 asar = [
 	{ run = 'asar extract "$1"', desc = "Extract here", for = "unix" },
-	{ run = 'asar extract "$1" "${1%.*}" ', desc = "Extract subfolder", for = "unix" },
+	{ run = 'v=%s1 asar extract %s1 "${v%.*}" ', desc = "Extract subfolder", for = "unix" },
 ]
 rar = [
-	{ run = 'unar "$1"', desc = "Extract here", for = "unix" },
-	{ run = 'unar -output-directory "${1%.*}" "$1"', desc = "Extract subfolder", for = "unix" },
+	{ run = 'unar %s1', desc = "Extract here", for = "unix" },
+	{ run = 'v=%s1 unar -output-directory "${v%.*}" %s1', desc = "Extract subfolder", for = "unix" },
 ]
 tar = [
-	{ run = 'tar -xf "$1"', desc = "Extract here", for = "unix" },
-	{ run = 'mkdir "${1%.*}" && tar -C "${1%.*}" -xf "$1"', desc = "Extract subfolder", for = "unix" },
+	{ run = 'tar -xf %s1', desc = "Extract here", for = "unix" },
+	{ run = 'v=%s1 mkdir "${v%.*}" && tar -C "${v%.*}" -xf %s1', desc = "Extract subfolder", for = "unix" },
 ]
 extract = [
-	{ run = '7z -bsp1 x "$1"', desc = "Extract here", for = "unix" },
-	{ run = 'basename "${1%.*}" | 7z -bsp1 x "$1"', desc = "Extract here (pswd)", for = "unix" },
-	{ run = '7z -bsp1 -o"*" x "$1"', desc = "Extract subfolder", for = "unix" },
+	{ run = '7z -bsp1 x %s1', desc = "Extract here", for = "unix" },
+	{ run = 'v=%s1 basename "${v%.*}" | 7z -bsp1 x %s1', desc = "Extract here (pswd)", for = "unix" },
+	{ run = '7z -bsp1 -o"*" x %s1', desc = "Extract subfolder", for = "unix" },
 ]
 zip-folder = [
-	{ run = 'cd "$1" && 7z a "${1}.7z" .', desc = "7z", for = "unix" },
+	{ run = 'cd %s1 && 7z a %s1.7z .', desc = "7z", for = "unix" },
 ]
 extract-iso = [
-	{ run = '7z x -tiso -o"${1%.*}" "$1"', desc = "Extract iso subfolder", for = "unix" },
+	{ run = '7z x -tiso -o"*" %s1', desc = "Extract iso subfolder", for = "unix" },
 ]
 unrpa = [
-	{ run = 'unrpa "$1" --mkdir --path "${1%.*}"', desc = "unrpa to subfolder", for = "unix" },
+	{ run = 'v=%s1 unrpa %s1 --mkdir --path "${v%.*}"', desc = "unrpa to subfolder", for = "unix" },
 ]
 denoise = [
-	{ run = 'ffmpeg -i "$1" -af anlmdn -y "${1%.*}.denoised.${1##*.}"', desc = "apply denoise filter", for = "unix" },
+	{ run = 'v=%s1 ffmpeg -i %s1 -af anlmdn -y "${v%.*}.denoised.${v##*.}"', desc = "apply denoise filter", for = "unix" },
 ]
 rpgmv-decrypt = [
 	{ run = '[[ -d "$(pwd)/www" ]] && rpgmv-decrypter "$(pwd)/www" || rpgmv-decrypter "$(pwd)"', desc = "Decrypt rpgmaker folder", for = "unix" },
@@ -68,11 +68,11 @@ rpgmv-decrypt = [
 unity-decrypt = [
 	{ run = 'AssetStudioModCLI "$(pwd)" -m Export -t sprite,video -o "./$(basename "$(find . -name "*_Data")")_Exported"', desc = "Extract unity assets", for = "unix" },
 ]
-feh = [{ run = 'feh "$@"', desc = "Show images with feh", for = "unix" }]
+feh = [{ run = 'feh %s', desc = "Show images with feh", for = "unix" }]
 images = [
-	{ run = 'imv -r "$1"', desc = "Show images in folders recursively", for = "unix" },
+	{ run = 'imv -r %s1', desc = "Show images in folders recursively", for = "unix" },
 	{ run = '''
-    find "$1" \( -name "*.png" -o -name ".jp*g" \) -print0 | while IFS= read -r -d '' img; do
+    find %s1 \( -name "*.png" -o -name ".jp*g" \) -print0 | while IFS= read -r -d '' img; do
       dimensions=$(identify -format "%w %h" "$img" 2>/dev/null)
       if [[ $? -eq 0 ]]; then
         read width height <<< "$dimensions"
@@ -83,35 +83,38 @@ images = [
       fi
     done | sort -z -n | xargs -0 imv"
   ''', desc = "Show images bigger than 600x400 in folders recursively", for = "unix" },
-	{ run = '''cd "$1"; find . -maxdepth 1 -name '*.jpg' -print0 | xargs -0 -P 16 -I{} ffmpeg -y -i "{}" -vf "scale='if(gt(a,1),1920,-1)':'if(gt(a,1),-1,1920)'" "{}.png"; rm *.jpg; for f in *.jpg.png; do mv -- "$f" "${f%.jpg.png}.png"; done''', desc = 'Scale jpegs to 1080p', for = 'unix' },
+	{ run = '''cd %s1; find . -maxdepth 1 -name '*.jpg' -print0 | xargs -0 -P 16 -I{} ffmpeg -y -i "{}" -vf "scale='if(gt(a,1),1920,-1)':'if(gt(a,1),-1,1920)'" "{}.png"; rm *.jpg; for f in *.jpg.png; do mv -- "$f" "${f%.jpg.png}.png"; done''', desc = 'Scale jpegs to 1080p', for = 'unix' },
 ]
 adb-install = [
 	{ run = 'adb install "$1"', desc = "Install app to phone through adb", for = "unix" },
 ]
 exe = [
-	{ run = 'ghidra "$1" >& /dev/null & disown', desc = "Open in ghidra", for = "unix" },
-	{ run = 'wine "$1" >& /dev/null & disown', desc = "Run under wine", for = "unix" },
+	{ run = 'ghidra %s1 >& /dev/null & disown', desc = "Open in ghidra", for = "unix" },
+	{ run = 'wine %s1 >& /dev/null & disown', desc = "Run under wine", for = "unix" },
 ]
 libreoffice = [
-	{ run = 'libreoffice "$1" >& /dev/null & disown', desc = "Open in libreoffice", for = "unix" },
+	{ run = 'libreoffice %s1 >& /dev/null & disown', desc = "Open in libreoffice", for = "unix" },
 ]
 dnspy = [
-	{ run = 'dnspy "$1"', desc = "DNSPY", for = "unix" },
+	{ run = 'dnspy %s1', desc = "DNSPY", for = "unix" },
 ]
 osu = [
-	{ run = 'osu "$@"', desc = "osu!lazer", for = "unix" },
+	{ run = 'osu %s', desc = "osu!lazer", for = "unix" },
 ]
 evbunpack = [
-	{ run = 'evbunpack "$1" unpack', desc = "Unpack enigma executable", for = "unix" },
+	{ run = 'evbunpack %s1 unpack', desc = "Unpack enigma executable", for = "unix" },
 ]
 gameripper = [
-	{ run = 'gameripper "$@"', desc = "Gameripper", for = "unix" },
+	{ run = 'gameripper %s', desc = "Gameripper", for = "unix" },
 ]
 gimp = [
-	{ run = 'gimp "$@"', desc = "GIMP", for = "unix" },
+	{ run = 'gimp %s', desc = "GIMP", for = "unix" },
 ]
 wallpaper = [
-	{ run = 'setwp "$1"', desc = 'Set primary monitor wallpaper (hyprland)', for = 'unix' }
+	{ run = 'setwp %s1', desc = 'Set primary monitor wallpaper (hyprland)', for = 'unix' }
+]
+browser = [
+	{ run = 'chromium %s1 >& /dev/null & disown', desc = 'Open in browser', for = 'unix' }
 ]
 
 [open]
@@ -127,6 +130,7 @@ prepend_rules = [
 
 	{ url = "*.psd", use = ["gimp"] },
 	{ url = "*.xml", use = ["edit"] },
+	{ url = "*.{html,pdf}", use = ["browser", "edit"] },
 	{ url = "*.bat", use = ["edit"] },
 
 	{ url = "*.{mkv,mp4}", use = ["play", "denoise"] },
@@ -143,7 +147,7 @@ prepend_rules = [
 
 	{ url = "*.iso", use = ["extract-iso"] },
 
-	{ url = "*.{pdf,docx,doc}", use = ["libreoffice"] },
+	{ url = "*.{docx,doc}", use = ["libreoffice"] },
 
 	{ mime = "image/*", use = ["feh", "gimp", "wallpaper", "gameripper", ] },
 ]
