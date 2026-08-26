@@ -29,6 +29,8 @@ vim.opt.autoindent     = true
 vim.opt.ignorecase     = true
 vim.opt.smartcase      = true
 
+vim.opt.fileencodings  = 'utf-8,cp1251,default,latin1'
+
 vim.opt.langmap        =
 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
 
