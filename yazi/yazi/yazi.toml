@@ -68,7 +68,6 @@ rpgmv-decrypt = [
 unity-decrypt = [
 	{ run = 'AssetStudioModCLI "$(pwd)" -m Export -t sprite,video -o "./$(basename "$(find . -name "*_Data")")_Exported"', desc = "Extract unity assets", for = "unix" },
 ]
-feh = [{ run = 'feh %s', desc = "Show images with feh", for = "unix" }]
 images = [
 	{ run = 'imv -r %s1', desc = "Show images in folders recursively", for = "unix" },
 	{ run = '''
@@ -149,6 +148,6 @@ prepend_rules = [
 
 	{ url = "*.{docx,doc}", use = ["libreoffice"] },
 
-	{ mime = "image/*", use = ["feh", "gimp", "wallpaper", "gameripper", ] },
+	{ mime = "image/*", use = ["images", "gimp", "wallpaper", "gameripper", ] },
+	{ mime = "folder/*", use = ["images", "zip-folder"] },
 ]
-append_rules = [{ url = "*/", use = ["images", "zip-folder"] }]
