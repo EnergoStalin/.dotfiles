@@ -1,0 +1,81 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "plan",
+  "model": "gpt-5.6-sol",
+  "instructions": ["~/.config/opencode/AGENTS.md", "./AGENTS.MD"],
+  "provider": {
+    "openai": {
+      "models": {
+        "gpt-5.6-terra": {
+          "options": {
+            "reasoningEffort": "medium"
+          }
+        },
+        "gpt-5.6-sol": {
+          "options": {
+            "reasoningEffort": "medium"
+          }
+        },
+        "gpt-6-astra": {
+          "options": {
+            "reasoningEffort": "low"
+          }
+        }
+      }
+    },
+    "polza": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://polza.ai/api/v1",
+        "apiKey": "{file:~/.secrets/opencode/polza-ai}"
+      },
+      "models": {
+        "deepseek/deepseek-v4.1-flash": {
+          "name": "DeepSeek v4.1 Flash"
+        },
+        "deepseek/deepseek-v4-flash-0731": {
+          "name": "DeepSeek v4 Flash 0731"
+        },
+        "deepseek/deepseek-v4-flash": {
+          "name": "DeepSeek v4 Flash"
+        }
+      }
+    },
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama",
+      "options": {
+        "baseURL": "http://{env:OLLAMA_HOST}:11434/v1"
+      },
+      "models": {
+        "SparkLLM/Spark-X2.5-1.7B:latest": {
+          "name": "Spark X2.5 1.7B"
+        },
+        "qwen3:14b": {
+          "name": "Qwen 3 14B"
+        },
+        "qwen2.5-coder:7b": {
+          "name": "Qwen 2.5 coder 7b"
+        }
+      }
+    },
+  },
+  "agent": {
+    "build": {
+      "model": "openai/gpt-5.6-terra",
+      "reasoningEffort": "medium"
+    },
+    "plan": {
+      "model": "openai/gpt-5.6-sol",
+      "reasoningEffort": "high"
+    },
+    "general": {
+      "model": "openai/gpt-5.6-terra",
+      "reasoningEffort": "medium"
+    },
+    "explore": {
+      "model": "openai/gpt-5.6-terra",
+      "reasoningEffort": "low"
+    }
+  }
+}

@@ -97,6 +97,7 @@ installconfig uwsm &
 installconfig hyprland &
 installconfig flameshot &
 installconfig imv &
+installconfig opencode &
 
 installifexec "$(getconfig)" lfk lfk &
 
