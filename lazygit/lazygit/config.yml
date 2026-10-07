@@ -3,6 +3,16 @@
 os:
   editPreset: nvim-remote
 
+git:
+  overrideGpg: true
+  diffRenderers:
+    - type: stdinFilter
+      name: delta
+      colorArg: always
+      command: >-
+        delta
+        --paging=never
+
 notARepository: quit
 disableStartupPopups: true
 
