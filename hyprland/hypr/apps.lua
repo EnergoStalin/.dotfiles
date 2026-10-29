@@ -5,7 +5,17 @@ function M.electron(s)
 end
 
 function M.uwsm(s)
-  return 'uwsm app -- ' .. s
+  local executable = s:match("^%S+")
+
+  return string.format(
+    "command -v %q >/dev/null 2>&1 && uwsm app -- %s",
+    executable,
+    s
+  )
+end
+
+function M.chromium(s)
+  return M.uwsm(s)
 end
 
 function M.adbsms(s)

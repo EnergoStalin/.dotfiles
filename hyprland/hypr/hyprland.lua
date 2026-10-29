@@ -1,16 +1,23 @@
-require('keybinds')
+require('startup')
 require('gestures')
 require('windowrules')
 
-local app = require('apps')
+local h = require('helpers')
 
-hl.monitor({
-  output = 'DP-1',
-  mode = '3440x1440@165',
-  vrr = true
-})
+local hostname = h.capture('hostname')
+
+require('keybinds.init')(hostname)
+
+require('monitors.' .. hostname .. '.monitor')
+require('monitors.' .. hostname .. '.mode')
 
 hl.config({
+  render = {
+    cm_enabled = true,
+    cm_auto_hdr = 1,
+    non_shader_cm = 2,
+    direct_scanout = 1,
+  },
   general = {
     gaps_in = 0,
     gaps_out = 0,
@@ -55,10 +62,3 @@ hl.config({
     drag_threshold = 10,
   },
 })
-
-hl.on('hyprland.start', function ()
-  hl.exec_cmd(app.uwsm('qbittorrent'))
-  hl.exec_cmd(app.uwsm('Telegram -startintray'))
-  hl.exec_cmd(app.uwsm('keepassxc --minimized'))
-  hl.exec_cmd(app.uwsm(app.electron('discord')))
-end)
