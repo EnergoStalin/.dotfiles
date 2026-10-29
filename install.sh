@@ -32,6 +32,18 @@ install() {
   run post "$package" "$root"
 }
 
+installcopy() {
+  local root="$1"
+  local package="$2"
+
+  run prepare "$package" "$root"
+
+  echo sudo cp --recursive --preserve=mode,timestamps "$package/." "$root/"
+  sudo cp --recursive --preserve=mode,timestamps "$package/." "$root/"
+
+  run post "$package" "$root"
+}
+
 installifexec() {
   local root="$1"
   local package="$2"
@@ -67,6 +79,14 @@ getconfig() {
 
 installconfig() {
   _installconfig "$@"
+}
+
+installroot() {
+  local package="$1"
+
+  if pacman -Qi "$package" &> /dev/null; then
+    installcopy / "$package"
+  fi
 }
 
 mkdir -p .local/bin
@@ -117,5 +137,7 @@ installhome zsh &
 installhome git &
 installhome gnupg &
 installhome wireplumber &
+
+installroot xray &
 
 wait $(jobs -p)
