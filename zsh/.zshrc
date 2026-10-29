@@ -93,5 +93,6 @@ function man() { nvim -c ":hide Man $@" }
 alias sscrcpy='scrcpy --turn-screen-off --no-cleanup'
 alias scrcpyao='scrcpy --turn-screen-off --no-cleanup --no-video --require-audio >& /dev/null & disown'
 
-# Upgrade
-function yayy { sprox 9051 yay $@ }
+# xray
+alias xrayroute='sudo -e /etc/xray/03_routes.json && sudo systemctl restart xray.service'
+alias xrayconf='sudo -e /etc/xray/01_config.json && sudo systemctl restart xray.service'
