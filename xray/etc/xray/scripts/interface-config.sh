@@ -2,10 +2,18 @@
 set -euo pipefail
 
 XRAY_DIR=/etc/xray
+INTERFACE_TIMEOUT=${XRAY_INTERFACE_TIMEOUT:-10}
+
+if [[ ! "$INTERFACE_TIMEOUT" =~ ^[0-9]+$ ]]; then
+  echo "XRAY_INTERFACE_TIMEOUT must be a non-negative integer (seconds)" >&2
+  exit 1
+fi
+deadline=$((SECONDS + 10#$INTERFACE_TIMEOUT))
 
 IFACE=
-for family in -4 -6; do
-  candidate=$(ip "$family" route show default | awk '
+while :; do
+  for family in -4 -6; do
+    candidate=$(ip "$family" route show default | awk '
       {
         metric = 0
         for (i = 1; i <= NF; i++) {
@@ -22,16 +30,19 @@ for family in -4 -6; do
       }
       END { if (found) print best_iface }
     ')
-  if [[ -n "$candidate" ]]; then
-    IFACE=$candidate
-    break
-  fi
-done
+    if [[ -n "$candidate" ]]; then
+      IFACE=$candidate
+      break
+    fi
+  done
 
-[[ -n "$IFACE" ]] || {
-  echo "No active eth/wlan interface" >&2
-  exit 1
-}
+  [[ -n "$IFACE" ]] && break
+  if (( SECONDS >= deadline )); then
+    echo "No active eth/wlan interface after ${INTERFACE_TIMEOUT}s" >&2
+    exit 1
+  fi
+  sleep 1
+done
 
 tmp=$(mktemp -t ".interface.XXXXXX")
 
