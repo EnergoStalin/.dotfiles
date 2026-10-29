@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+set -eo pipefail
+
+MODE="$1"
+
+HOSTNAME="$(hostname)"
+PREFIX="$HOME/.config/hypr/monitors/$HOSTNAME"
+
+MODE="$PREFIX/mode.lua"
+
+CURRENT="$(readlink -f "$MODE")"
+
+lm () {
+  find $PREFIX -name '*hz.lua' | sort -V$1 | head -1
+}
+
+case "$1" in
+  max)
+    NEW="$(lm r)"
+    ;;
+  min)
+    NEW="$(lm)"
+    ;;
+esac
+
+ln -sfn "$(basename "$NEW")" "$MODE"
+hyprctl eval "dofile('$MODE')" > /dev/null
