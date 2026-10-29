@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+iface=${IFACE:-}
+
+case "$iface" in
+  enp*|eno*|wlan*) ;;
+  *) exit 0 ;;
+esac
+
+systemctl try-restart xray.service

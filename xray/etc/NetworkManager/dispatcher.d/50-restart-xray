@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+iface=${1:-}
+action=${2:-}
+
+case "$action" in
+  up|dhcp4-change|dhcp6-change|connectivity-change|reapply) ;;
+  *) exit 0 ;;
+esac
+
+case "$iface" in
+  enp*|eno*|wlan*) ;;
+  *) exit 0 ;;
+esac
+
+systemctl try-restart xray.service
