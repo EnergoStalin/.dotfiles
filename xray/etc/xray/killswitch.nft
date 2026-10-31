@@ -1,0 +1,46 @@
+#!/usr/bin/nft -f
+
+# Separate from the main firewall: reloading this file replaces only our table.
+# Reload with systemctl restart xray-killswitch; never flush the whole ruleset.
+# LAN access (including LAN DNS) remains allowed while Xray is down. Use Xray's
+# localhost DNS listener if DNS must fail closed. Xray's direct outbounds remain
+# allowed: this enforces passage through Xray, not exclusively a remote proxy.
+# Privileged processes can bypass protection by changing rules or using Xray's UID.
+# Loading these rules can interrupt direct public connections, including SSH.
+# Never allow established connections wholesale: pre-existing direct connections
+# must also be blocked when the tunnel disappears.
+destroy table inet xray_killswitch
+table inet xray_killswitch {
+  set lan4 {
+    type ipv4_addr
+    flags interval
+    elements = { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 169.254.0.0/16, 224.0.0.0/24, 239.0.0.0/8 }
+  }
+
+  set lan6 {
+    type ipv6_addr
+    flags interval
+    elements = { fc00::/7, fe80::/10, ff02::/16 }
+  }
+
+  chain output {
+    type filter hook output priority 10; policy drop;
+
+    oifname "lo" accept
+    oifname "xray0" accept
+    meta skuid "xray" accept comment "Xray transport and configured direct outbounds"
+    ip daddr @lan4 accept
+    ip6 daddr @lan6 accept
+    ip daddr 255.255.255.255 udp sport 68 udp dport 67 accept comment "DHCP discovery"
+    counter comment "Blocked host bypass"
+  }
+
+  chain forward {
+    type filter hook forward priority 10; policy drop;
+
+    oifname "xray0" accept
+    ip daddr @lan4 accept
+    ip6 daddr @lan6 accept
+    counter comment "Blocked forwarded bypass"
+  }
+}

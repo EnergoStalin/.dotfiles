@@ -1,0 +1,15 @@
+[Unit]
+Description=Xray fail-closed firewall (LAN access allowed)
+Requires=nftables.service
+After=nftables.service
+Wants=network-pre.target
+Before=network-pre.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/nft -f /etc/xray/killswitch.nft
+RemainAfterExit=yes
+# Deliberately no ExecStop: stopping Xray or this unit must not remove protection.
+
+[Install]
+WantedBy=network-pre.target
