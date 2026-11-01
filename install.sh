@@ -38,8 +38,9 @@ installcopy() {
 
   run prepare "$package" "$root"
 
-  echo sudo cp --recursive --preserve=mode,timestamps "$package/." "$root/"
-  sudo cp --recursive --preserve=mode,timestamps "$package/." "$root/"
+  # Only root/ is deployed; hooks, helpers, and templates stay outside it.
+  echo sudo cp --recursive --preserve=mode,timestamps "$package/root/." "$root/"
+  sudo cp --recursive --preserve=mode,timestamps "$package/root/." "$root/"
 
   run post "$package" "$root"
 }
