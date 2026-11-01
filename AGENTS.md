@@ -3,6 +3,12 @@
 - Do not create or edit README files; they interfere with the install script's assumptions.
 - Preserve implementation assumptions, configuration rationale, and operational caveats in concise comments next to the relevant code or configuration instead.
 
+## Privileged agent commands
+
+- Use `pkexec`, not `sudo`, for privileged commands executed by the agent; this does not require changing existing installer scripts.
+- Batch related privileged operations into one `pkexec /usr/bin/bash -euo pipefail -c '...'` invocation to avoid repeated authentication prompts. Keep unprivileged work outside the batch, and do not batch operations that require inspecting an intermediate result or obtaining further approval.
+- Use absolute paths inside privileged batches: `pkexec` may change the working directory. Quote arguments safely and keep the privileged scope limited to the requested task.
+
 ## Installation contract (`install.sh`)
 
 - Run the installer from the repository root: package paths and `.local/bin` are relative to the current directory.
