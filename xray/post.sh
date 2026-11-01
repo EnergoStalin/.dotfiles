@@ -4,8 +4,14 @@ set -euo pipefail
 sudo chown -R :xray /etc/xray
 sudo chmod 2775 /etc/xray
 
+sudo systemctl unmask systemd-resolved.service
+sudo systemctl enable systemd-resolved.service
 sudo systemctl daemon-reload
-sudo systemctl enable --now xray-killswitch.service
+# Keep clients on the same endpoint regardless of which resolver owns port 53.
+printf 'nameserver 127.0.0.1\n' | sudo tee /etc/resolv.conf > /dev/null
+if systemctl is-active --quiet NetworkManager.service; then
+  sudo nmcli general reload conf
+fi
 
 # Prefer enabled NetworkManager; use networkd only as a fallback.
 # Wait-online services are managed separately. Xray retries offline starts,

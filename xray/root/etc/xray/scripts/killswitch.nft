@@ -1,9 +1,9 @@
 #!/usr/bin/nft -f
 
 # Separate from the main firewall: reloading this file replaces only our table.
-# Reload with systemctl restart xray-killswitch; never flush the whole ruleset.
-# LAN access (including LAN DNS) remains allowed while Xray is down. Use Xray's
-# localhost DNS listener if DNS must fail closed. Xray's direct outbounds remain
+# Loaded/removed by Xray's lifecycle; never flush the whole ruleset.
+# Protection covers startup/running only; stopping/failing Xray permits direct
+# traffic and restores systemd-resolved on localhost. Xray's direct outbounds remain
 # allowed: this enforces passage through Xray, not exclusively a remote proxy.
 # Privileged processes can bypass protection by changing rules or using Xray's UID.
 # Loading these rules can interrupt direct public connections, including SSH.
