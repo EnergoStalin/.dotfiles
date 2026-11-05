@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-osu-beatmap-archive">
+    <comment>osu! beatmap archive</comment>
+    <sub-class-of type="application/zip"/>
+    <glob pattern="*.osz"/>
+  </mime-type>
+  <mime-type type="application/x-osu-skin-archive">
+    <comment>osu! skin archive</comment>
+    <sub-class-of type="application/zip"/>
+    <glob pattern="*.osk"/>
+  </mime-type>
+</mime-info>

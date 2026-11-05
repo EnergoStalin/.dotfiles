@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=osu! url handler
+Exec=osu %u
+Type=Application
+Terminal=false
+MimeType=x-scheme-handler/osu;

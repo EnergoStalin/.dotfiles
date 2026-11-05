@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=osu!lazer
+Exec=osu %F
+Type=Application
+Terminal=false
+Categories=Game;
+MimeType=application/x-osu-beatmap-archive;application/x-osu-skin-archive;
