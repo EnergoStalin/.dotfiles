@@ -1,8 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "default_agent": "plan",
+  "default_agent": "build",
   "model": "openai/gpt-6.1-sol",
-  "instructions": ["~/.config/opencode/AGENTS.md", "./AGENTS.MD"],
+  "instructions": ["~/.config/opencode/AGENTS.md", "./AGENTS.MD", "~/.config/opencode/agent-guidance.md"],
   "providers": {
     "openai": {
       "models": {
@@ -77,27 +77,5 @@
         ],
       }
     }
-  },
-  "agents": {
-    "build": {
-      "model": "openai/gpt-6.1-sol#medium"
-    },
-    "plan": {
-      "model": "openai/gpt-6.1-sol#medium"
-    },
-    "general": {
-      "model": "openai/gpt-6.1-terra#medium"
-    },
-    "explore": {
-      "model": "openai/gpt-6-luna#low"
-    },
-    "patch": {
-      "mode": "primary",
-      "model": "openai/gpt-6-luna#medium"
-    },
-    "coder": {
-      "mode": "subagent",
-      "model": "openai/gpt-6.1-sol#medium"
-    },
   }
 }
