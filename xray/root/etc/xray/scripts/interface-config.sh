@@ -33,7 +33,8 @@ jq -n --arg iface "$IFACE" '{
       destOverride: ["http", "tls", "quic"]
     },
     settings: {
-      autoOutboundsInterface: $iface
+      autoOutboundsInterface: $iface,
+      name: "xray0"
     }
   }]
 }' > "$tmp"
