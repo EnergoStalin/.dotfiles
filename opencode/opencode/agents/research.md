@@ -32,20 +32,11 @@ permissions:
     effect: allow
   - action: "websearch"
     resource: "*"
-    effect: allow
+    effect: deny
   - action: "webfetch"
     resource: "*"
     effect: allow
-  - action: "search_gateway_searxng_*"
-    resource: "*"
-    effect: allow
-  - action: "search_gateway_web_url_read"
-    resource: "*"
-    effect: allow
-  - action: "searxng_searxng_*"
-    resource: "*"
-    effect: allow
-  - action: "searxng_web_url_read"
+  - action: "searxng_*"
     resource: "*"
     effect: allow
 ---

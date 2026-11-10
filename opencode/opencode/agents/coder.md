@@ -7,14 +7,11 @@ permissions:
     effect: allow
   - action: "websearch"
     resource: "*"
-    effect: allow
+    effect: deny
   - action: "webfetch"
     resource: "*"
     effect: allow
-  - action: "search_gateway_*"
-    resource: "*"
-    effect: deny
   - action: "searxng_*"
     resource: "*"
-    effect: deny
+    effect: allow
 ---
