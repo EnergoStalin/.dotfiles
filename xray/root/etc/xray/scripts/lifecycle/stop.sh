@@ -4,7 +4,6 @@ export PATH=/usr/bin
 
 # Remove only our firewall. This deliberately permits direct traffic while inactive.
 status=0
-nft destroy table inet xray_killswitch || status=$?
 rm -f /run/xray-dns-owned
 # Do not wait on a unit ordered before Xray from inside its stop job.
 # Nor resurrect the resolver during system shutdown.
