@@ -16,6 +16,7 @@ prepend_fetchers = [
 prepend_previewers = [
 	{ id = "video", mime = "video/*", run = "noop", prio = "high", group = "mime" },
 	{ url = "*.bat", run = "code" },
+	{ url = "*.tpl", run = "code" },
 ]
 prepend_preloaders = [
 	{ id = "video", mime = "video/*", run = "noop", prio = "high", group = "mime" },
